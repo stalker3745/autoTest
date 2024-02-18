@@ -1,0 +1,7 @@
+# 注册成功的数据
+# 没有注册名，注册成功
+- regdata:  {"mobilephone": "15012345678", "pwd": "123456"}
+  exp: {"status": 1, "code": "10001", "msg": "注册成功"}
+# 设置注册名，注册成功
+- regdata:  {"mobilephone": "15012345679", "pwd": "123456", "regname": "HelloWorld"}
+  exp: {"status": 1, "code": "10001", "msg": "注册成功"}
