@@ -27,6 +27,14 @@ class BaseRequests:
         except Exception as e:
             print(f"发送post请求异常，{url}，{data},{json},{kwargs}，异常信息为：{e}")
 
+    def post_hearder(self, url, headers, data=None, json=None, **kwargs):
+        try:
+            r = self.session.post(url, headers=headers, data=data, json=json, **kwargs)
+            # print(f"发送post请求成功，{url}，，{headers},{data},{json},{kwargs}，响应信息为：{r.text}")
+            print(f"响应信息为：{r.text}")
+            return r
+        except Exception as e:
+            print(f"发送post请求异常，{url}，{data},{json},{kwargs}，异常信息为：{e}")
 
 import sys
 

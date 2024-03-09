@@ -25,13 +25,15 @@ def list(url, br):  # 获取用户列表
 
 def notice(url,headers, br,cs):  # 获取用户列表
     url = url + "/employee-web-application/noticeController/NoticeList"
-    r = br.post_log(url,headers,json=cs)
+    r = br.post_hearder(url,headers,json=cs)
     return r
+
 def newSubmitFormData(url,headers, br,cs):  # 获取用户列表
     url = url + "/employee-web-application/app/newSubmitFormData"
-    r = br.post_log(url,headers,json=cs)
+    r = br.post_hearder(url,headers,json=cs)
     return r
+
 def newGetFormDetailData(url,headers, br,cs):  # 获取用户列表
     url = url + "/employee-web-application/app/newGetFormDetailData"
-    r = br.post_log(url,headers,json=cs)
+    r = br.post_hearder(url,headers,json=cs)
     return r
