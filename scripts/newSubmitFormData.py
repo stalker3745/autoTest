@@ -18,7 +18,6 @@ def test_SubmitFormData(login_data, url, br, db_info):
     assert str(r.json()['message']) == str(login_data['exp']['message'])
     assert str(r.json()['code']) == str(login_data['exp']['code'])
     if r.json()['message']=="操作成功!":
-        # exit()
         headers = {'Lang': "CN",
                    'Authorization': r.json()["data"]["jwtToken"],
                    'User-Company': r.json()["data"]["companyId"]}
@@ -28,24 +27,18 @@ def test_SubmitFormData(login_data, url, br, db_info):
         gmtModified=r.json()["data"]["gmtModified"]
         formMetaDataDetailsVO=r.json()["data"]["formMetaDataDetailsVO"]
         appId=r.json()["data"]["appId"]
-        entityId=r.json()["data"]["entityId"]
+        # entityId=r.json()["data"]["entityId"]
+        # "dataId": entityId,
+        # "entityId": entityId,
         companyId=r.json()["data"]["companyId"]
         login_data1={"formMetaDataDetailsVO":formMetaDataDetailsVO,
-        # "gmtModified":gmtModified,
+        "gmtModified":gmtModified,
         "companyId": companyId,
-        # "dataId": entityId,
         "appId": appId,
-        # "entityId": entityId,
         "isPass": "true",
         "mode": 2,
-        # "isEdit": "true",
+        "isEdit": "true",
         "isAdminEdit": "true"}
         r1=member.newSubmitFormData(url, headers, br,login_data1)
         assert str(r1.json()['message']) == str(login_data['exp']['message'])
         assert str(r1.json()['code']) == str(login_data['exp']['code'])
-
-
-
-
-
-
