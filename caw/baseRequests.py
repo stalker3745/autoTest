@@ -5,8 +5,6 @@ requests中的get、post包装一层，baseRequests
     异常处理
 '''
 import requests
-
-
 class BaseRequests:
     def __init__(self):
         self.session = requests.session()  # 创建一个session
