@@ -1,3 +1,5 @@
+import time
+
 import pytest
 
 # 登录的数据
@@ -42,3 +44,17 @@ def test_SubmitFormData(login_data, url, br, db_info):
         r1=member.newSubmitFormData(url, headers, br,login_data1)
         assert str(r1.json()['message']) == str(login_data['exp']['message'])
         assert str(r1.json()['code']) == str(login_data['exp']['code'])
+        time.sleep(3)
+        login_data1 = {"formMetaDataDetailsVO": formMetaDataDetailsVO,
+                       "appId": appId,
+                       "companyId": companyId,
+                       "dataId":  r1.json()["data"]["entityId"],
+                       "entityId": r1.json()["data"]["entityId"],
+                       "gmtModified": "2023-02-04 14:44:08.000",
+                       "isPass": "true",
+                       "mode": 2,
+                       "isEdit": "true",
+                       "isAdminEdit": "true"}
+        print(login_data1)
+        r1=member.newSubmitFormData(url, headers, br,login_data1)
+        print(r1.json())

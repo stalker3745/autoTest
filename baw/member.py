@@ -14,7 +14,7 @@ def register(url, br, cs):
     return r
 
 def login(url, br, cs):  # 登录
-    url = url + "/employee-web-application/account/mixLogin"
+    url = url + "/account/mixLogin"
     r = br.post(url, json=cs)
     return r
 
@@ -24,16 +24,20 @@ def list(url, br):  # 获取用户列表
     return r
 
 def notice(url,headers, br,cs):  # 获取用户列表
-    url = url + "/employee-web-application/noticeController/NoticeList"
+    url = url + "/noticeController/NoticeList"
+    r = br.post_hearder(url,headers,json=cs)
+    return r
+def newGetMessageList(url,headers, br,cs):  # 获取用户列表
+    url = url + "/message/newGetMessageList"
     r = br.post_hearder(url,headers,json=cs)
     return r
 
 def newSubmitFormData(url,headers, br,cs):  # 获取用户列表
-    url = url + "/employee-web-application/app/newSubmitFormData"
+    url = url + "/app/newSubmitFormData"
     r = br.post_hearder(url,headers,json=cs)
     return r
 
 def newGetFormDetailData(url,headers, br,cs):  # 获取用户列表
-    url = url + "/employee-web-application/app/newGetFormDetailData"
+    url = url + "/app/newGetFormDetailData"
     r = br.post_hearder(url,headers,json=cs)
     return r
