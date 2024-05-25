@@ -1,21 +1,25 @@
 # 登录的数据
 # 1、正常场景：用户名、密码正确，登录成功
 - logindata: {"account":"mazhenhua1@zdsztech.com","password":"dog7jCEMgBCy02XUcrsv4w==","language":"CN"}  # 登录的用户
-  exp: {"code": "200", "message": "操作成功!" ,"datatotal": 2}   # 登录的预期结果
+  exp: {"code": "200", "message": "操作成功!" ,"datatotal": 2 ,"getActivityLog": 39}   # 登录的预期结果
   # 1 我的项目的数量
   listAllProjectByCondition: {"page":1,"pageSize":16,"projectName":null,"dropDownType":null,"dropDownId":null,"dataType":1}
+  getActivityLogByCreateId: {"page":1,"pageSize":20,"isProjectOverviewLog":false,"isCompanyLog":false,"isProjectLog":true}
 
 - logindata: {"account":"mazhenhua1@zdsztech.com","password":"dog7jCEMgBCy02XUcrsv4w==","language":"CN"}  # 登录的用户
-  exp: {"code": "200", "message": "操作成功!" ,"datatotal": 18}   # 登录的预期结果
+  exp: {"code": "200", "message": "操作成功!" ,"datatotal": 18 ,"getActivityLog": 39}   # 登录的预期结果
   # 2 XXX
   listAllProjectByCondition: { "page": 1,"pageSize": 16,"projectName": null,"dropDownType": null,"dropDownId": null,"dataType": 2 }
+  getActivityLogByCreateId: {"page":1,"pageSize":20,"isProjectOverviewLog":false,"isCompanyLog":false,"isProjectLog":true}
 
 - logindata: {"account":"mazhenhua1@zdsztech.com","password":"dog7jCEMgBCy02XUcrsv4w==","language":"CN"}  # 登录的用户
-  exp: {"code": "200", "message": "操作成功!" ,"datatotal": 1}   # 登录的预期结果
+  exp: {"code": "200", "message": "操作成功!" ,"datatotal": 1 ,"getActivityLog": 39}   # 登录的预期结果
   # 3 我的已归档数量
   listAllProjectByCondition: { "page": 1,"pageSize": 16,"projectName": null,"dropDownType": null,"dropDownId": null,"dataType": 3 }
+  getActivityLogByCreateId: {"page":1,"pageSize":20,"isProjectOverviewLog":false,"isCompanyLog":false,"isProjectLog":true}
 
 - logindata: {"account":"mazhenhua1@zdsztech.com","password":"dog7jCEMgBCy02XUcrsv4w==","language":"CN"}  # 登录的用户
-  exp: {"code": "200", "message": "操作成功!" ,"datatotal": 5}   # 登录的预期结果
+  exp: {"code": "200", "message": "操作成功!" ,"datatotal": 5 ,"getActivityLog": 39}   # 登录的预期结果
   # 4 项目模版 数量
   listAllProjectByCondition: { "page": 1,"pageSize": 16,"projectName": null,"dropDownType": null,"dropDownId": null,"dataType": 4 }
+  getActivityLogByCreateId: {"page":1,"pageSize":20,"isProjectOverviewLog":false,"isCompanyLog":false,"isProjectLog":true}
