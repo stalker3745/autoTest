@@ -6,24 +6,24 @@ from baw import member
 from caw import fileRead
 
 @pytest.fixture(params=fileRead.read_yaml("/data_case/Project.yaml"))
-def login_data(request):
+def project_data(request):
     return request.param
 
 
-def test_project(login_data, url, br, db_info):
-    r = member.login(url, br, login_data['logindata'])
+def test_project(project_data, url, br, db_info):
+    r = member.login(url, br, project_data['logindata'])
     headers = {'Lang': "CN",
                'Authorization': r.json()["data"]["jwtToken"],
                'User-Company': r.json()["data"]["companyId"]}
-    r1=project.listAllProjectByCondition(url,headers, br,login_data['listAllProjectByCondition'])
-    assert str(r1.json()['message']) == str(login_data['exp']['message'])
-    assert str(r1.json()["data"]["total"]) == str(login_data['exp']['datatotal'])
+    r1=project.listAllProjectByCondition(url,headers, br,project_data['listAllProjectByCondition'])
+    assert str(r1.json()['message']) == str(project_data['exp']['message'])
+    assert str(r1.json()["data"]["total"]) == str(project_data['exp']['datatotal'])
 
-def test_project(login_data, url, br, db_info):
-    r = member.login(url, br, login_data['logindata'])
+def test_project(project_data, url, br, db_info):
+    r = member.login(url, br, project_data['logindata'])
     headers = {'Lang': "CN",
                'Authorization': r.json()["data"]["jwtToken"],
                'User-Company': r.json()["data"]["companyId"]}
-    r1=project.getActivityLogByCreateId(url,headers, br,login_data['getActivityLogByCreateId'])
-    assert str(r1.json()['message']) == str(login_data['exp']['message'])
-    assert str(r1.json()["data"]["totalNumber"]) >= str(login_data['exp']['getActivityLog'])
+    r1=project.getActivityLogByCreateId(url,headers, br,project_data['getActivityLogByCreateId'])
+    assert str(r1.json()['message']) == str(project_data['exp']['message'])
+    assert str(r1.json()["data"]["totalNumber"]) >= str(project_data['exp']['getActivityLog'])
