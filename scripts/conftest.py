@@ -18,6 +18,7 @@ def url():
 def db_info():
     return eval(fileRead.read_ini("/data_env/env.ini", "db"))
 
+
 @pytest.fixture(scope='session')
 def br():
     return baseRequests.BaseRequests()  # 创建了一个实例

@@ -15,4 +15,3 @@ def test_login(login_data, url, br, db_info):
     # 校验登录的结果
     assert str(r.json()['message']) == str(login_data['exp']['message'])
     assert str(r.json()['code']) == str(login_data['exp']['code'])
-
