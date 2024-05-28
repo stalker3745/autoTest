@@ -40,6 +40,20 @@ def get_amount(db_info, phone):
     else:
         return 0
 
+def get_userPhone(db_info, phone):
+    c = connect(db_info)
+    return execute(c, f"select * from zd_user where user_phone='{phone}'")
+
+def get_zd_form_entitydata(db_info, appid):
+    c = connect(db_info)
+    return execute(c, f"SELECT count(*) from zd_form_entitydata WHERE app_id={appid} and is_deleted=0")
+
+
+def updata_formentity(db_info, appid):
+    c = connect(db_info)
+    execute(c, f"UPDATE zd_form_entitydata SET is_deleted=1,gmt_modified=NOW()  WHERE app_id={appid}")
+    disconnect(c)
+
 # 测试代码，用完可以删除
 if __name__ == '__main__':
     db_info = {"ip": "47.97.254.131", "port": 3506, "user": "zhidian_test", "pwd": "zhidian#022", "dbname": "project_construction_test"}
