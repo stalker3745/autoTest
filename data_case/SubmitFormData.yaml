@@ -4,9 +4,5 @@
   exp: {"code": "200", "message": "操作成功!"}   # 登录的预期结果
   note: {"companyId":"1059864408278474752","myTaskTypeList":[7,6,5,9,10]}
   getlog: {"appId":"1071440863756075010","companyId":"1071440842016989184","entityId":"1071441031305936896","nodeId":null,"processInstanceId":null,"projectProjectId":null,"projectTaskId":null,"withRealTimeData":true,"designTemplateId":"1212045244749897729","isProcessPermission":false}
-
-# 2、失败场景：用户名正确，密码错误，登录失败
-- logindata: {"account":"15522310001","password":"dog7jCEMgBCy02XUcrsv4w==1","language":"CN"}
-  exp: {"code": "30001", "message": "账号或密码错误!"}
-
-
+  appidend: "1243574861453160448"
+  int1: "2"
