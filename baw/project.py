@@ -25,3 +25,9 @@ def listProjectByCondition(url,br,headers,cs):
     url = url + "/newProject/listProjectByCondition"
     r = br.post_hearder(url,headers,json=cs)
     return r
+
+def deleteProject(url,br,headers,cs):
+    url = url + "/newProject/deleteProject"
+    r = br.post_hearder(url,headers,json=cs)
+    return  r
+
