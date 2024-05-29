@@ -26,12 +26,20 @@ def listProjectByCondition(url,br,headers,cs):
     r = br.post_hearder(url,headers,json=cs)
     return r
 
+# 删除项目
 def deleteProject(url,br,headers,cs):
     url = url + "/newProject/deleteProject"
     r = br.post_hearder(url,headers,json=cs)
     return  r
 
+# 项目归档
 def updateProjectDataType(url,br,headers,cs):
     url = url + "/newProject/updateProjectDataType"
     r = br.post_hearder(url,headers,json=cs)
+    return r
+
+# 删除回收站内的项目
+def deleteProject2(url,br,headers,cs):
+    url= url+"/newProject/deleteProject"
+    r=br.post_hearder(url,headers,json=cs)
     return r
