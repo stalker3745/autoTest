@@ -21,3 +21,7 @@ def add_task(url,br,headers,cs):
     url = url + "/newTask/addNewTask"
     r = br.post_hearder(url, headers,json=cs)
     return r
+def listProjectByCondition(url,br,headers,cs):
+    url = url + "/newProject/listProjectByCondition"
+    r = br.post_hearder(url,headers,json=cs)
+    return r
