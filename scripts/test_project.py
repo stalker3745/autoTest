@@ -10,7 +10,7 @@ def project_data(request):
     return request.param
 
 
-def test_project0(project_data, url, br, db_info):
+def test_allProject_project(project_data, url, br, db_info):
     r = member.login(url, br, project_data['logindata'])
     headers = {'Lang': "CN",
                'Authorization': r.json()["data"]["jwtToken"],
@@ -24,7 +24,7 @@ def test_project0(project_data, url, br, db_info):
     assert str(r1.json()['message']) == str(project_data['exp']['message'])
     assert str(r1.json()["data"]["total"]) == str(project_data['exp']['datatotal'])
 
-def test_project1(project_data, url, br, db_info):
+def test_project(project_data, url, br, db_info):
     r = member.login(url, br, project_data['logindata'])
     headers = {'Lang': "CN",
                'Authorization': r.json()["data"]["jwtToken"],
@@ -58,6 +58,18 @@ def test_delete_project(project_data, url, br, db_info):
                'Authorization': r.json()["data"]["jwtToken"],
                'User-Company': r.json()["data"]["companyId"]}
     r1=project.deleteProject(url,br,headers,project_data['deleteProject'])
+    print(r1.json())
+    assert str(r1.json()["code"])==str(project_data['exp']['code'])
+    assert str(r1.json()['message'])==str(project_data['exp']['message'])
+
+# ¹éµµÏîÄ¿
+def test_updateProjectDataType_project(project_data,url,br):
+    r=member.login(url,br,project_data['logindata'])
+    print(r.json())
+    headers = {'Lang': "CN",
+               'Authorization': r.json()["data"]["jwtToken"],
+               'User-Company': r.json()["data"]["companyId"]}
+    r1=project.updateProjectDataType(url,br,headers,project_data['updateProjectDataType'])
     print(r1.json())
     assert str(r1.json()["code"])==str(project_data['exp']['code'])
     assert str(r1.json()['message'])==str(project_data['exp']['message'])

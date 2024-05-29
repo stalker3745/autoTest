@@ -31,3 +31,7 @@ def deleteProject(url,br,headers,cs):
     r = br.post_hearder(url,headers,json=cs)
     return  r
 
+def updateProjectDataType(url,br,headers,cs):
+    url = url + "/newProject/updateProjectDataType"
+    r = br.post_hearder(url,headers,json=cs)
+    return r
