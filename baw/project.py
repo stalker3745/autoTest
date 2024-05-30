@@ -57,3 +57,8 @@ def changeProjectResourc(url,br,headers,cs):
     r=br.post_hearder(url,headers,json=cs)
     return r
 
+# 移除项目成员
+def deleteProjectResource(url,br,headers,cs):
+    url=url+"/projectResource/deleteProjectResource"
+    r=br.post_hearder(url,headers,json=cs)
+    return r
