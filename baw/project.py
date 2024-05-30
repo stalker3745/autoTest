@@ -50,3 +50,10 @@ def recoverProject(url,br,headers,cs):
     url= url+"/newProject/updateProjectDataType"
     r=br.post_hearder(url,headers,json=cs)
     return r
+
+# 添加项目成员
+def changeProjectResourc(url,br,headers,cs):
+    url=url+"/projectResource/changeProjectResource"
+    r=br.post_hearder(url,headers,json=cs)
+    return r
+

@@ -10,7 +10,8 @@
   deleteProject: {"projectIds": ["1242523275230535680"]}
   updateProjectDataType: {"dataType": 2,"projectId": "1245433410361860096"}
   deleteProject2: {"projectIds":["1245433463784710144"]}
-  recoverProject: {dataType: 1, projectId: "1245740094531604488"}
+  recoverProject: {dataType: 1, projectId: "1245740094531604480"}
+  changeProjectResourc: {"projectId":"1245740094531604480","userIdList":["1242059550803365888"]}
 
 #- logindata: {"account":"mazhenhua1@zdsztech.com","password":"dog7jCEMgBCy02XUcrsv4w==","language":"CN"}  # 登录的用户
 #  exp: {"code": "200", "message": "操作成功!" ,"datatotal": 18 ,"getActivityLog": 39}   # 登录的预期结果

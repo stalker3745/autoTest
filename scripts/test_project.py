@@ -100,3 +100,13 @@ def test_recover_project(project_data,url,br):
     assert str(r1.json()["code"])==str(project_data['exp']['code'])
     assert str(r1.json()['message'])==str(project_data['exp']['message'])
 
+def test_changeResourc_project(project_data,url,br):
+    r=member.login(url,br,project_data['logindata'])
+    print(r.json())
+    headers = {'Lang': "CN",
+               'Authorization': r.json()["data"]["jwtToken"],
+               'User-Company': r.json()["data"]["companyId"]}
+    r1=project.changeProjectResourc(url,br,headers,project_data['changeProjectResourc'])
+    print(r1.json())
+    assert str(r1.json()["code"])==str(project_data['exp']['code'])
+    assert str(r1.json()['message'])==str(project_data['exp']['message'])
