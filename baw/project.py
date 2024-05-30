@@ -43,3 +43,9 @@ def deleteProject2(url,br,headers,cs):
     url= url+"/newProject/deleteProject"
     r=br.post_hearder(url,headers,json=cs)
     return r
+
+# 回收站里恢复项目
+def recoverProject(url,br,headers,cs):
+    url= url+"/newProject/updateProjectDataType"
+    r=br.post_hearder(url,headers,json=cs)
+    return r
