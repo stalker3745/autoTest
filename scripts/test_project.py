@@ -47,7 +47,6 @@ def test_project2(project_data, url, br, db_info):
                'User-Company': r.json()["data"]["companyId"]}
     # account.changeCompanyLogin(url, headers, br, project_data['changeCompanyLogin'])
     r1=project.listProjectByCondition(url, br,headers, project_data['listProjectByCondition'])
-    print(r1.json())
     assert str(r1.json()['message']) == str(project_data['exp']['message'])
     assert str(r1.json()["code"]) == str(project_data['exp']['code'])
     assert str(r1.json()["data"]["total"]) != str(project_data['exp']['getActivityLog'])
@@ -60,7 +59,6 @@ def test_delete_project(project_data, url, br, db_info):
                'Authorization': r.json()["data"]["jwtToken"],
                'User-Company': r.json()["data"]["companyId"]}
     r1=project.deleteProject(url,br,headers,project_data['deleteProject'])
-    print(r1.json())
     assert str(r1.json()["code"])==str(project_data['exp']['code'])
     assert str(r1.json()['message'])==str(project_data['exp']['message'])
 
@@ -79,12 +77,10 @@ def test_updateProjectDataType_project(project_data,url,br):
 # 将项目从回收站里删除
 def test_delete_project2(project_data,url,br):
     r=member.login(url,br,project_data['logindata'])
-    print(r.json())
     headers = {'Lang': "CN",
                'Authorization': r.json()["data"]["jwtToken"],
                'User-Company': r.json()["data"]["companyId"]}
     r1=project.deleteProject2(url,br,headers,project_data['deleteProject2'])
-    print(r1.json())
     assert str(r1.json()["code"])==str(project_data['exp']['code'])
     assert str(r1.json()['message'])==str(project_data['exp']['message'])
 
@@ -93,24 +89,20 @@ def test_delete_project2(project_data,url,br):
 # 从回收站恢复项目
 def test_recover_project(project_data,url,br):
     r=member.login(url,br,project_data['logindata'])
-    print(r.json())
     headers = {'Lang': "CN",
                'Authorization': r.json()["data"]["jwtToken"],
                'User-Company': r.json()["data"]["companyId"]}
     r1=project.recoverProject(url,br,headers,project_data['recoverProject'])
-    print(r1.json())
     assert str(r1.json()["code"])==str(project_data['exp']['code'])
     assert str(r1.json()['message'])==str(project_data['exp']['message'])
 
 # 添加项目成员
 def test_changeResourc_project(project_data,url,br):
     r=member.login(url,br,project_data['logindata'])
-    print(r.json())
     headers = {'Lang': "CN",
                'Authorization': r.json()["data"]["jwtToken"],
                'User-Company': r.json()["data"]["companyId"]}
     r1=project.changeProjectResourc(url,br,headers,project_data['changeProjectResourc'])
-    print(r1.json())
     assert str(r1.json()["code"])==str(project_data['exp']['code'])
     assert str(r1.json()['message'])==str(project_data['exp']['message'])
 
@@ -130,47 +122,39 @@ def test_changeResourc_project(project_data,url,br):
 # 移除项目成员
 def test_deleteResourc_project(project_data,url,br):
     r=member.login(url,br,project_data['logindata'])
-    print(r.json())
     headers = {'Lang': "CN",
                'Authorization': r.json()["data"]["jwtToken"],
                'User-Company': r.json()["data"]["companyId"]}
     r1=project.deleteProjectResource(url,br,headers,project_data['deleteProjectResource'])
-    print(r1.json())
     assert str(r1.json()["code"])==str(project_data['exp']['code'])
     assert str(r1.json()['message'])==str(project_data['exp']['message'])
 
 # 使用项目模板新建项目
 def test_copeByProjectId_project(project_data,url,br):
     r=member.login(url,br,project_data['logindata'])
-    print(r.json())
     headers = {'Lang': "CN",
                'Authorization': r.json()["data"]["jwtToken"],
                'User-Company': r.json()["data"]["companyId"]}
     r1=project.copeProjectByProjectId(url,br,headers,project_data['copeProjectByProjectId'])
-    print(r1.json())
     assert str(r1.json()["code"])==str(project_data['exp']['code'])
     assert str(r1.json()['message'])==str(project_data['exp']['message'])
 
 # 删除项目模板
 def test_deletecopyProject_project(project_data,url,br):
     r = member.login(url, br, project_data['logindata'])
-    print(r.json())
     headers = {'Lang': "CN",
                'Authorization': r.json()["data"]["jwtToken"],
                'User-Company': r.json()["data"]["companyId"]}
     r1 = project.deletecopyProject(url, br, headers, project_data['deletecopyProject'])
-    print(r1.json())
     assert str(r1.json()["code"]) == str(project_data['exp']['code'])
     assert str(r1.json()['message']) == str(project_data['exp']['message'])
 
 # 复制项目模板
 def test_copyProjectTemplate_project(project_data,url,br):
     r = member.login(url, br, project_data['logindata'])
-    print(r.json())
     headers = {'Lang': "CN",
                'Authorization': r.json()["data"]["jwtToken"],
                'User-Company': r.json()["data"]["companyId"]}
     r1 = project.copyProjectTemplate(url, br, headers, project_data['copyProjectTemplate'])
-    print(r1.json())
     assert str(r1.json()["code"]) == str(project_data['exp']['code'])
     assert str(r1.json()['message']) == str(project_data['exp']['message'])
