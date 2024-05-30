@@ -86,6 +86,8 @@ def test_delete_project2(project_data,url,br):
     assert str(r1.json()["code"])==str(project_data['exp']['code'])
     assert str(r1.json()['message'])==str(project_data['exp']['message'])
 
+
+
 # 从回收站恢复项目
 def test_recover_project(project_data,url,br):
     r=member.login(url,br,project_data['logindata'])
