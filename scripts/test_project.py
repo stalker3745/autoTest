@@ -162,3 +162,15 @@ def test_deletecopyProject_project(project_data,url,br):
     print(r1.json())
     assert str(r1.json()["code"]) == str(project_data['exp']['code'])
     assert str(r1.json()['message']) == str(project_data['exp']['message'])
+
+# 复制项目模板
+def test_copyProjectTemplate_project(project_data,url,br):
+    r = member.login(url, br, project_data['logindata'])
+    print(r.json())
+    headers = {'Lang': "CN",
+               'Authorization': r.json()["data"]["jwtToken"],
+               'User-Company': r.json()["data"]["companyId"]}
+    r1 = project.copyProjectTemplate(url, br, headers, project_data['copyProjectTemplate'])
+    print(r1.json())
+    assert str(r1.json()["code"]) == str(project_data['exp']['code'])
+    assert str(r1.json()['message']) == str(project_data['exp']['message'])

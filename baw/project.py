@@ -84,3 +84,9 @@ def deletecopyProject(url,br,headers,cs):
     url=url+"/newProject/deleteProject"
     r=br.post_hearder(url,headers,json=cs)
     return r
+
+# 复制项目模板
+def copyProjectTemplate(url,br,headers,cs):
+    url=url+"/newProject/copyProjectTemplate"
+    r=br.post_hearder(url,headers,json=cs)
+    return r
