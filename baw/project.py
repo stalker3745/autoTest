@@ -1,6 +1,7 @@
 '''
 项目相关接口
 '''
+import requests
 def listAllProjectByCondition(url,headers, br,cs):  # 获取用户列表
     url = url + "/newProject/listProjectByCondition"
     r = br.post_hearder(url,headers,json=cs)
@@ -57,8 +58,23 @@ def changeProjectResourc(url,br,headers,cs):
     r=br.post_hearder(url,headers,json=cs)
     return r
 
+# 获取实时relId(与下列移除项目成员同时使用)
+# def getUserRelId(url,br,headers,cs):
+#     url=url+"/projectResource/getUserIdsByProjectId"
+#     r=requests.post_hearder(url,headers,json=cs)
+#     data=br.json()
+#     relId=data["relId"]
+#     return relId,r
+
+
 # 移除项目成员
 def deleteProjectResource(url,br,headers,cs):
     url=url+"/projectResource/deleteProjectResource"
+    r=br.post_hearder(url,headers,json=cs)
+    return r
+
+# 使用项目模板新建项目
+def copeProjectByProjectId(url,br,headers,cs):
+    url=url+"/newProject/copeProjectByProjectId"
     r=br.post_hearder(url,headers,json=cs)
     return r

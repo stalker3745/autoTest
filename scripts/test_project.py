@@ -1,4 +1,6 @@
 import  pytest
+import requests
+
 # 登录的数据
 from baw import account
 from baw import project
@@ -112,6 +114,19 @@ def test_changeResourc_project(project_data,url,br):
     assert str(r1.json()["code"])==str(project_data['exp']['code'])
     assert str(r1.json()['message'])==str(project_data['exp']['message'])
 
+# 获取relId
+# def test_getUserRelId_project(project_data,url,br):
+#     r = member.login(url, br, project_data['logindata'])
+#     print(r.json())
+#     headers = {'Lang': "CN",
+#                'Authorization': r.json()["data"]["jwtToken"],
+#                'User-Company': r.json()["data"]["companyId"]}
+#     r1 = project.getUserRelId(url, br, headers, project_data['getUserRelId'])
+#     print(r1.json())
+#     assert str(r1.json()["code"]) == str(project_data['exp']['code'])
+#     assert str(r1.json()['message']) == str(project_data['exp']['message'])
+
+
 # 移除项目成员
 def test_deleteResourc_project(project_data,url,br):
     r=member.login(url,br,project_data['logindata'])
@@ -120,6 +135,18 @@ def test_deleteResourc_project(project_data,url,br):
                'Authorization': r.json()["data"]["jwtToken"],
                'User-Company': r.json()["data"]["companyId"]}
     r1=project.deleteProjectResource(url,br,headers,project_data['deleteProjectResource'])
+    print(r1.json())
+    assert str(r1.json()["code"])==str(project_data['exp']['code'])
+    assert str(r1.json()['message'])==str(project_data['exp']['message'])
+
+# 使用项目模板新建项目
+def test_copeByProjectId_project(project_data,url,br):
+    r=member.login(url,br,project_data['logindata'])
+    print(r.json())
+    headers = {'Lang': "CN",
+               'Authorization': r.json()["data"]["jwtToken"],
+               'User-Company': r.json()["data"]["companyId"]}
+    r1=project.copeProjectByProjectId(url,br,headers,project_data['copeProjectByProjectId'])
     print(r1.json())
     assert str(r1.json()["code"])==str(project_data['exp']['code'])
     assert str(r1.json()['message'])==str(project_data['exp']['message'])
