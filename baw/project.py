@@ -78,3 +78,9 @@ def copeProjectByProjectId(url,br,headers,cs):
     url=url+"/newProject/copeProjectByProjectId"
     r=br.post_hearder(url,headers,json=cs)
     return r
+
+# 删除项目模板
+def deletecopyProject(url,br,headers,cs):
+    url=url+"/newProject/deleteProject"
+    r=br.post_hearder(url,headers,json=cs)
+    return r
