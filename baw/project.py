@@ -42,16 +42,16 @@ def updateProjectDataType(url,br,headers,cs):
     r = br.post_hearder(url,headers,json=cs)
     return r
 
-# 删除回收站内的项目
-def deleteProject2(url,br,headers,cs):
-    url= url+"/newProject/deleteProject"
-    r=br.post_hearder(url,headers,json=cs)
-    return r
-
 
 # 回收站里恢复项目
 def recoverProject(url,br,headers,cs):
     url= url+"/newProject/updateProjectDataType"
+    r=br.post_hearder(url,headers,json=cs)
+    return r
+
+# 删除回收站内的项目
+def deleteProject2(url,br,headers,cs):
+    url= url+"/newProject/deleteProject"
     r=br.post_hearder(url,headers,json=cs)
     return r
 
@@ -118,6 +118,12 @@ def addTask(url,br,headers,cs):
 
 # 激活已归档的项目
 def updateProjectDataType1(url,br,headers,cs):
+    url=url+"/newProject/updateProjectDataType"
+    r=br.post_hearder(url,headers,json=cs)
+    return r
+
+#将已归档的项目移至回收站
+def updateProjectDataType2(url,br,headers,cs):
     url=url+"/newProject/updateProjectDataType"
     r=br.post_hearder(url,headers,json=cs)
     return r

@@ -7,10 +7,10 @@
   getActivityLogByCreateId: {"page":1,"pageSize":20,"isProjectOverviewLog":false,"isCompanyLog":false,"isProjectLog":true}
   changeCompanyLogin: {"companyId":"1071440842016989184"}
   listProjectByCondition:   {"page":1,"pageSize":9,"projectName":null,"dataType": 1 ,"dropDownId": "1242878101646774272" }
-  deleteProject: {"projectIds": ["1242523275230535680"]}
+  deleteProject: {"projectIds": ["1246122390963134464"]}
   updateProjectDataType: {"dataType": 2,"projectId": "1246121841266040832"}
-  deleteProject2: {"projectIds":["1245433463784710144"]}
-  recoverProject: {dataType: 1, projectId: "1245740094531604480"}
+  deleteProject2: {"projectIds":["1246122390963134464"]}
+  recoverProject: {dataType: 1, projectId: "1246122390963134464"}
   changeProjectResourc: {"projectId":"1245740094531604480", "userIdList":["1242059550803365888"]}
   deleteProjectResource: {"relId": "1245751566267621376", "projectId": "1245740094531604480"}
   copeProjectByProjectId: {"projectId": "1242878101646774272", "companyId": "1071440842016989184","companyName": "自动化测试企业（web）",
@@ -21,6 +21,7 @@
   addProject: {"projectResource": [], "projectName": "pythontest", "scope": 1, "projectManager": "955422446754861056", "projectRecommend": "你好", "backType": 1, "countryRegionId": "860892363952885760"}
   addTask: {"taskName": "python_task","taskPriority": 2,"taskPhaseId": "1246111220185210880","taskType": 1,"projectId": "1246108470785384448","parentTaskId": -1,"toBeClaimedUser": null}
   updateProjectDataType1: {"dataType":1,"projectId":"1246121841266040832"}
+  updateProjectDataType2: {"dataType":3,"projectId":"1246127174290022400"}
 
 
 
