@@ -115,26 +115,27 @@ def test_changeResourc_project(project_data,url,br):
     assert str(r1.json()['message'])==str(project_data['exp']['message'])
 
 # 获取relId
-# def test_getUserRelId_project(project_data,url,br):
-#     r = member.login(url, br, project_data['logindata'])
-#     print(r.json())
-#     headers = {'Lang': "CN",
-#                'Authorization': r.json()["data"]["jwtToken"],
-#                'User-Company': r.json()["data"]["companyId"]}
-#     r1 = project.getUserRelId(url, br, headers, project_data['getUserRelId'])
-#     print(r1.json())
-#     assert str(r1.json()["code"]) == str(project_data['exp']['code'])
-#     assert str(r1.json()['message']) == str(project_data['exp']['message'])
+def test_getUserRelId_project(project_data,url,br,getUserRelId):
+    r = member.login(url, br, project_data['logindata'])
+    print(r.json())
+    headers = {'Lang': "CN",
+               'Authorization': r.json()["data"]["jwtToken"],
+               'User-Company': r.json()["data"]["companyId"]}
+    print(headers)
+    r1 = project.getUserRelId(url, br, headers, project_data['getUserRelId'],getUserRelId)
+    print(r1.json())
+    assert str(r1.json()["code"]) == str(project_data['exp']['code'])
+    assert str(r1.json()['message']) == str(project_data['exp']['message'])
 
 
 # 移除项目成员
-def test_deleteResourc_project(project_data,url,br):
+def test_deleteResourc_project(project_data,url,br,relId):
     r=member.login(url,br,project_data['logindata'])
     print(r.json())
     headers = {'Lang': "CN",
                'Authorization': r.json()["data"]["jwtToken"],
                'User-Company': r.json()["data"]["companyId"]}
-    r1=project.deleteProjectResource(url,br,headers,project_data['deleteProjectResource'])
+    r1=project.deleteProjectResource(url,br,headers,project_data['deleteProjectResource'].format(relId))
     print(r1.json())
     assert str(r1.json()["code"])==str(project_data['exp']['code'])
     assert str(r1.json()['message'])==str(project_data['exp']['message'])
@@ -171,6 +172,18 @@ def test_copyProjectTemplate_project(project_data,url,br):
                'Authorization': r.json()["data"]["jwtToken"],
                'User-Company': r.json()["data"]["companyId"]}
     r1 = project.copyProjectTemplate(url, br, headers, project_data['copyProjectTemplate'])
+    print(r1.json())
+    assert str(r1.json()["code"]) == str(project_data['exp']['code'])
+    assert str(r1.json()['message']) == str(project_data['exp']['message'])
+
+# 打开项目设置应用中指定功能
+def test_updateProjectAPP_project(project_data,url,br):
+    r = member.login(url, br, project_data['logindata'])
+    print(r.json())
+    headers = {'Lang': "CN",
+               'Authorization': r.json()["data"]["jwtToken"],
+               'User-Company': r.json()["data"]["companyId"]}
+    r1 = project.updateProjectAPPByProjectId(url, br, headers, project_data['updateProjectAPPByProjectId'])
     print(r1.json())
     assert str(r1.json()["code"]) == str(project_data['exp']['code'])
     assert str(r1.json()['message']) == str(project_data['exp']['message'])
