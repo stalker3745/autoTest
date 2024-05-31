@@ -127,3 +127,14 @@ def updateProjectDataType2(url,br,headers,cs):
     url=url+"/newProject/updateProjectDataType"
     r=br.post_hearder(url,headers,json=cs)
     return r
+
+# 添加项目管理阶段中的管理状态
+def changeProjectPahse(url,br,headers,cs):
+    url=url+"/projectPhase/changeProjectPahse"
+    r=br.post_hearder(url,headers,json=cs)
+    return r
+
+def getUserIdsByProjectId(url,br,headers,cs):
+    url=url+"/projectResource/getUserIdsByProjectId"
+    r=br.post_hearder(url,headers,json=cs)
+    return r

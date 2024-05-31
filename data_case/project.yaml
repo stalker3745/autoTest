@@ -22,6 +22,8 @@
   addTask: {"taskName": "python_task","taskPriority": 2,"taskPhaseId": "1246111220185210880","taskType": 1,"projectId": "1246108470785384448","parentTaskId": -1,"toBeClaimedUser": null}
   updateProjectDataType1: {"dataType":1,"projectId":"1246121841266040832"}
   updateProjectDataType2: {"dataType":3,"projectId":"1246127174290022400"}
+  changeProjectPahse: {phaseId: "-1", projectId: "1246134768836583424"}
+  getUserIdsByProjectId: {projectId: "1246148800314384384"}
 
 
 
