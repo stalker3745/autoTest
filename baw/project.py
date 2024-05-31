@@ -102,3 +102,9 @@ def updateProjectAPPByProjectId(url,br,headers,cs):
     url=url+"/newProject/updateProjectAPPByProjectId"
     r=br.post_hearder(url,headers,json=cs)
     return r
+
+# 新增项目
+def addProject(url,br,headers,cs):
+    url=url+"/newProject/addProject"
+    r=br.post_hearder(url,headers,json=cs)
+    return r

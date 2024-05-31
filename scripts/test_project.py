@@ -158,3 +158,13 @@ def test_copyProjectTemplate_project(project_data,url,br):
     r1 = project.copyProjectTemplate(url, br, headers, project_data['copyProjectTemplate'])
     assert str(r1.json()["code"]) == str(project_data['exp']['code'])
     assert str(r1.json()['message']) == str(project_data['exp']['message'])
+
+# Ìí¼ÓÏîÄ¿
+def test_add_project(project_data,url,br):
+    r = member.login(url, br, project_data['logindata'])
+    headers = {'Lang': "CN",
+               'Authorization': r.json()["data"]["jwtToken"],
+               'User-Company': r.json()["data"]["companyId"]}
+    r1 = project.addProject(url, br, headers, project_data['addProject'])
+    assert str(r1.json()["code"]) == str(project_data['exp']['code'])
+    assert str(r1.json()['message']) == str(project_data['exp']['message'])
