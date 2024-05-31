@@ -22,7 +22,7 @@ def prepare(login_data, url , br):
     return headers
 
 #获取创建项目的数据
-@pytest.fixture(scope='module',params=fileRead.read_yaml("/data_case/addproject.yaml"))
+@pytest.fixture(params=fileRead.read_yaml("/data_case/addproject.yaml"))
 def project_data(request):
     return request.param
 

@@ -5,6 +5,7 @@ from urllib import response
 
 import pytest
 import requests
+import jsonpath
 def listAllProjectByCondition(url,headers, br,cs):  # 获取用户列表
     url = url + "/newProject/listProjectByCondition"
     r = br.post_hearder(url,headers,json=cs)
@@ -61,14 +62,14 @@ def changeProjectResourc(url,br,headers,cs):
     r=br.post_hearder(url,headers,json=cs)
     return r
 
-# @pytest.fixture(params=['relId'])
-# # 获取实时relId(与下列移除项目成员同时使用)
-# def getUserRelId(url,br,headers,cs):
-#     url=url+"/projectResource/getUserIdsByProjectId"
-#     r=requests.post_hearder(url,headers,json=cs)
-#     data=br.json()
-#     relId=data["relId"]
-#     return relId,r
+# 获取实时relId(与下列移除项目成员同时使用)
+def getUserRelId(url,br,headers,cs):
+    url=url+"/projectResource/getUserIdsByProjectId"
+    r = br.post_hearder(url, headers, json=cs)
+    return r
+    # json格式提取
+    # relId = jsonpath.jsonpath(r.json(),'$.data.list[0].relId')
+    # return relId
 
 
 # 移除项目成员
