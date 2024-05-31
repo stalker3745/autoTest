@@ -51,17 +51,6 @@ def test_project2(project_data, url, br, db_info):
     assert str(r1.json()["code"]) == str(project_data['exp']['code'])
     assert str(r1.json()["data"]["total"]) != str(project_data['exp']['getActivityLog'])
 
-def test_delete_project(project_data, url, br, db_info):
-
-    r = member.login(url, br, project_data['logindata'])
-    print(r.json())
-    headers = {'Lang': "CN",
-               'Authorization': r.json()["data"]["jwtToken"],
-               'User-Company': r.json()["data"]["companyId"]}
-    r1=project.deleteProject(url,br,headers,project_data['deleteProject'])
-    assert str(r1.json()["code"])==str(project_data['exp']['code'])
-    assert str(r1.json()['message'])==str(project_data['exp']['message'])
-
 # 归档项目
 def test_updateProjectDataType_project(project_data,url,br):
     r=member.login(url,br,project_data['logindata'])
@@ -83,7 +72,6 @@ def test_delete_project2(project_data,url,br):
     r1=project.deleteProject2(url,br,headers,project_data['deleteProject2'])
     assert str(r1.json()["code"])==str(project_data['exp']['code'])
     assert str(r1.json()['message'])==str(project_data['exp']['message'])
-
 
 
 # 从回收站恢复项目
@@ -166,5 +154,27 @@ def test_add_project(project_data,url,br):
                'Authorization': r.json()["data"]["jwtToken"],
                'User-Company': r.json()["data"]["companyId"]}
     r1 = project.addProject(url, br, headers, project_data['addProject'])
+    assert str(r1.json()["code"]) == str(project_data['exp']['code'])
+    assert str(r1.json()['message']) == str(project_data['exp']['message'])
+
+# 删除项目
+def test_delete_project(project_data, url, br, db_info):
+
+    r = member.login(url, br, project_data['logindata'])
+    print(r.json())
+    headers = {'Lang': "CN",
+               'Authorization': r.json()["data"]["jwtToken"],
+               'User-Company': r.json()["data"]["companyId"]}
+    r1=project.deleteProject(url,br,headers,project_data['deleteProject'])
+    assert str(r1.json()["code"])==str(project_data['exp']['code'])
+    assert str(r1.json()['message'])==str(project_data['exp']['message'])
+
+# 添加任务
+def test_addTask_project(project_data,url,br):
+    r = member.login(url, br, project_data['logindata'])
+    headers = {'Lang': "CN",
+               'Authorization': r.json()["data"]["jwtToken"],
+               'User-Company': r.json()["data"]["companyId"]}
+    r1 = project.addTask(url, br, headers, project_data['addTask'])
     assert str(r1.json()["code"]) == str(project_data['exp']['code'])
     assert str(r1.json()['message']) == str(project_data['exp']['message'])

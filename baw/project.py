@@ -108,3 +108,9 @@ def addProject(url,br,headers,cs):
     url=url+"/newProject/addProject"
     r=br.post_hearder(url,headers,json=cs)
     return r
+
+# 添加任务
+def addTask(url,br,headers,cs):
+    url=url+"/newTask/addNewTask"
+    r=br.post_hearder(url,headers,json=cs)
+    return r

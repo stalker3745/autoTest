@@ -19,7 +19,7 @@
   copyProjectTemplate: {projectId: "1245772818470445056", copyType: 2, projectName: "test1"}
   updateProjectAPPByProjectId: {"projectAppStatus": 0, "projectId": "1245765721859072000", "projectAppId": "1245765723448713216", "projectAppName": "项目概览"}
   addProject: {"projectResource": [], "projectName": "pythontest", "scope": 1, "projectManager": "955422446754861056", "projectRecommend": "你好", "backType": 1, "countryRegionId": "860892363952885760"}
-
+  addTask: {"taskName": "python_task","taskPriority": 2,"taskPhaseId": "1246111220185210880","taskType": 1,"projectId": "1246108470785384448","parentTaskId": -1,"toBeClaimedUser": null}
 
 
 
