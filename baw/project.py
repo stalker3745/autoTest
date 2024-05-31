@@ -115,3 +115,9 @@ def addTask(url,br,headers,cs):
     url=url+"/newTask/addNewTask"
     r=br.post_hearder(url,headers,json=cs)
     return r
+
+# 激活已归档的项目
+def updateProjectDataType1(url,br,headers,cs):
+    url=url+"/newProject/updateProjectDataType"
+    r=br.post_hearder(url,headers,json=cs)
+    return r

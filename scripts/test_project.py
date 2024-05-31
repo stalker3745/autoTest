@@ -179,3 +179,13 @@ def test_addTask_project(project_data,url,br):
     r1 = project.addTask(url, br, headers, project_data['addTask'])
     assert str(r1.json()["code"]) == str(project_data['exp']['code'])
     assert str(r1.json()['message']) == str(project_data['exp']['message'])
+
+# 激活已归档的项目
+def test_updateDataType_project(project_data,url,br):
+    r = member.login(url, br, project_data['logindata'])
+    headers = {'Lang': "CN",
+               'Authorization': r.json()["data"]["jwtToken"],
+               'User-Company': r.json()["data"]["companyId"]}
+    r1 = project.updateProjectDataType1(url, br, headers, project_data['updateProjectDataType1'])
+    assert str(r1.json()["code"]) == str(project_data['exp']['code'])
+    assert str(r1.json()['message']) == str(project_data['exp']['message'])
