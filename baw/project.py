@@ -76,9 +76,9 @@ def getUserRelId(url,br,headers,cs):
 def deleteProjectResource(url,br,headers,cs):
     url=url+"/projectResource/deleteProjectResource"
     r=br.post_hearder(url,headers,json=cs)
-    r1=response.json()
-    relId=r1.get("result")[0].get("relId")
-    return r,relId
+    # r1=response.json()
+    # relId=r1.get("result")[0].get("relId")
+    return r
 
 # 使用项目模板新建项目
 def copeProjectByProjectId(url,br,headers,cs):

@@ -18,7 +18,7 @@ def prepare(login_data, url , br):
     headers = {
         'Authorization': r.json()["data"]["jwtToken"],
         'User-Company': r.json()["data"]["companyId"]}
-    print(headers)
+    # print(headers)
     return headers
 
 #获取创建项目的数据
@@ -33,6 +33,12 @@ def test_addproject(url,br,prepare,project_data):
     r = project.add_project(url, br ,prepare,project_data['addprojectdata'],)
     print(f"项目r：{r}")
     # 校验添加用户的结果
+    assert str(r.json()['message']) == str(project_data['exp']['message'])
+    assert str(r.json()['code']) == str(project_data['exp']['code'])
+    projectIds={
+        "projectIds": [r.json()["data"]]
+    }
+    r=project.deleteProject(url, br, prepare,projectIds)
     assert str(r.json()['message']) == str(project_data['exp']['message'])
     assert str(r.json()['code']) == str(project_data['exp']['code'])
 

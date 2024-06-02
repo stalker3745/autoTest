@@ -27,6 +27,7 @@ def test_newGetMessageList(notice_data, url, br,db_info):
                'User-Company': r.json()["data"]["companyId"]}
     r1=member.notice(url,headers, br,notice_data['pares'])
     assert str(r1.json()['message']) == str(notice_data['exp']['message'])
+    assert str(r1.json()['code']) == str(notice_data['exp']['code'])
     r2=member.newGetMessageList(url,headers, br,notice_data['newGetMessageList'])
     assert str(r2.json()['message']) == str(notice_data['exp']['message'])
     assert str(r2.json()['data']["total"]) == str(notice_data['expdate']['total'])

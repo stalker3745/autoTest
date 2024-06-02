@@ -35,7 +35,7 @@ def test_addprojectuser(url, br, getuserheaders,project_data):
 def test_getUserRelId_project(url, br, getuserheaders, project_data):
     # 下发请求
     r1 = project.getUserRelId(url, br, getuserheaders, project_data['getUserRelId'])
-    print(f"查询用户ID：{r1}")
+    print(f"查询用户ID：{r1.json()["data"][0]["relId"]}")
     # 校验结果
     assert str(r1.json()["code"]) == str(project_data['exp']['code'])
     assert str(r1.json()['message']) == str(project_data['exp']['message'])
