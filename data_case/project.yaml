@@ -7,7 +7,6 @@
   getActivityLogByCreateId: {"page":1,"pageSize":20,"isProjectOverviewLog":false,"isCompanyLog":false,"isProjectLog":true}
   changeCompanyLogin: {"companyId":"1071440842016989184"}
   listProjectByCondition:   {"page":1,"pageSize":9,"projectName":null,"dataType": 1 ,"dropDownId": "1242878101646774272" }
-  deleteProject: {"projectIds": ["1246122390963134464"]}
   updateProjectDataType: {"dataType": 2,"projectId": "1246121841266040832"}
   deleteProject2: {"projectIds":["1246122390963134464"]}
   recoverProject: {dataType: 1, projectId: "1246122390963134464"}

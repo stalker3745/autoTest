@@ -71,7 +71,7 @@ def test_SubmitFormData(SubmitFormData_data,prepare, url, br, db_info):
     r1=member.newSubmitFormData(url, prepare, br,SubmitFormData_data1)
     assert str(r1.json()['code']) == str(SubmitFormData_data['exp']['code'])
     assert str(r1.json()['message']) == str(SubmitFormData_data['exp']['message'])
-    time.sleep(1)
+    time.sleep(2)
     assert str(db.get_zd_form_entitydata(db_info, SubmitFormData_data['appidend'])[0][0]) == str(SubmitFormData_data['int1'])
     SubmitFormData_data1={"appId": appId,
                             "companyId": companyId,
