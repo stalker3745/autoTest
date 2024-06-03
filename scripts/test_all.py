@@ -27,7 +27,6 @@ class TestMyClass:
         r = project.deleteProject2(project_data[1], project_data[2], self.headers, project_data[0]['deleteProject2'])
         assert str(r.json()["code"]) == str(project_data[0]['exp']['code'])
         assert str(r.json()['message']) == str(project_data[0]['exp']['message'])
-
     # ¹éµµÏîÄ¿
     def test_updateProjectDataType_project(self, project_data, headers):
         r = project.updateProjectDataType(project_data[1], project_data[2], self.headers,
