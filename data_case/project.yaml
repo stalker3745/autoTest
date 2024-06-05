@@ -1,30 +1,34 @@
 # 登录的数据
 # 1、正常场景：用户名、密码正确，登录成功
 - logindata: {"account":"mazhenhua1@zdsztech.com","password":"dog7jCEMgBCy02XUcrsv4w==","language":"CN"}  # 登录的用户
-  exp: {"code": "200", "message": "操作成功!" ,"datatotal": 18 ,"getActivityLog": 39}   # 登录的预期结果
+  exp: {"code": "200", "message": "操作成功!" ,"datatotal": 12 ,"getActivityLog": 39}   # 登录的预期结果
   # 1 我的项目的数量
   listAllProjectByCondition: {"page":1,"pageSize":16,"projectName":null,"dropDownType":null,"dropDownId":null,"dataType":1}
   getActivityLogByCreateId: {"page":1,"pageSize":20,"isProjectOverviewLog":false,"isCompanyLog":false,"isProjectLog":true}
   changeCompanyLogin: {"companyId":"1071440842016989184"}
   listProjectByCondition:   {"page":1,"pageSize":9,"projectName":null,"dataType": 1 ,"dropDownId": "1242878101646774272" }
-  updateProjectDataType: {"dataType": 2,"projectId": "1246121841266040832"}
+# 归档项目
+  updateProjectDataType: {"dataType": 2}
   deleteProject2: {"projectIds":["1246122390963134464"]}
   recoverProject: {dataType: 1, projectId: "1246122390963134464"}
-  changeProjectResourc: {"projectId":"1245740094531604480", "userIdList":["1242059550803365888"]}
-  deleteProjectResource: {"relId": "1245751566267621376", "projectId": "1245740094531604480"}
-  copeProjectByProjectId: {"projectId": "1242878101646774272", "companyId": "1071440842016989184","companyName": "自动化测试企业（web）",
-    "projectName": "1111","countryRegionId": "860892363952885760","countryName": "中国"}
+#  添加项目成员
+  changeProjectResourc: {"projectId":"1247920006956855296", "userIdList":["1242059550803365888"]}
+#  移除项目成员
+  deleteProjectResource: {"projectId": "1247920006956855296"}
+  copeProjectByProjectId: {"projectId": "1242878101646774272", "companyId": "1071440842016989184","companyName": "自动化测试企业（web）","projectName": "1111","countryRegionId": "860892363952885760","countryName": "中国"}
   deletecopyProject: {"projectIds":["1242878101646774272"]}
   copyProjectTemplate: {projectId: "1245772818470445056", copyType: 2, projectName: "test1"}
   updateProjectAPPByProjectId: {"projectAppStatus": 0, "projectId": "1245765721859072000", "projectAppId": "1245765723448713216", "projectAppName": "项目概览"}
+#  添加项目
   addProject: {"projectResource": [], "projectName": "pythontest", "scope": 1, "projectManager": "955422446754861056", "projectRecommend": "你好", "backType": 1, "countryRegionId": "860892363952885760"}
   addTask: {"taskName": "python_task","taskPriority": 2,"taskPhaseId": "1246111220185210880","taskType": 1,"projectId": "1246108470785384448","parentTaskId": -1,"toBeClaimedUser": null}
   updateProjectDataType1: {"dataType":1,"projectId":"1246121841266040832"}
   updateProjectDataType2: {"dataType":3,"projectId":"1246127174290022400"}
   changeProjectPahse: {phaseId: "-1", projectId: "1246134768836583424"}
-  getUserIdsByProjectId: {projectId: "1246148800314384384"}
-
-
+#  获取relId和查看当前项目下所有的成员
+  getUserIdsByProjectId: {projectId: "1247920006956855296"}
+# 查看所有项目
+  getProjectLis: {}
 
 #- logindata: {"account":"mazhenhua1@zdsztech.com","password":"dog7jCEMgBCy02XUcrsv4w==","language":"CN"}  # 登录的用户
 #  exp: {"code": "200", "message": "操作成功!" ,"datatotal": 18 ,"getActivityLog": 39}   # 登录的预期结果

@@ -38,7 +38,7 @@ def deleteProject(url,br,headers,cs):
     return  r
 
 # 项目归档
-def updateProjectDataType(url,br,headers,cs):
+def updateProjectDataType(url,br,headers,cs,projectId):
     url = url + "/newProject/updateProjectDataType"
     r = br.post_hearder(url,headers,json=cs)
     return r
@@ -62,18 +62,10 @@ def changeProjectResourc(url,br,headers,cs):
     r=br.post_hearder(url,headers,json=cs)
     return r
 
-# 获取实时relId(与下列移除项目成员同时使用)
-def getUserRelId(url,br,headers,cs):
-    url=url+"/projectResource/getUserIdsByProjectId"
-    r = br.post_hearder(url, headers, json=cs)
-    return r
-    # json格式提取
-    # relId = jsonpath.jsonpath(r.json(),'$.data.list[0].relId')
-    # return relId
 
 
 # 移除项目成员
-def deleteProjectResource(url,br,headers,cs):
+def deleteProjectResource(url,br,headers,cs,relId):
     url=url+"/projectResource/deleteProjectResource"
     r=br.post_hearder(url,headers,json=cs)
     # r1=response.json()
@@ -138,4 +130,19 @@ def changeProjectPahse(url,br,headers,cs):
 def getUserIdsByProjectId(url,br,headers,cs):
     url=url+"/projectResource/getUserIdsByProjectId"
     r=br.post_hearder(url,headers,json=cs)
+    return r
+
+# 获取实时relId(与下列移除项目成员同时使用)
+def getUserRelId(url,br,headers,cs):
+    url=url+"/projectResource/getUserIdsByProjectId"
+    r = br.post_hearder(url, headers, json=cs)
+    return r
+    # json格式提取
+    # relId = jsonpath.jsonpath(r.json(),'$.data.list[0].relId')
+    # return relId
+
+# 查看所有项目
+def getProjectList(url,br,headers,cs):
+    url = url + "/newProject/getProjectList"
+    r = br.post_hearder(url, headers, json=cs)
     return r
