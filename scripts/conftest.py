@@ -25,14 +25,14 @@ def db_info():
 def br():
     return baseRequests.BaseRequests()  # 创建了一个实例
 
-@pytest.fixture(scope='module')
-def getuserheaders():
+@pytest.fixture(scope='session')
+def getHeaders():
     # headers = {"Content-Type": "application/json;charset=utf8"}
     # url = "http://user-sit.zdsztech.com/employee-web-application/account/mixLogin"
     # data = {"account": "15529310001", "password": "dog7jCEMgBCy02XUcrsv4w==", "language": "CN"}  # 配置用户登录的账号
     # r = requests.post(url=url, headers=headers, json=data)
     url=fileRead.read_ini("/data_env/env.ini", "url")+"/account/mixLogin"
-    r = requests.post(url=url, json= fileRead.read_yaml("/data_case/loginmax.yaml")["logindata"])
+    r = requests.post(url=url, json= fileRead.read_yaml("/data_case/setup.yaml")["setup"])
     headers = {
         'Authorization': r.json()["data"]["jwtToken"],
         'User-Company': r.json()["data"]["companyId"]}
