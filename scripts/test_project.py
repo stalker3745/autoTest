@@ -167,10 +167,15 @@ def test_add_project(project_data,url,br):
     r1 = project.addProject(url, br, headers, project_data['addProject'])
     assert str(r1.json()["code"]) == str(project_data['exp']['code'])
     assert str(r1.json()['message']) == str(project_data['exp']['message'])
+    projectIds= {
+        "projectIds": [r1.json()["data"]]
+    }
+    r1= project.deleteProject(url, br, headers,projectIds )
+    assert str(r1.json()["code"]) == str(project_data['exp']['code'])
+    assert str(r1.json()['message']) == str(project_data['exp']['message'])
 
 # 删除项目
-def test_delete_project(project_data, url, br, db_info):
-
+def test_delete_project(project_data, url, br):
     r = member.login(url, br, project_data['logindata'])
     print(r.json())
     headers = {'Lang': "CN",
@@ -225,7 +230,7 @@ def test_updateDataType2_project(project_data,url,br):
 #     assert str(r1.json()['message']) == str(project_data['exp']['message'])
 
 # 查看当前项目下所有的成员
-def test_getUserIdsByProjectId_project(project_data,url,br,db_info):
+def test_getUserIdsByProjectId_project(project_data,url,br):
     r = member.login(url, br, project_data['logindata'])
     headers = {'Lang': "CN",
                'Authorization': r.json()["data"]["jwtToken"],
@@ -239,4 +244,15 @@ def test_getUserIdsByProjectId_project(project_data,url,br,db_info):
     assert str(r1.json()["code"]) == str(project_data['exp']['code'])
     assert str(r1.json()['message']) == str(project_data['exp']['message'])
 
+#查询登录用户所参与的企业
+def test_queryCompanyListByUserId(project_data,url,br,getHeaders):
+
+    queryCompanyListByUserId={
+        "pageType": 1
+    }
+    r1= account.queryCompanyListByUserId(url,br,getHeaders,queryCompanyListByUserId)
+    print(len(r1.json()["data"]))
+    assert str(r1.json()["code"]) == str(project_data['exp']['code'])
+    assert str(r1.json()['message']) == str(project_data['exp']['message'])
+    assert str(len(r1.json()["data"])) < str(project_data['exp']['datatotal'])
 
