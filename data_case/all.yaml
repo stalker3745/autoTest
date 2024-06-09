@@ -3,3 +3,5 @@
   url: "http://user-sit.zdsztech.com/employee-web-application"
   listAllProjectByCondition: {}
   getActivityLogByCreateId: {"page":1,"pageSize":20,"isProjectOverviewLog":false,"isCompanyLog":false,"isProjectLog":true}
+  deleteProject2: {"projectIds":["1246122390963134464"]}
+  updateProjectDataType:  {"dataType":2,"projectId":"1247964142753828864"}

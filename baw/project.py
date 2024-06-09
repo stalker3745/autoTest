@@ -38,7 +38,7 @@ def deleteProject(url,br,headers,cs):
     return  r
 
 # 项目归档
-def updateProjectDataType(url,br,headers,cs,projectId):
+def updateProjectDataType(url,br,headers,cs):
     url = url + "/newProject/updateProjectDataType"
     r = br.post_hearder(url,headers,json=cs)
     return r
@@ -65,7 +65,7 @@ def changeProjectResourc(url,br,headers,cs):
 
 
 # 移除项目成员
-def deleteProjectResource(url,br,headers,cs,relId):
+def deleteProjectResource(url,br,headers,cs):
     url=url+"/projectResource/deleteProjectResource"
     r=br.post_hearder(url,headers,json=cs)
     # r1=response.json()

@@ -6,37 +6,37 @@ from caw import fileRead
 
 
 class TestMyClass:
-    headers = ""
     @pytest.fixture(params=fileRead.read_yaml("/data_case/all.yaml"))
     def project_data(self, request):
         return request.param
 
-    def setup_method(self, project_data):
-        self.r = member.login(project_data[1], project_data[2], project_data[0]['logindata'])
-        self.headers = {
+    @classmethod
+    def setUpClass(self,url,br, project_data):
+        r = member.login(url,br, project_data['logindata'])
+        getHeaders = {
             'Lang': "CN",
-            'Authorization': self.r.json()["data"]["jwtToken"],
-            'User-Company': self.r.json()["data"]["companyId"]
+            'Authorization': r.json()["data"]["jwtToken"],
+            'User-Company': r.json()["data"]["companyId"]
         }
-        return self.headers
-
+        return getHeaders
 
 
     # 将项目从回收站里删除
-    def test_delete_project2(self, project_data,getHeaders):
-        r = project.deleteProject2(project_data[1], project_data[2], self.headers, project_data[0]['deleteProject2'])
-        assert str(r.json()["code"]) == str(project_data[0]['exp']['code'])
-        assert str(r.json()['message']) == str(project_data[0]['exp']['message'])
+    def test_delete_project2(self, project_data,url,br,getHeaders):
+        r = project.deleteProject2(url,br,getHeaders, project_data['deleteProject2'])
+        assert str(r.json()["code"]) == str(project_data['exp']['code'])
+        assert str(r.json()['message']) == str(project_data['exp']['message'])
     # 归档项目
-    def test_updateProjectDataType_project(self, project_data, getHeaders):
-        r = project.updateProjectDataType(project_data[1], project_data[2], self.headers,
-                                              project_data[0]['updateProjectDataType'])
-        assert str(r.json()["code"]) == str(project_data[0]['exp']['code'])
-        assert str(r.json()['message']) == str(project_data[0]['exp']['message'])
+    def test_updateProjectDataType_project(self, url,br,project_data, getHeaders):
+        print(getHeaders)
+        r = project.updateProjectDataType(url,br, getHeaders,
+                                              project_data['updateProjectDataType'])
+        assert str(r.json()["code"]) == str(project_data['exp']['code'])
+        assert str(r.json()['message']) == str(project_data['exp']['message'])
 
     # 从回收站恢复项目
-    def test_recover_project(self, project_data):
-        r = project.recoverProject(project_data[1], project_data[2], self.headers, project_data[0]['recoverProject'])
+    def test_recover_project(self, url,br,project_data):
+        r = project.recoverProject(url,br, self.getHeaders, project_data['recoverProject'])
         assert str(r.json()["code"]) == str(project_data[0]['exp']['code'])
         assert str(r.json()['message']) == str(project_data[0]['exp']['message'])
 
@@ -45,14 +45,14 @@ class TestMyClass:
         return request.param
 
     # 添加项目
-    def test_add_project(self, project_data):
-        r = member.login(project_data[1], project_data[2], self.project_data[0]['logindata'])
-        headers = {'Lang': "CN",
+    def test_add_project(self, url,br,project_data):
+        r = member.login(url,br, self.project_data[0]['logindata'])
+        getHeaders = {'Lang': "CN",
                    'Authorization': r.json()["data"]["jwtToken"],
                    'User-Company': r.json()["data"]["companyId"]}
-        r = project.addProject(project_data[1], project_data[2], headers, self.project_data[0]['addProject'])
-        assert str(r.json()["code"]) == str(self.project_data[0]['exp']['code'])
-        assert str(r.json()['message']) == str(self.project_data[0]['exp']['message'])
+        r = project.addProject(url,br, getHeaders, self.project_data['addProject'])
+        assert str(r.json()["code"]) == str(self.project_data['exp']['code'])
+        assert str(r.json()['message']) == str(self.project_data['exp']['message'])
 
 #添加任务
     def test_changeResourc_project(self,url, br, getHeaders, project_data):
@@ -70,7 +70,7 @@ class TestMyClass:
         return relId
 
     # 移除项目成员
-    def test_deleteResourc_project(self,relId, project_data, url, br):
+    def test_deleteResourc_project(self,url,br,project_data ):
         r = member.login(url, br, project_data['logindata'])
         headers = {'Lang': "CN",
                    'Authorization': r.json()["data"]["jwtToken"],
@@ -177,4 +177,4 @@ class TestMyClass:
 
 
 if __name__ == '__main__':
-    TestMyClass.setup()
+    TestMyClass()
