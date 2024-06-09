@@ -1,6 +1,6 @@
 # 登录的数据
 # 1、正常场景：用户名、密码正确，登录成功
-- logindata: {"account":"mazhenhua1@zdsztech.com","password":"dog7jCEMgBCy02XUcrsv4w==","language":"CN"}  # 登录的用户
+- logindata: {"account":"mazhenhua8@zdsztech.com","password":"dog7jCEMgBCy02XUcrsv4w==","language":"CN"}  # 登录的用户
   listAppDocument: {"page":1,"pageSize":10,"companyId":"1071440842016989184","buildType":"1","parentRelId":"-1"}
   exp: {"code": "200", "message": "操作成功!" ,"datatotal": 2 ,"getActivityLog": 39}   # 登录的预期结果
   listShareDocument: {"page":1,"pageSize":10,"companyId":"1071440842016989184","buildType":"1","parentRelId":"-1"}
