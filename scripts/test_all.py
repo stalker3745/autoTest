@@ -161,12 +161,15 @@ class TestMyClass:
     #     assert str(r1.json()['message']) == str(project_data['exp']['message'])
 
     # 查看当前项目下所有的成员
-    def test_getUserIdsByProjectId_project(self,project_data, url, br, db_info):
+    def test_getUserIdsByProjectId_project(self,project_data, url, br,getHeaders):
         r = member.login(url, br, project_data['logindata'])
         headers = {'Lang': "CN",
                    'Authorization': r.json()["data"]["jwtToken"],
                    'User-Company': r.json()["data"]["companyId"]}
-        account.changeCompanyLogin(url, headers, br, project_data['changeCompanyLogin'])
+        print(project_data['copeProjectByProjectId']["companyId"])
+        r1=account.changeCompanyLogin(url,br, headers,  project_data['copeProjectByProjectId'])
+        assert str(r1.json()["code"]) == str(project_data['exp']['code'])
+        assert str(r1.json()['message']) == str(project_data['exp']['message'])
         r = member.login(url, br, project_data['logindata'])
         headers = {'Lang': "CN",
                    'Authorization': r.json()["data"]["jwtToken"],

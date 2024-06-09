@@ -18,7 +18,7 @@ def test_allProject_project(project_data, url, br, db_info):
     headers = {'Lang': "CN",
                'Authorization': r.json()["data"]["jwtToken"],
                'User-Company': r.json()["data"]["companyId"]}
-    account.changeCompanyLogin(url,headers, br, project_data['changeCompanyLogin'])
+    account.changeCompanyLogin(url, br, headers, project_data['changeCompanyLogin'])
     r = member.login(url, br, project_data['logindata'])
     headers = {'Lang': "CN",
                'Authorization': r.json()["data"]["jwtToken"],
@@ -32,7 +32,7 @@ def test_project(project_data, url, br, db_info):
     headers = {'Lang': "CN",
                'Authorization': r.json()["data"]["jwtToken"],
                'User-Company': r.json()["data"]["companyId"]}
-    account.changeCompanyLogin(url, headers, br, project_data['changeCompanyLogin'])
+    account.changeCompanyLogin(url, br,  headers,project_data['changeCompanyLogin'])
     r = member.login(url, br, project_data['logindata'])
     headers = {'Lang': "CN",
                'Authorization': r.json()["data"]["jwtToken"],
@@ -46,7 +46,7 @@ def test_project2(project_data, url, br, db_info):
     headers = {'Lang': "CN",
                'Authorization': r.json()["data"]["jwtToken"],
                'User-Company': r.json()["data"]["companyId"]}
-    # account.changeCompanyLogin(url, headers, br, project_data['changeCompanyLogin'])
+    account.changeCompanyLogin(url, br, headers, project_data['changeCompanyLogin'])
     r1=project.listProjectByCondition(url, br,headers, project_data['listProjectByCondition'])
     assert str(r1.json()['message']) == str(project_data['exp']['message'])
     assert str(r1.json()["code"]) == str(project_data['exp']['code'])
@@ -235,7 +235,7 @@ def test_getUserIdsByProjectId_project(project_data,url,br):
     headers = {'Lang': "CN",
                'Authorization': r.json()["data"]["jwtToken"],
                'User-Company': r.json()["data"]["companyId"]}
-    account.changeCompanyLogin(url,headers,br,project_data['changeCompanyLogin'])
+    account.changeCompanyLogin(url, br, headers,project_data['changeCompanyLogin'])
     r = member.login(url, br, project_data['logindata'])
     headers = {'Lang': "CN",
                'Authorization': r.json()["data"]["jwtToken"],
