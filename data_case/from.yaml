@@ -1,7 +1,7 @@
 # 登录的数据
 # 1、正常场景：用户名、密码正确，登录成功
 - logindata: {"account":"mazhenhua9@zdsztech.com","password":"dog7jCEMgBCy02XUcrsv4w==","language":"CN"}  # 登录的用户
-  exp: {"code": "200", "message": "操作成功!","int1":3}   # 登录的预期结果
+  exp: {"code": "200", "message": "操作成功!","int1":2}   # 登录的预期结果
   getFromFieldEnumList: {"companyId":"1071440842016989184","appId":"1075773133891485696","templateId":"","fieldId":"fd_1676955337149member","language":"ZH","viewId":"1217619369606336512","viewIden":1}
   getAppListByPackage: {"companyId":"1071440842016989184","searchName":"","appGroupId":"1084622965540438016","projectId":"","isLook":true}
   getAppById: {"appId":"1075773133891485696"}

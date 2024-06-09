@@ -43,5 +43,5 @@ if __name__ == '__main__':
     # cs = {"mobilephone": "18012345678", "pwd": "123456"}
     # br.get("http://101.43.141.241:8088/futureloan/mvc/api/member/login", params=cs)
     br.post("http://user-sit.zdsztech.com/employee-web-application/account/mixLogin",
-            json={"account":"15529310001","password":"dog7jCEMgBCy02XUcrsv4w==","language":"CN"})
+            json={"account":"mazhenhua8@zdsztech.com","password":"dog7jCEMgBCy02XUcrsv4w==","language":"CN"})
 print(sys.path)
