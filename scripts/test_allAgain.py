@@ -6,7 +6,7 @@ from caw import fileRead
 
 
 class TestAll:
-    @pytest.fixture(params=fileRead.read_yaml("/data_case/all1.yaml"))
+    @pytest.fixture(params=fileRead.read_yaml("/data_case/all.yaml"))
     def project_Resources(request):
         return request.param
 

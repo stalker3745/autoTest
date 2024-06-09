@@ -9,7 +9,7 @@ class TestMyClass:
     headers = ""
     @pytest.fixture(params=fileRead.read_yaml("/data_case/all.yaml"))
     def project_data(self, request):
-        return request.param, 'caw.baseRequests.BaseRequests object at 0x0000020188642F60'
+        return request.param
 
     def setup_method(self, project_data):
         self.r = member.login(project_data[1], project_data[2], project_data[0]['logindata'])
@@ -23,12 +23,12 @@ class TestMyClass:
 
 
     # 将项目从回收站里删除
-    def test_delete_project2(self, project_data,headers):
+    def test_delete_project2(self, project_data,getHeaders):
         r = project.deleteProject2(project_data[1], project_data[2], self.headers, project_data[0]['deleteProject2'])
         assert str(r.json()["code"]) == str(project_data[0]['exp']['code'])
         assert str(r.json()['message']) == str(project_data[0]['exp']['message'])
     # 归档项目
-    def test_updateProjectDataType_project(self, project_data, headers):
+    def test_updateProjectDataType_project(self, project_data, getHeaders):
         r = project.updateProjectDataType(project_data[1], project_data[2], self.headers,
                                               project_data[0]['updateProjectDataType'])
         assert str(r.json()["code"]) == str(project_data[0]['exp']['code'])
