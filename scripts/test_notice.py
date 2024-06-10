@@ -1,6 +1,7 @@
+# coding:utf-8
 import  pytest
 
-# µÇÂ¼µÄÊı¾İ
+# ç™»å½•çš„æ•°æ®
 from baw import member
 from caw import fileRead
 
