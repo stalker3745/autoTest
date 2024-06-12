@@ -5,7 +5,6 @@ pytest是根据conftest文件名字来找的。
 '''
 import requests
 
-from baw import member
 from caw import fileRead, baseRequests
 import pytest
 
@@ -35,6 +34,7 @@ def getHeaders():
     r = requests.post(url=url, json= fileRead.read_yaml("/data_case/setup.yaml")["setup"])
     headers = {
         'Authorization': r.json()["data"]["jwtToken"],
+        "Lang": "CN",
         'User-Company': r.json()["data"]["companyId"]}
     return headers
 

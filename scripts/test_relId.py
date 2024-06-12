@@ -104,12 +104,20 @@ class TestRelId:
     # 增加项目成员
     def test_addpeople_project(self,project_data,url,br,getHeaders):
         r = project.addProject(url, br, getHeaders, project_data['addProject'])
+        user= {"page":1,"pageSize":0,"queryIden":0,"accountStatus":1,"userDuty":1}
+        r1= project.listCompanyUserPage(url, br, getHeaders, user)
         projectId = {
             "projectId": r.json()["data"],
-            }
+            "userIdList": jsonpath.jsonpath(r1.json(),"$..userId"),
+            "projectIds": [r.json()["data"]]
+        }
         r = project.changeProjectResourc(url,br,getHeaders,projectId)
         assert str(r.json()["code"]) == str(project_data['exp']['code'])
         assert str(r.json()['message']) == str(project_data['exp']['message'])
+        project.deletecopyProject(url,br,getHeaders,projectId)
+        assert str(r.json()["code"]) == str(project_data['exp']['code'])
+        assert str(r.json()['message']) == str(project_data['exp']['message'])
+
 
 
     # 移除项目成员

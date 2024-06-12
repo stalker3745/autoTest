@@ -131,6 +131,6 @@ def getProjectList(url,br,headers,cs):
 
 # 查看公司下的成员
 def listCompanyUserPage(url,br,headers,cs):
-    url=url+"/company/listCompanyUserPage"
+    url=url+"/user/company/listCompanyUserPage"
     r=br.post_hearder(url,headers,json=cs)
     return r
