@@ -31,7 +31,7 @@ def listProjectByCondition(url,br,headers,cs):
     r = br.post_hearder(url,headers,json=cs)
     return r
 
-# 删除项目
+# 删除项目+删除回收站里的项目
 def deleteProject(url,br,headers,cs):
     url = url + "/newProject/deleteProject"
     r = br.post_hearder(url,headers,json=cs)
@@ -47,12 +47,6 @@ def updateProjectDataType(url,br,headers,cs):
 # 回收站里恢复项目
 def recoverProject(url,br,headers,cs):
     url= url+"/newProject/updateProjectDataType"
-    r=br.post_hearder(url,headers,json=cs)
-    return r
-
-# 删除回收站内的项目
-def deleteProject2(url,br,headers,cs):
-    url= url+"/newProject/deleteProject"
     r=br.post_hearder(url,headers,json=cs)
     return r
 
@@ -109,18 +103,6 @@ def addTask(url,br,headers,cs):
     r=br.post_hearder(url,headers,json=cs)
     return r
 
-# 激活已归档的项目
-def updateProjectDataType1(url,br,headers,cs):
-    url=url+"/newProject/updateProjectDataType"
-    r=br.post_hearder(url,headers,json=cs)
-    return r
-
-#将已归档的项目移至回收站
-def updateProjectDataType2(url,br,headers,cs):
-    url=url+"/newProject/updateProjectDataType"
-    r=br.post_hearder(url,headers,json=cs)
-    return r
-
 # 添加项目管理阶段中的管理状态
 def changeProjectPahse(url,br,headers,cs):
     url=url+"/projectPhase/changeProjectPahse"
@@ -145,4 +127,10 @@ def getUserRelId(url,br,headers,cs):
 def getProjectList(url,br,headers,cs):
     url = url + "/newProject/getProjectList"
     r = br.post_hearder(url, headers, json=cs)
+    return r
+
+# 查看公司下的成员
+def listCompanyUserPage(url,br,headers,cs):
+    url=url+"/company/listCompanyUserPage"
+    r=br.post_hearder(url,headers,json=cs)
     return r
