@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import time
 
 import jsonpath
 import pytest
@@ -23,6 +24,7 @@ class TestRelId:
 
     # 删除项目
     def test_deleteProject_project(self, project_data, url, br, getHeaders):
+        time.sleep(5)
         r = project.addProject(url, br, getHeaders, project_data['addProject'])
         projectIds={
             "projectIds":[ r.json()["data"]]
@@ -42,6 +44,7 @@ class TestRelId:
 
     # 添加项目任务
     def test_addTask_project(self,project_data,url,br,getHeaders):
+        time.sleep(5)
         r = project.addProject(url, br, getHeaders, project_data['addProject'])
         data = {
                 "taskName": "111",
@@ -52,13 +55,14 @@ class TestRelId:
                 "projectId": r.json()['data'],
                 "parentTaskId": -1,
             }
-        r=project.addTask(url,br,getHeaders,project_data['addTask'])
+        r=project.addTask(url,br,getHeaders,data)
         assert str(r.json()["code"]) == str(project_data['exp']['code'])
         assert str(r.json()['message']) == str(project_data['exp']['message'])
 
 
     # 项目归档
     def  test_updateDataType_project(self,project_data,url,br,getHeaders):
+        time.sleep(5)
         r = project.addProject(url, br, getHeaders, project_data['addProject'])
         data = {
             "projectId": r.json()["data"],
@@ -72,6 +76,7 @@ class TestRelId:
 
     # 激活已归档的项目
     def test_recoverproject_project(self,project_data,url,br,getHeaders):
+        time.sleep(5)
         r1=project.addProject(url,br,getHeaders,project_data['addProject'])
         data = {
             "projectId": r1.json()["data"],
@@ -90,6 +95,7 @@ class TestRelId:
 
     # 获取relId
     def test_getUserRelId_project(self, project_data, url, br, getHeaders):
+        time.sleep(5)
         r = project.addProject(url, br, getHeaders, project_data['addProject'])
         projectId = {
             "projectId": r.json()["data"],
@@ -103,6 +109,7 @@ class TestRelId:
 
     # 增加项目成员
     def test_addpeople_project(self,project_data,url,br,getHeaders):
+        time.sleep(5)
         r = project.addProject(url, br, getHeaders, project_data['addProject'])
         user= {"page":1,"pageSize":0,"queryIden":0,"accountStatus":1,"userDuty":1}
         r1= project.listCompanyUserPage(url, br, getHeaders, user)
