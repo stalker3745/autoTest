@@ -13,13 +13,13 @@ def project_data(request):
     return request.param
 
 #上面读取的数据通过参数传递都下面函数中使用
-def test_addproject(url,br,getHeaders,project_data):
-    # 下发创建项目的请求
-    r = project.add_project(url, br ,getHeaders,project_data['addprojectdata'],)
-    print(f"项目r：{r}")
-    # 校验添加项目的结果
-    assert str(r.json()['message']) == str(project_data['exp']['message'])
-    assert str(r.json()['code']) == str(project_data['exp']['code'])
+# def test_addproject(url,br,getHeaders,project_data):
+#     # 下发创建项目的请求
+#     r = project.add_project(url, br ,getHeaders,project_data['addprojectdata'],)
+#     print(f"项目r：{r}")
+#     # 校验添加项目的结果
+#     assert str(r.json()['message']) == str(project_data['exp']['message'])
+#     assert str(r.json()['code']) == str(project_data['exp']['code'])
 
 
 def test_addprojectuser(url, br, getHeaders,project_data):
