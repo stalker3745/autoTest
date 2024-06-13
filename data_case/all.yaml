@@ -4,11 +4,11 @@
   listAllProjectByCondition: {}
   getActivityLogByCreateId: {"page":1,"pageSize":20,"isProjectOverviewLog":false,"isCompanyLog":false,"isProjectLog":true}
   deleteProject2: {"projectIds":["1246122390963134464"]}
-  updateProjectDataType:  {"dataType":2,"projectId":"1247964142753828864"}
-  recoverProject: {dataType: 1, projectId: "1247964142753828864"}
-  getUserIdsByProjectId: {projectId: "1247964142753828864"}
-  copeProjectByProjectId: {"projectId": "1242878101646774272", "companyId": "1071440842016989184","companyName": "自动化测试企业（web）","projectName": "自动化测试新建项目","countryRegionId": "860892363952885760","countryName": "中国"}
+  updateProjectDataType:  {"dataType":2,"projectId":"1242522569891209216"}
+  recoverProject: {dataType: 1, projectId: "1242522569891209216"}
+  getUserIdsByProjectId: {projectId: "1242522569891209216"}
+  copeProjectByProjectId: {"projectId": "1242522569891209216", "companyId": "1071440842016989184","companyName": "自动化测试企业（web）","projectName": "自动化测试新建项目","countryRegionId": "860892363952885760","countryName": "中国"}
   deletecopyProject: {"projectIds":["1242878101646774272"]}
-  copyProjectTemplate: {projectId: "1245772818470445056", copyType: 2, projectName: "test1"}
+  copyProjectTemplate: {projectId: "1242522569891209216", copyType: 2, projectName: "test1"}
   deleteProject: {"projectIds": ["1103995636598071297"]}
-  addTask: { "taskName": "python_task","taskPriority": 2,"taskPhaseId": "1246111220185210880","taskType": 1,"projectId": "1246108470785384448","parentTaskId": -1,"toBeClaimedUser": null }
+  addTask: { "taskName": "python_task","taskPriority": 2,"taskPhaseId": "1246111220185210880","taskType": 1,"projectId": "1242522569891209216","parentTaskId": -1,"toBeClaimedUser": null }
