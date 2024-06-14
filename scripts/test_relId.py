@@ -258,3 +258,28 @@ class TestRelId:
         assert str(r.json()['code']) == str(project_data['exp']['code'])
         assert str(r.json()['message']) == str(project_data['exp']['message'])
         print("项目阶段已更改为规划阶段")
+
+    # 开启阶段更新自动化
+    def tets_turnonProjectPahseParams_project(self,project_data,url,br,getHeaders):
+        time.sleep(10)
+        r = project.addProject(url, br, getHeaders, project_data['addProject'])
+        data = {
+                "isAutoPhase": True,
+                "projectId": r.json()["data"]
+        }
+        r=project.updateProjectPahseParams(url, br, getHeaders, data)
+        assert str(r.json()['code']) == str(project_data['exp']['code'])
+        assert str(r.json()['message']) == str(project_data['exp']['message'])
+        print(" 已开启阶段更新自动化")
+
+# 展示阶段列表
+    def test_getProjectPahseScheduleList_project(self,project_data,url,br,getHeaders):
+        time.sleep(10)
+        r = project.addProject(url, br, getHeaders, project_data['addProject'])
+        projectId = {
+            "projectId": r.json()["data"]
+        }
+        r=project.getProjectPahseScheduleList(url, br, getHeaders, projectId)
+        assert str(r.json()['code']) == str(project_data['exp']['code'])
+        assert str(r.json()['message']) == str(project_data['exp']['message'])
+

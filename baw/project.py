@@ -139,8 +139,14 @@ def listDept(url,br,headers,cs):
     r=br.post_hearder(url, headers, json=cs)
     return r
 
-# 更改项目阶段
+# 更改项目阶段和开启阶段更新自动化
 def updateProjectPahseParams(url,br,headers,cs):
     url=url+"/projectPhase/updateProjectPahseParams"
+    r=br.post_hearder(url, headers, json=cs)
+    return r
+
+# 展示阶段列表
+def getProjectPahseScheduleList(url,br,headers,cs):
+    url=url+"/projectPhase/getProjectPahseScheduleList"
     r=br.post_hearder(url, headers, json=cs)
     return r
