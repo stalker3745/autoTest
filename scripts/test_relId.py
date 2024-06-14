@@ -122,9 +122,7 @@ class TestRelId:
         r = project.changeProjectResourc(url,br,getHeaders,data)
         assert str(r.json()["code"]) == str(project_data['exp']['code'])
         assert str(r.json()['message']) == str(project_data['exp']['message'])
-        project.deletecopyProject(url,br,getHeaders,data)
-        assert str(r.json()["code"]) == str(project_data['exp']['code'])
-        assert str(r.json()['message']) == str(project_data['exp']['message'])
+
 
     # 移除项目成员
     # 正在修改
@@ -174,7 +172,7 @@ class TestRelId:
 
         print("删除已从回收站内恢复")
 
-# 创建项目模板
+    # 创建项目模板
     def test_copyByProjectId_project(self, project_data, url, br, getHeaders):
         time.sleep(10)
         r = project.addProject(url, br, getHeaders, project_data['addProject'])
@@ -186,7 +184,7 @@ class TestRelId:
         assert str(r.json()['message']) == str(project_data['exp']['message'])
         print("项目模板已创建成功")
 
-# 删除项目模板
+    # 删除项目模板
     def test_deleteCopy_project(self,project_data, url, br, getHeaders):
         time.sleep(10)
         r = project.addProject(url, br, getHeaders, project_data['addProject'])
@@ -199,7 +197,7 @@ class TestRelId:
         assert str(r.json()['message']) == str(project_data['exp']['message'])
         print("项目模板已删除成功")
 
-# 复制项目模板
+    # 复制项目模板
     def test_copyProjectTemplate_project(self,project_data, url, br, getHeaders):
         time.sleep(10)
         r = project.addProject(url, br, getHeaders, project_data['addProject'])
@@ -214,13 +212,49 @@ class TestRelId:
         assert str(r.json()['message']) == str(project_data['exp']['message'])
         print("项目模板已复制成功")
 
+    # 查看当前项目下所有成员
+    def test_getUserIdsByProjectId_project(self,project_data,url,br,getHeaders):
+        time.sleep(10)
+        # 新增项目
+        r = project.addProject(url, br, getHeaders, project_data['addProject'])
+        user = {"page": 1, "pageSize": 0, "queryIden": 0, "accountStatus": 1, "userDuty": 1}
+        r1 = project.listCompanyUserPage(url, br, getHeaders, user)
+        data = {
+            "projectId": r.json()["data"],
+            "userIdList": jsonpath.jsonpath(r1.json(), "$..userId"),
+            "projectIds": [r.json()["data"]]
+        }
+        r = project.changeProjectResourc(url, br, getHeaders, data)
+        projectId = {
+            "projectId": r.json()["data"]
+        }
+        r=project.getUserIdsByProjectId(url,br,getHeaders,projectId)
+        assert str(r.json()["code"]) == str(project_data['exp']['code'])
+        assert str(r.json()['message']) == str(project_data['exp']['message'])
 
+    # 查看公司下的成员
+    def test_listCompanyUserPage_project(self,project_data,url,br,getHeaders):
+        time.sleep(10)
+        r=project.listCompanyUserPage(url, br, getHeaders, project_data['addProject'])
+        assert str(r.json()['code']) == str(project_data['exp']['code'])
+        assert str(r.json()['message']) == str(project_data['exp']['message'])
 
+    # 查看公司部门
+    def test_listDept_project(self,project_data,url,br,getHeaders):
+        time.sleep(10)
+        r=project.listDept(url, br, getHeaders, project_data['addProject'])
+        assert str(r.json()['code']) == str(project_data['exp']['code'])
+        assert str(r.json()['message']) == str(project_data['exp']['message'])
 
-
-        # 查看当前项目下所有成员
-        # 还未写完
-        # def test_getAllUser_project(self,project_data,url,br,getHeaders):
-        #     r=project.getProjectList(url,br,getHeaders,project_data['getProjectList'])
-        #     assert str(r.json()["code"]) == str(project_data['exp']['code'])
-        #     assert str(r.json()['message']) == str(project_data['exp']['message'])
+    # 更改项目阶段为规划阶段
+    def test_updateProjectPahseParams_project(self,project_data,url,br,getHeaders):
+        time.sleep(10)
+        r = project.addProject(url, br, getHeaders, project_data['addProject'])
+        data = {
+                "phaseId": "1242522938167877633",
+                "projectId": r.json()["data"]
+        }
+        r=project.updateProjectPahseParams(url, br, getHeaders, data)
+        assert str(r.json()['code']) == str(project_data['exp']['code'])
+        assert str(r.json()['message']) == str(project_data['exp']['message'])
+        print("项目阶段已更改为规划阶段")

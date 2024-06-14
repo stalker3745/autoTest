@@ -224,19 +224,19 @@ def test_project2(project_data, url, br, db_info):
 #     assert str(r1.json()['message']) == str(project_data['exp']['message'])
 
 # 查看当前项目下所有的成员
-def test_getUserIdsByProjectId_project(project_data,url,br):
-    r = member.login(url, br, project_data['logindata'])
-    headers = {'Lang': "CN",
-               'Authorization': r.json()["data"]["jwtToken"],
-               'User-Company': r.json()["data"]["companyId"]}
-    account.changeCompanyLogin(url, br, headers,project_data['changeCompanyLogin'])
-    r = member.login(url, br, project_data['logindata'])
-    headers = {'Lang': "CN",
-               'Authorization': r.json()["data"]["jwtToken"],
-               'User-Company': r.json()["data"]["companyId"]}
-    r1 = project.getUserIdsByProjectId(url, br, headers, project_data['getUserIdsByProjectId'])
-    assert str(r1.json()["code"]) == str(project_data['exp']['code'])
-    assert str(r1.json()['message']) == str(project_data['exp']['message'])
+# def test_getUserIdsByProjectId_project(project_data,url,br):
+#     r = member.login(url, br, project_data['logindata'])
+#     headers = {'Lang': "CN",
+#                'Authorization': r.json()["data"]["jwtToken"],
+#                'User-Company': r.json()["data"]["companyId"]}
+#     account.changeCompanyLogin(url, br, headers,project_data['changeCompanyLogin'])
+#     r = member.login(url, br, project_data['logindata'])
+#     headers = {'Lang': "CN",
+#                'Authorization': r.json()["data"]["jwtToken"],
+#                'User-Company': r.json()["data"]["companyId"]}
+#     r1 = project.getUserIdsByProjectId(url, br, headers, project_data['getUserIdsByProjectId'])
+#     assert str(r1.json()["code"]) == str(project_data['exp']['code'])
+#     assert str(r1.json()['message']) == str(project_data['exp']['message'])
 
 #查询登录用户所参与的企业
 def test_queryCompanyListByUserId(project_data,url,br,getHeaders):

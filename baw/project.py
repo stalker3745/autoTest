@@ -109,19 +109,11 @@ def changeProjectPahse(url,br,headers,cs):
     r=br.post_hearder(url,headers,json=cs)
     return r
 
-def getUserIdsByProjectId(url,br,headers,cs):
-    url=url+"/projectResource/getUserIdsByProjectId"
-    r=br.post_hearder(url,headers,json=cs)
-    return r
-
 # 获取实时relId(与下列移除项目成员同时使用)
 def getUserRelId(url,br,headers,cs):
     url=url+"/projectResource/getUserIdsByProjectId"
     r = br.post_hearder(url, headers, json=cs)
     return r
-    # json格式提取
-    # relId = jsonpath.jsonpath(r.json(),'$.data.list[0].relId')
-    # return relId
 
 # 查看所有项目
 def getProjectList(url,br,headers,cs):
@@ -133,4 +125,22 @@ def getProjectList(url,br,headers,cs):
 def listCompanyUserPage(url,br,headers,cs):
     url=url+"/user/company/listCompanyUserPage"
     r=br.post_hearder(url,headers,json=cs)
+    return r
+
+# 查看该项目下所有的成员
+def getUserIdsByProjectId(url,br,headers,cs):
+    url=url+"/projectResource/getUserIdsByProjectId"
+    r=br.post_hearder(url, headers, json=cs)
+    return r
+
+# 查看项目下的部门
+def listDept(url,br,headers,cs):
+    url=url+"/deptManager/listDept"
+    r=br.post_hearder(url, headers, json=cs)
+    return r
+
+# 更改项目阶段
+def updateProjectPahseParams(url,br,headers,cs):
+    url=url+"/projectPhase/updateProjectPahseParams"
+    r=br.post_hearder(url, headers, json=cs)
     return r
