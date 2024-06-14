@@ -38,5 +38,15 @@ def getHeaders():
         'User-Company': r.json()["data"]["companyId"]}
     return headers
 
-
+# 将headers写到公共方法里
+# @pytest.fixture(scope='module')
+# def getHeaders44441():
+#     headers={"Content-Type": "application/json;charset=UTF-8"}
+#     url="http://user-sit.zdsztech.com/employee-web-application/account/mixLogin"
+#     data = {"account":"mazhenhua1@zdsztech.com","password":"dog7jCEMgBCy02XUcrsv4w==","language":"CN"}  # 配置用户登录的账号
+#     r = requests.post(url=url, headers=headers, json=data)
+#     headers = {
+#         'Authorization': r.json()["data"]["jwtToken"],
+#         'User-Company': r.json()["data"]["companyId"]}
+#     return headers
 

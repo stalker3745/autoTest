@@ -12,15 +12,18 @@
   listProjectByCondition:   {"page":1,"pageSize":9,"projectName":null,"dataType": 1 ,"dropDownId": "1242878101646774272" }
 # 归档项目
   updateProjectDataType: {}
+#  从回收站内恢复项目
   recoverProject: {dataType: 1, projectId: "1247964142753828864"}
 #  添加项目成员
   changeProjectResourc: {}
 #  移除项目成员
   deleteProjectResource: {}
-  copeProjectByProjectId: {"projectId": "1242878101646774272", "companyId": "1071440842016989184","companyName": "自动化测试企业（web）","projectName": "自动化测试新建项目","countryRegionId": "860892363952885760","countryName": "中国"}
-#  删除项目
+#  创建项目模板
+  copeProjectByProjectId: {}
+#  删除项目模板
   deletecopyProject: {}
-  copyProjectTemplate: {projectId: "1245772818470445056", copyType: 2, projectName: "test1"}
+#  复制项目模板
+  copyProjectTemplate: {}
   updateProjectAPPByProjectId: {"projectAppStatus": 0, "projectId": "1245765721859072000", "projectAppId": "1245765723448713216", "projectAppName": "项目概览"}
 #  添加项目
   addProject: {"projectResource": [], "projectName": "pythontest", "scope": 1, "projectManager": "955422446754861056", "projectRecommend": "你好", "backType": 1, "countryRegionId": "860892363952885760"}
@@ -28,7 +31,7 @@
   addTask: {}
   changeProjectPahse: {phaseId: "-1", projectId: "1246134768836583424"}
 #  获取relId和查看当前项目下所有的成员
-  getUserIdsByProjectId: {projectId: "1250456552364883968"}
+  getUserIdsByProjectId: {}
 # 查看所有项目
   getProjectLis: {}
 

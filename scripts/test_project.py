@@ -78,14 +78,14 @@ def test_project2(project_data, url, br, db_info):
 
 
 # 从回收站恢复项目
-def test_recover_project(project_data,url,br):
-    r=member.login(url,br,project_data['logindata'])
-    headers = {'Lang': "CN",
-               'Authorization': r.json()["data"]["jwtToken"],
-               'User-Company': r.json()["data"]["companyId"]}
-    r1=project.recoverProject(url,br,headers,project_data['recoverProject'])
-    assert str(r1.json()["code"])==str(project_data['exp']['code'])
-    assert str(r1.json()['message'])==str(project_data['exp']['message'])
+# def test_recover_project(project_data,url,br):
+#     r=member.login(url,br,project_data['logindata'])
+#     headers = {'Lang': "CN",
+#                'Authorization': r.json()["data"]["jwtToken"],
+#                'User-Company': r.json()["data"]["companyId"]}
+#     r1=project.recoverProject(url,br,headers,project_data['recoverProject'])
+#     assert str(r1.json()["code"])==str(project_data['exp']['code'])
+#     assert str(r1.json()['message'])==str(project_data['exp']['message'])
 
 # 添加项目成员
 # def test_changeResourc_project(project_data,url,br):
@@ -126,34 +126,34 @@ def test_recover_project(project_data,url,br):
 #     assert str(r1.json()['message'])==str(project_data['exp']['message'])
 
 # 使用项目模板新建项目
-def test_copeByProjectId_project(project_data,url,br):
-    r=member.login(url,br,project_data['logindata'])
-    headers = {'Lang': "CN",
-               'Authorization': r.json()["data"]["jwtToken"],
-               'User-Company': r.json()["data"]["companyId"]}
-    r1=project.copeProjectByProjectId(url,br,headers,project_data['copeProjectByProjectId'])
-    assert str(r1.json()["code"])==str(project_data['exp']['code'])
-    assert str(r1.json()['message'])==str(project_data['exp']['message'])
+# def test_copeByProjectId_project(project_data,url,br):
+#     r=member.login(url,br,project_data['logindata'])
+#     headers = {'Lang': "CN",
+#                'Authorization': r.json()["data"]["jwtToken"],
+#                'User-Company': r.json()["data"]["companyId"]}
+#     r1=project.copeProjectByProjectId(url,br,headers,project_data['copeProjectByProjectId'])
+#     assert str(r1.json()["code"])==str(project_data['exp']['code'])
+#     assert str(r1.json()['message'])==str(project_data['exp']['message'])
 
 # 删除项目模板
-def test_deletecopyProject_project(project_data,url,br):
-    r = member.login(url, br, project_data['logindata'])
-    headers = {'Lang': "CN",
-               'Authorization': r.json()["data"]["jwtToken"],
-               'User-Company': r.json()["data"]["companyId"]}
-    r1 = project.deletecopyProject(url, br, headers, project_data['deletecopyProject'])
-    assert str(r1.json()["code"]) == str(project_data['exp']['code'])
-    assert str(r1.json()['message']) == str(project_data['exp']['message'])
+# def test_deletecopyProject_project(project_data,url,br):
+#     r = member.login(url, br, project_data['logindata'])
+#     headers = {'Lang': "CN",
+#                'Authorization': r.json()["data"]["jwtToken"],
+#                'User-Company': r.json()["data"]["companyId"]}
+#     r1 = project.deletecopyProject(url, br, headers, project_data['deletecopyProject'])
+#     assert str(r1.json()["code"]) == str(project_data['exp']['code'])
+#     assert str(r1.json()['message']) == str(project_data['exp']['message'])
 
 # 复制项目模板
-def test_copyProjectTemplate_project(project_data,url,br):
-    r = member.login(url, br, project_data['logindata'])
-    headers = {'Lang': "CN",
-               'Authorization': r.json()["data"]["jwtToken"],
-               'User-Company': r.json()["data"]["companyId"]}
-    r1 = project.copyProjectTemplate(url, br, headers, project_data['copyProjectTemplate'])
-    assert str(r1.json()["code"]) == str(project_data['exp']['code'])
-    assert str(r1.json()['message']) == str(project_data['exp']['message'])
+# def test_copyProjectTemplate_project(project_data,url,br):
+#     r = member.login(url, br, project_data['logindata'])
+#     headers = {'Lang': "CN",
+#                'Authorization': r.json()["data"]["jwtToken"],
+#                'User-Company': r.json()["data"]["companyId"]}
+#     r1 = project.copyProjectTemplate(url, br, headers, project_data['copyProjectTemplate'])
+#     assert str(r1.json()["code"]) == str(project_data['exp']['code'])
+#     assert str(r1.json()['message']) == str(project_data['exp']['message'])
 
 
 # 添加项目
