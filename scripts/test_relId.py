@@ -47,13 +47,14 @@ class TestRelId:
         time.sleep(10)
         r = project.addProject(url, br, getHeaders, project_data['addProject'])
         data = {
-                "taskName": "111",
-                "isToBeClaimed": "0",
-                "taskPriority": 2,
-                "taskPhaseId": "1250502212980097024",
-                "taskType": 1,
-                "projectId": r.json()['data'],
-                "parentTaskId": -1,
+              "taskName": "1",
+              "isToBeClaimed": "0",
+              "assistantUserIds": [],
+              "taskPriority": 2,
+              "taskPhaseId": "1242522938167877632",
+              "taskType": 1,
+              "projectId":  r.json()["data"],
+              "parentTaskId": -1
             }
         r=project.addTask(url,br,getHeaders,data)
         assert str(r.json()["code"]) == str(project_data['exp']['code'])
