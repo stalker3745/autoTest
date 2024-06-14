@@ -1,5 +1,4 @@
 import json
-import time
 
 import jsonpath
 import pytest
@@ -14,20 +13,18 @@ def project_data(request):
     return request.param
 
 #上面读取的数据通过参数传递都下面函数中使用
-def test_addproject(url,br,getHeaders,project_data):
-    time.sleep(5)
+def test_addproject(url,br,getuserheaders,project_data):
     # 下发创建项目的请求
-    r = project.add_project(url, br ,getHeaders,project_data['addprojectdata'],)
+    r = project.add_project(url, br ,getuserheaders,project_data['addprojectdata'],)
     print(f"项目r：{r}")
     # 校验添加项目的结果
     assert str(r.json()['message']) == str(project_data['exp']['message'])
     assert str(r.json()['code']) == str(project_data['exp']['code'])
 
 
-def test_addprojectuser(url, br, getHeaders,project_data):
-    time.sleep(5)
+def test_addprojectuser(url, br, getuserheaders,project_data):
     # 下发新增员工的请求
-    r = project.changeProjectResourc(url, br, getHeaders, project_data['adduser'])
+    r = project.changeProjectResourc(url, br, getuserheaders, project_data['adduser'])
     print(f"新增员工r：{r}")
     # 校验添加用户的结果
     assert str(r.json()['message']) == str(project_data['exp']['message'])
@@ -35,10 +32,9 @@ def test_addprojectuser(url, br, getHeaders,project_data):
 
 
 # 获取relId
-def test_getUserRelId_project(url, br, getHeaders, project_data):
-    time.sleep(5)
+def test_getUserRelId_project(url, br, getuserheaders, project_data):
     # 下发请求
-    r1 = project.getUserRelId(url, br, getHeaders, project_data['getUserRelId'])
+    r1 = project.getUserRelId(url, br, getuserheaders, project_data['getUserRelId'])
     print(f"查询用户ID：{r1.json()["data"][0]["relId"]}")
     # 校验结果
     assert str(r1.json()["code"]) == str(project_data['exp']['code'])
