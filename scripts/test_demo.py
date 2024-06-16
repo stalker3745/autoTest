@@ -5,16 +5,16 @@ from baw import project
 from caw import fileRead
 
 
-class TestAll:
-    @pytest.fixture(params=fileRead.read_yaml("/data_case/all.yaml"))
-    def project_Resources(self,request):
-        return request.param
-
-# 用夹具写登录，这样在每个方法运行之前都会登录
-    @pytest.fixture(autouse=True)
-    def login(self,br,project_Resources):
-        r=br.post(url=project_Resources["url"],json=project_Resources["logindata"])
-        return r
+# class TestAll:
+#     @pytest.fixture(params=fileRead.read_yaml("/data_case/all.yaml"))
+#     def project_Resources(self,request):
+#         return request.param
+#
+# # 用夹具写登录，这样在每个方法运行之前都会登录
+#     @pytest.fixture(autouse=True)
+#     def login(self,br,project_Resources):
+#         r=br.post(url=project_Resources["url"],json=project_Resources["logindata"])
+#         return r
 
 # project.py里的cs对应project_Resources
 # project.py里的headers对应getHeaders

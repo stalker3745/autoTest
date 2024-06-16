@@ -44,8 +44,8 @@ def updateProjectDataType(url,br,headers,cs):
     return r
 
 
-# 回收站里恢复项目
-def recoverProject(url,br,headers,cs):
+# 更新项目，回复项目
+def updateProjectDataType(url,br,headers,cs):
     url= url+"/newProject/updateProjectDataType"
     r=br.post_hearder(url,headers,json=cs)
     return r
