@@ -1,4 +1,3 @@
 # 登录的数据
 # 1、正常场景：用户名、密码正确，登录成功
-logindata: {"account":"mazhenhua8@zdsztech.com","password":"dog7jCEMgBCy02XUcrsv4w==","language":"CN"}  # 登录的用户
 exp: {"code": "200", "message": "操作成功!"}   # 登录的预期结果

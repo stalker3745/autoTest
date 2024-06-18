@@ -35,7 +35,8 @@ def getHeaders():
     headers = {
         'Authorization': r.json()["data"]["jwtToken"],
         "Lang": "CN",
-        'User-Company': r.json()["data"]["companyId"]}
+        'User-Company': r.json()["data"]["companyId"],
+        'userId': r.json()["data"]["userId"]}
     return headers
 
 # 将headers写到公共方法里

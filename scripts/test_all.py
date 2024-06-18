@@ -11,15 +11,15 @@ class TestMyClass:
     def project_data(self, request):
         return request.param
 
-    @classmethod
-    def setUpClass(self,url,br, project_data):
-        r = member.login(url,br, project_data['logindata'])
-        getHeaders = {
-            'Lang': "CN",
-            'Authorization': r.json()["data"]["jwtToken"],
-            'User-Company': r.json()["data"]["companyId"]
-        }
-        return getHeaders
+    # @classmethod
+    # def setUpClass(self,url,br, project_data):
+    #     r = member.login(url,br, project_data['logindata'])
+    #     getHeaders = {
+    #         'Lang': "CN",
+    #         'Authorization': r.json()["data"]["jwtToken"],
+    #         'User-Company': r.json()["data"]["companyId"]
+    #     }
+    #     return getHeaders
 
     # 归档项目
     def test_updateProjectDataType_project(self, url,br,project_data, getHeaders):
@@ -40,11 +40,11 @@ class TestMyClass:
         return request.param
 
     # 添加项目
-    def test_add_project(self, url,br,project_data):
-        r = member.login(url,br, project_data['logindata'])
-        getHeaders = {'Lang': "CN",
-                   'Authorization': r.json()["data"]["jwtToken"],
-                   'User-Company': r.json()["data"]["companyId"]}
+    def test_add_project(self, url,br,project_data,getHeaders):
+        # r = member.login(url,br, project_data['logindata'])
+        # getHeaders = {'Lang': "CN",
+        #            'Authorization': r.json()["data"]["jwtToken"],
+        #            'User-Company': r.json()["data"]["companyId"]}
         r = project.addProject(url,br, getHeaders, project_data['addProject'])
         assert str(r.json()["code"]) == str(project_data['exp']['code'])
         assert str(r.json()['message']) == str(project_data['exp']['message'])
@@ -68,60 +68,60 @@ class TestMyClass:
 
 
     # 使用项目模板新建项目
-    def test_copeByProjectId_project(self,project_data, url, br):
-        r = member.login(url, br, project_data['logindata'])
-        headers = {'Lang': "CN",
-                   'Authorization': r.json()["data"]["jwtToken"],
-                   'User-Company': r.json()["data"]["companyId"]}
-        r1 = project.copeProjectByProjectId(url, br, headers, project_data['copeProjectByProjectId'])
+    def test_copeByProjectId_project(self,project_data, url, br,getHeaders):
+        # r = member.login(url, br, project_data['logindata'])
+        # headers = {'Lang': "CN",
+        #            'Authorization': r.json()["data"]["jwtToken"],
+        #            'User-Company': r.json()["data"]["companyId"]}
+        r1 = project.copeProjectByProjectId(url, br, getHeaders, project_data['copeProjectByProjectId'])
         assert str(r1.json()["code"]) == str(project_data['exp']['code'])
         assert str(r1.json()['message']) == str(project_data['exp']['message'])
         projectIds= {
             "projectIds": [r1.json()["data"]]
         }
-        r=project.deleteProject(url, br, headers,projectIds)
+        r=project.deleteProject(url, br, getHeaders,projectIds)
         assert str(r.json()["code"]) == str(project_data['exp']['code'])
         assert str(r.json()['message']) == str(project_data['exp']['message'])
 
 
     # 复制项目模板
-    def test_copyProjectTemplate_project(self,project_data, url, br):
-        r = member.login(url, br, project_data['logindata'])
-        headers = {'Lang': "CN",
-                   'Authorization': r.json()["data"]["jwtToken"],
-                   'User-Company': r.json()["data"]["companyId"]}
-        r1 = project.copyProjectTemplate(url, br, headers, project_data['copyProjectTemplate'])
+    def test_copyProjectTemplate_project(self,project_data, url, br,getHeaders):
+        # r = member.login(url, br, project_data['logindata'])
+        # headers = {'Lang': "CN",
+        #            'Authorization': r.json()["data"]["jwtToken"],
+        #            'User-Company': r.json()["data"]["companyId"]}
+        r1 = project.copyProjectTemplate(url, br, getHeaders, project_data['copyProjectTemplate'])
         assert str(r1.json()["code"]) == str(project_data['exp']['code'])
         assert str(r1.json()['message']) == str(project_data['exp']['message'])
 
 
     # 添加任务
-    def test_addTask_project(self,project_data, url, br):
-        r = member.login(url, br, project_data['logindata'])
-        headers = {'Lang': "CN",
-                   'Authorization': r.json()["data"]["jwtToken"],
-                   'User-Company': r.json()["data"]["companyId"]}
-        r1 = project.addTask(url, br, headers, project_data['addTask'])
+    def test_addTask_project(self,project_data, url, br,getHeaders):
+        # r = member.login(url, br, project_data['logindata'])
+        # headers = {'Lang': "CN",
+        #            'Authorization': r.json()["data"]["jwtToken"],
+        #            'User-Company': r.json()["data"]["companyId"]}
+        r1 = project.addTask(url, br, getHeaders, project_data['addTask'])
         assert str(r1.json()["code"]) == str(project_data['exp']['code'])
         assert str(r1.json()['message']) == str(project_data['exp']['message'])
 
     # 激活已归档的项目
-    def test_updateDataType1_project(self,project_data, url, br):
-        r = member.login(url, br, project_data['logindata'])
-        headers = {'Lang': "CN",
-                   'Authorization': r.json()["data"]["jwtToken"],
-                   'User-Company': r.json()["data"]["companyId"]}
-        r1 = project.updateProjectDataType(url, br, headers, project_data['updateProjectDataType'])
+    def test_updateDataType1_project(self,project_data, url, br,getHeaders):
+        # r = member.login(url, br, project_data['logindata'])
+        # headers = {'Lang': "CN",
+        #            'Authorization': r.json()["data"]["jwtToken"],
+        #            'User-Company': r.json()["data"]["companyId"]}
+        r1 = project.updateProjectDataType(url, br, getHeaders, project_data['updateProjectDataType'])
         assert str(r1.json()["code"]) == str(project_data['exp']['code'])
         assert str(r1.json()['message']) == str(project_data['exp']['message'])
 
     # 将已归档的项目移至回收站
-    def test_updateDataType2_project(self,project_data, url, br):
-        r = member.login(url, br, project_data['logindata'])
-        headers = {'Lang': "CN",
-                   'Authorization': r.json()["data"]["jwtToken"],
-                   'User-Company': r.json()["data"]["companyId"]}
-        r1 = project.updateProjectDataType(url, br, headers, project_data['updateProjectDataType'])
+    def test_updateDataType2_project(self,project_data, url, br,getHeaders):
+        # r = member.login(url, br, project_data['logindata'])
+        # headers = {'Lang': "CN",
+        #            'Authorization': r.json()["data"]["jwtToken"],
+        #            'User-Company': r.json()["data"]["companyId"]}
+        r1 = project.updateProjectDataType(url, br, getHeaders, project_data['updateProjectDataType'])
         print(r1.json())
         assert str(r1.json()["code"]) == str(project_data['exp']['code'])
         assert str(r1.json()['message']) == str(project_data['exp']['message'])
@@ -129,20 +129,20 @@ class TestMyClass:
 
 
     # 查看当前项目下所有的成员
-    def test_getUserIdsByProjectId_project(self,project_data, url, br):
-        r = member.login(url, br, project_data['logindata'])
-        headers = {'Lang': "CN",
-                   'Authorization': r.json()["data"]["jwtToken"],
-                   'User-Company': r.json()["data"]["companyId"]}
-        print(project_data['copeProjectByProjectId']["companyId"])
-        r1=account.changeCompanyLogin(url,br, headers,  project_data['copeProjectByProjectId'])
-        assert str(r1.json()["code"]) == str(project_data['exp']['code'])
-        assert str(r1.json()['message']) == str(project_data['exp']['message'])
-        r = member.login(url, br, project_data['logindata'])
-        headers = {'Lang': "CN",
-                   'Authorization': r.json()["data"]["jwtToken"],
-                   'User-Company': r.json()["data"]["companyId"]}
-        r1 = project.getUserIdsByProjectId(url, br, headers, project_data['getUserIdsByProjectId'])
+    def test_getUserIdsByProjectId_project(self,project_data, url, br,getHeaders):
+        # r = member.login(url, br, project_data['logindata'])
+        # headers = {'Lang': "CN",
+        #            'Authorization': r.json()["data"]["jwtToken"],
+        #            'User-Company': r.json()["data"]["companyId"]}
+        # print(project_data['copeProjectByProjectId']["companyId"])
+        # r1=account.changeCompanyLogin(url,br, getHeaders,  project_data['copeProjectByProjectId'])
+        # assert str(r1.json()["code"]) == str(project_data['exp']['code'])
+        # assert str(r1.json()['message']) == str(project_data['exp']['message'])
+        # r = member.login(url, br, project_data['logindata'])
+        # headers = {'Lang': "CN",
+        #            'Authorization': r.json()["data"]["jwtToken"],
+        #            'User-Company': r.json()["data"]["companyId"]}
+        r1 = project.getUserIdsByProjectId(url, br, getHeaders, project_data['getUserIdsByProjectId'])
         assert str(r1.json()["code"]) == str(project_data['exp']['code'])
         assert str(r1.json()['message']) == str(project_data['exp']['message'])
 
