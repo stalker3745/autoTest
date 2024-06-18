@@ -232,7 +232,7 @@ class TestRelId:
         assert str(r.json()['message']) == str(project_data['exp']['message'])
         print("项目模板已创建成功")
         projectIds= {
-            "projectIds": [r2.json()["data"]]
+            "projectIds": [r2.json()["data"], [r.json()["data"]]]
         }
         r=project.deleteProject(url, br, getHeaders,projectIds)
         print(r.json())
@@ -336,15 +336,21 @@ class TestRelId:
     # 更改项目阶段为规划阶段
     def test_updateProjectPahseParams_project(self,project_data,url,br,getHeaders):
         time.sleep(5)
-        r = project.addProject(url, br, getHeaders, project_data['addProject'])
+        r1 = project.addProject(url, br, getHeaders, project_data['addProject'])
         data = {
                 "phaseId": "1242522938167877633",
-                "projectId": r.json()["data"]
+                "projectId": r1.json()["data"]
         }
         r=project.updateProjectPahseParams(url, br, getHeaders, data)
         assert str(r.json()['code']) == str(project_data['exp']['code'])
         assert str(r.json()['message']) == str(project_data['exp']['message'])
         print("项目阶段已更改为规划阶段")
+        projectIds = {
+            "projectIds": [r1.json()["data"], r.json()["data"]]
+        }
+        r = project.deleteProject(url, br, getHeaders, projectIds)
+        assert str(r.json()["code"]) == str(project_data['exp']['code'])
+        assert str(r.json()['message']) == str(project_data['exp']['message'])
 
     # 开启阶段更新自动化
     def tets_turnonProjectPahseParams_project(self,project_data,url,br,getHeaders):
