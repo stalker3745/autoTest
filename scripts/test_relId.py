@@ -232,7 +232,7 @@ class TestRelId:
         assert str(r.json()['message']) == str(project_data['exp']['message'])
         print("项目模板已创建成功")
         projectIds= {
-            "projectIds": [r2.json()["data"], [r.json()["data"]]]
+            "projectIds": [r2.json()["data"],r.json()["data"]]
         }
         r=project.deleteProject(url, br, getHeaders,projectIds)
         print(r.json())
@@ -346,7 +346,7 @@ class TestRelId:
         assert str(r.json()['message']) == str(project_data['exp']['message'])
         print("项目阶段已更改为规划阶段")
         projectIds = {
-            "projectIds": [r1.json()["data"], r.json()["data"]]
+            "projectIds": [r1.json()["data"]]
         }
         r = project.deleteProject(url, br, getHeaders, projectIds)
         assert str(r.json()["code"]) == str(project_data['exp']['code'])
