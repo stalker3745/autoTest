@@ -23,11 +23,13 @@ class TestRelId:
         projectIds= {
             "projectIds": [r.json()["data"]]
         }
+        print("项目创建成功，新创的项目Id为：" + str(projectId))
+        time.sleep(5)
         r=project.deleteProject(url, br, getHeaders,projectIds)
         print(r.json())
         assert str(r.json()["code"]) == str(project_data['exp']['code'])
         assert str(r.json()['message']) == str(project_data['exp']['message'])
-        print("项目创建成功，新创的项目Id为：" + str(projectId))
+
 
 
     # 删除项目
@@ -37,6 +39,7 @@ class TestRelId:
         projectIds={
             "projectIds":[ r.json()["data"]]
         }
+        time.sleep(5)
         r = project.deleteProject(url, br, getHeaders,projectIds)
         print(r.json())
         assert str(r.json()['message']) == str(project_data['exp']['message'])
@@ -141,7 +144,6 @@ class TestRelId:
         assert str(r.json()["code"]) == str(project_data['exp']['code'])
         assert str(r.json()['message']) == str(project_data['exp']['message'])
 
-
     # 增加项目成员
     def test_addpeople_project(self,project_data,url,br,getHeaders):
         time.sleep(5)
@@ -163,35 +165,41 @@ class TestRelId:
         assert str(r.json()["code"]) == str(project_data['exp']['code'])
         assert str(r.json()['message']) == str(project_data['exp']['message'])
 
-
     # 移除项目成员
-    # 正在修改
-    # def test_deleteResourc_project(self, project_data, url, br, getHeaders):
-    #     time.sleep(5)
-    #     r = project.addProject(url, br, getHeaders, project_data['addProject'])
-    #     user = {"page": 1, "pageSize": 0, "queryIden": 0, "accountStatus": 1, "userDuty": 1}
-    #     r1 = project.listCompanyUserPage(url, br, getHeaders, user)
-    #     projectId = {
-    #         "projectId": r.json()["data"],
-    #     }
-    #     data = {
-    #         "projectId": r.json()["data"],
-    #         "userIdList": "1245321691748667392",
-    #     }
-    #     # 添加项目成员
-    #     project.changeProjectResourc(url, br, getHeaders, data)
-    #     # 获取成员relId
-    #     r3 = project.getUserIdsByProjectId(url, br, getHeaders, projectId)
-    #     data2 = {
-    #         "projectId": r.json()["data"],
-    #         "relId": jsonpath.jsonpath(r3.json(), "$..userId")
-    #     }
-    #     print(f"删除成员的请求资源: {data2}")
-    #     r = project.deleteProjectResource(url, br, getHeaders, data2)
-    #     print(f"删除成员的响应: {r.json()}")
-    #     assert str(r.json()["code"]) == str(project_data['exp']['code'])
-    #     assert str(r.json()['message']) == str(project_data['exp']['message'])
-
+    def test_deleteResourc_project(self, project_data, url, br, getHeaders):
+        time.sleep(5)
+        r1 = project.addProject(url, br, getHeaders, project_data['addProject'])
+        # 添加项目成员
+        user = {"page": 1, "pageSize": 0, "queryIden": 0, "accountStatus": 1, "userDuty": 1}
+        r2 = project.listCompanyUserPage(url, br, getHeaders, user)
+        projectId = {
+            "projectId": r1.json()["data"],
+        }
+        data1 = {
+            "projectId": r1.json()["data"],
+            "userIdList": jsonpath.jsonpath(r2.json(), "$..userId"),
+            "roleIdList": jsonpath.jsonpath(r2.json(), "$..userId"),
+            "projectIds": [r1.json()["data"]]
+        }
+        project.changeProjectResourc(url, br, getHeaders, data1)
+        data2 = {
+            "isManager": "false",
+            "projectId": r1.json()["data"],
+            "withRole": "true"
+        }
+        r3=project.getUserIdsByProjectId(url, br, getHeaders, data2)
+        relId=r3.json()['data'][0]['relId']
+        print("relId="+relId)
+        data3 = {
+            "relId": relId,
+            "projectId": r1.json()["data"]
+        }
+        r4=project.deleteProjectResource(url, br, getHeaders,data3)
+        assert str(r4.json()["code"]) == str(project_data['exp']['code'])
+        assert str(r4.json()['message']) == str(project_data['exp']['message'])
+        project.deleteProject(url, br, getHeaders,projectId)
+        assert str(r4.json()["code"]) == str(project_data['exp']['code'])
+        assert str(r4.json()['message']) == str(project_data['exp']['message'])
 
     # 将项目从回收站里恢复
     def  test_deleteclean_project(self,project_data,url,br,getHeaders):
@@ -411,6 +419,7 @@ class TestRelId:
         r=project.listTreeTask(url, br, getHeaders, projectId)
         assert str(r.json()["code"]) == str(project_data['exp']['code'])
         assert str(r.json()['message']) == str(project_data['exp']['message'])
+        time.sleep(5)
         # 删除项目
         r = project.deleteProject(url, br, getHeaders, projectId)
         assert str(r.json()["code"]) == str(project_data['exp']['code'])
@@ -436,6 +445,7 @@ class TestRelId:
         project.addTask(url, br, getHeaders, data1)
         # 取到tasklist的响应值
         r2=project.listTreeTask(url, br, getHeaders,projectId)
+        time.sleep(5)
         # 查看list的长度
         print("r.json().data.list=",len(r2.json()['data']['list']))
         # 提取parentTaskId
@@ -452,8 +462,11 @@ class TestRelId:
             "taskType": 1,
             "isToBeClaimed": 0
         }
+        time.sleep(5)
         r3 = project.addTask(url, br, getHeaders, data2)
         assert str(r3.json()["code"]) == str(project_data['exp']['code'])
         assert str(r3.json()['message']) == str(project_data['exp']['message'])
         # 删除项目
-        project.deleteProject(url, br, getHeaders, projectId)
+        r = project.deleteProject(url, br, getHeaders, projectId)
+        assert str(r.json()["code"]) == str(project_data['exp']['code'])
+        assert str(r.json()['message']) == str(project_data['exp']['message'])
