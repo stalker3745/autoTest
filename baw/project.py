@@ -16,7 +16,6 @@ def getActivityLogByCreateId(url,headers, br,cs):  # 获取用户列表
     r = br.post_hearder(url,headers,json=cs)
     return r
 
-
 def add_project(url,br,headers,cs):
     url = url + "/newProject/addProject"
     r = br.post_hearder(url, headers,json=cs)
@@ -26,6 +25,7 @@ def add_task(url,br,headers,cs):
     url = url + "/newTask/addNewTask"
     r = br.post_hearder(url, headers,json=cs)
     return r
+
 def listProjectByCondition(url,br,headers,cs):
     url = url + "/newProject/listProjectByCondition"
     r = br.post_hearder(url,headers,json=cs)
@@ -43,7 +43,6 @@ def updateProjectDataType(url,br,headers,cs):
     r = br.post_hearder(url,headers,json=cs)
     return r
 
-
 # 更新项目，回复项目
 def updateProjectDataType(url,br,headers,cs):
     url= url+"/newProject/updateProjectDataType"
@@ -55,8 +54,6 @@ def changeProjectResourc(url,br,headers,cs):
     url=url+"/projectResource/changeProjectResource"
     r=br.post_hearder(url,headers,json=cs)
     return r
-
-
 
 # 移除项目成员
 def deleteProjectResource(url,br,headers,cs):
@@ -90,14 +87,13 @@ def updateProjectAPPByProjectId(url,br,headers,cs):
     r=br.post_hearder(url,headers,json=cs)
     return r
 
-
 # 新增项目
 def addProject(url,br,headers,cs):
     url=url+"/newProject/addProject"
     r=br.post_hearder(url,headers,json=cs)
     return r
 
-# 添加任务
+# 添加任务和任务底下的子任务
 def addTask(url,br,headers,cs):
     url=url+"/newTask/addNewTask"
     r=br.post_hearder(url,headers,json=cs)
@@ -150,3 +146,10 @@ def getProjectPahseScheduleList(url,br,headers,cs):
     url=url+"/projectPhase/getProjectPahseScheduleList"
     r=br.post_hearder(url, headers, json=cs)
     return r
+
+# 查看所有的任务和子任务
+def listTreeTask(url,br,headers,cs):
+    url=url+"/newTask/listTreeTask"
+    r=br.post_hearder(url, headers, json=cs)
+    return r
+

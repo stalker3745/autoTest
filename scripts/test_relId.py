@@ -2,6 +2,8 @@
 import time
 import jsonpath
 import pytest
+import requests
+
 from baw import project
 from caw import fileRead
 
@@ -25,9 +27,8 @@ class TestRelId:
         print(r.json())
         assert str(r.json()["code"]) == str(project_data['exp']['code'])
         assert str(r.json()['message']) == str(project_data['exp']['message'])
-        print("新创的项目Id为：" + str(projectId))
-        self.class_projectId = projectId
-        return self.class_projectId
+        print("项目创建成功，新创的项目Id为：" + str(projectId))
+
 
     # 删除项目
     def test_deleteProject_project(self, project_data, url, br, getHeaders):
@@ -371,7 +372,7 @@ class TestRelId:
         assert str(r.json()["code"]) == str(project_data['exp']['code'])
         assert str(r.json()['message']) == str(project_data['exp']['message'])
 
-# 展示阶段列表
+    # 展示阶段列表
     def test_getProjectPahseScheduleList_project(self,project_data,url,br,getHeaders):
         time.sleep(5)
         r1 = project.addProject(url, br, getHeaders, project_data['addProject'])
@@ -388,3 +389,71 @@ class TestRelId:
         assert str(r.json()["code"]) == str(project_data['exp']['code'])
         assert str(r.json()['message']) == str(project_data['exp']['message'])
 
+    # 查看所有的任务和子任务
+    def test_listTreeTask_project(self,project_data,url,br,getHeaders):
+        time.sleep(5)
+        r=project.addProject(url, br, getHeaders, project_data['addProject'])
+        projectId = {
+            "projectId": r.json()["data"]
+        }
+        data = {
+            "taskName": "1",
+            "isToBeClaimed": "0",
+            "assistantUserIds": [],
+            "taskPriority": 2,
+            "taskPhaseId": "1242522938167877632",
+            "taskType": 1,
+            "projectId": r.json()["data"],
+            "parentTaskId": -1
+        }
+        # 添加任务
+        project.addTask(url, br, getHeaders, data)
+        r=project.listTreeTask(url, br, getHeaders, projectId)
+        assert str(r.json()["code"]) == str(project_data['exp']['code'])
+        assert str(r.json()['message']) == str(project_data['exp']['message'])
+        # 删除项目
+        r = project.deleteProject(url, br, getHeaders, projectId)
+        assert str(r.json()["code"]) == str(project_data['exp']['code'])
+        assert str(r.json()['message']) == str(project_data['exp']['message'])
+
+    # 添加子任务
+    def test_addTaskZi_project(self,project_data,url,br,getHeaders):
+        time.sleep(5)
+        r1 = project.addProject(url, br, getHeaders, project_data['addProject'])
+        projectId = {
+                "projectId": r1.json()["data"]
+            }
+        data1 = {
+            "taskName": "1",
+            "isToBeClaimed": "0",
+            "assistantUserIds": [],
+            "taskPriority": 2,
+            "taskPhaseId": "1242522938167877632",
+            "taskType": 1,
+            "projectId": r1.json()["data"],
+            "parentTaskId": -1
+        }
+        project.addTask(url, br, getHeaders, data1)
+        # 取到tasklist的响应值
+        r2=project.listTreeTask(url, br, getHeaders,projectId)
+        # 查看list的长度
+        print("r.json().data.list=",len(r2.json()['data']['list']))
+        # 提取parentTaskId
+        parentTaskId = r2.json()["data"]["list"][0]["parentTaskId"]
+        data2 = {
+            "projectId": r1.json()["data"],
+            "parentTaskId": parentTaskId,
+            "taskPhaseId": "",
+            "taskName": "test1",
+            "responsiblePerson": "",
+            "startTime": "",
+            "endTime": "",
+            "taskPriority": "2",
+            "taskType": 1,
+            "isToBeClaimed": 0
+        }
+        r3 = project.addTask(url, br, getHeaders, data2)
+        assert str(r3.json()["code"]) == str(project_data['exp']['code'])
+        assert str(r3.json()['message']) == str(project_data['exp']['message'])
+        # 删除项目
+        project.deleteProject(url, br, getHeaders, projectId)
