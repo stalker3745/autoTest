@@ -435,7 +435,6 @@ class TestRelId:
         data1 = {
             "taskName": "1",
             "isToBeClaimed": "0",
-            "assistantUserIds": [],
             "taskPriority": 2,
             "taskPhaseId": "1242522938167877632",
             "taskType": 1,
@@ -447,17 +446,13 @@ class TestRelId:
         r2=project.listTreeTask(url, br, getHeaders,projectId)
         time.sleep(5)
         # 查看list的长度
-        print("r.json().data.list=",len(r2.json()['data']['list']))
+        print("data里的list长度是",len(r2.json()['data']['list']))
         # 提取parentTaskId
         parentTaskId = r2.json()["data"]["list"][0]["parentTaskId"]
         data2 = {
             "projectId": r1.json()["data"],
             "parentTaskId": parentTaskId,
-            "taskPhaseId": "",
             "taskName": "test1",
-            "responsiblePerson": "",
-            "startTime": "",
-            "endTime": "",
             "taskPriority": "2",
             "taskType": 1,
             "isToBeClaimed": 0
@@ -470,3 +465,40 @@ class TestRelId:
         r = project.deleteProject(url, br, getHeaders, projectId)
         assert str(r.json()["code"]) == str(project_data['exp']['code'])
         assert str(r.json()['message']) == str(project_data['exp']['message'])
+
+    # 添加任务站点
+    def test_addProjectSite_project(self,project_data,url,br,getHeaders):
+        time.sleep(5)
+        r1 = project.addProject(url, br, getHeaders, project_data['addProject'])
+        # 获取公司Id
+        projectId = {
+            "projectId": r1.json()["data"]
+        }
+        # companyId = requests.post(url=url+"/newProject/getProjectById", headers=getHeaders, json=projectId)
+        # print("companyId:",companyId.json())
+        data = {
+              "companyId": "1071440842016989184",
+              "siteName": "Test1",
+              "siteType": "",
+              "addressCode": "",
+              "detailedAddress": "",
+              "longitudeAndLatitude": "",
+              "customerContact": "",
+              "customerPhone": "",
+              "siteNumber": "",
+              "isCommon": "",
+              "isDeleted": "",
+              "gmtCreated": "",
+              "gmtModified": "",
+              "modifier": "",
+              "projectId": r1.json()["data"]
+        }
+        r3=project.addProjectSite(url, br, getHeaders, data)
+        print("站点已创建成功")
+        assert str(r3.json()["code"]) == str(project_data['exp']['code'])
+        assert str(r3.json()['message']) == str(project_data['exp']['message'])
+        r4=project.deleteProject(url,br,getHeaders,projectId)
+        assert str(r4.json()["code"]) == str(project_data['exp']['code'])
+        assert str(r4.json()['message']) == str(project_data['exp']['message'])
+        print("项目已删除")
+
