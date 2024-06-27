@@ -2,12 +2,28 @@
 import os
 from datetime import datetime
 
+import pytest
 import requests
 import pandas as pd
+
+from baw import member
+from caw.baseRequests import BaseRequests as br
+
 
 class TestTime:
     # 原始url
     url = 'https://user.zdsztech.com/employee-web-application'
+    login_url = 'https://user.zdsztech.com/login'
+    headers = {"Content-Type": "application/json;charset=utf8"}
+    data = {"account": "mazhenhua2@zdsztech.com", "password": "dog7jCEMgBCy02XUcrsv4w==", "language": "CN"}  # 配置用户登录的账号
+
+    # 写个登录方法
+    print("login_url",login_url)
+    print("data",data)
+    def login(self,login_url,data):
+        r=br.post(self,url=login_url,json=data)
+        return r
+
     # 接口
     url1='/appPageDesign/getAppPageDesignByCondition'
     url2='/companyEquity/getCompanySolutionConfig'
@@ -18,11 +34,11 @@ class TestTime:
     url7='/form/getEnableFormVueMetaDataByAppId'
     url8='/form/getDraftDataCount'
 
-    headers = {"Content-Type": "application/json;charset=utf8"}
-    data = {"account": "mazhenhua2@zdsztech.com", "password": "dog7jCEMgBCy02XUcrsv4w==", "language": "CN"}  # 配置用户登录的账号
+
 
     # 获取getAppPageDesignByCondition的请求时间
     def test_getAppPageDesignByCondition_time(self):
+        self.login(self.login_url,self.data)  # 调用登录方法
         # 发送POST请求
         response = requests.post(self.url + self.url1, json=self.data,
                                      headers=self.headers)
@@ -36,6 +52,7 @@ class TestTime:
 
     # 获取getCompanySolutionConfig的请求时间
     def test_getCompanySolutionConfig_time(self):
+        self.login(self.login_url, self.data)
         response = requests.post(self.url + self.url2, json=self.data,headers=self.headers)
         time = response.elapsed.total_seconds()*1000
         print(f"getCompanySolutionConfig的接口请求时间：{time}毫秒")
@@ -44,6 +61,7 @@ class TestTime:
 
     # 获取getAppPackageList的请求时间
     def test_getAppPackageList_time(self):
+        self.login(self.login_url,self.data)
         response = requests.post(self.url + self.url3, json=self.data, headers=self.headers)
         time = response.elapsed.total_seconds()*1000
         print(f"getAppPackageList的接口请求时间：{time}毫秒")
@@ -52,6 +70,7 @@ class TestTime:
 
     # 获取getAppPageDesignByCondition的请求时间
     def test_getAppPageDesignByCondition_time(self):
+        self.login(self.login_url,self.data)
         response = requests.post(self.url + self.url4, json=self.data, headers=self.headers)
         time = response.elapsed.total_seconds() * 1000
         print(f"getAppPageDesignByCondition的接口请求时间：{time}毫秒")
@@ -60,6 +79,7 @@ class TestTime:
 
     # 获取getAppListByPackage的请求时间
     def test_getAppListByPackage_time(self):
+        self.login(self.login_url, self.data)
         response = requests.post(self.url + self.url5, json=self.data, headers=self.headers)
         time = response.elapsed.total_seconds() * 1000
         print(f"getAppListByPackage的接口请求时间：{time}毫秒")
@@ -68,6 +88,7 @@ class TestTime:
 
     # 获取getFromListViewData的请求时间
     def test_getFromListViewData_time(self):
+        self.login(self.login_url,self.data)
         response = requests.post(self.url + self.url6, json=self.data, headers=self.headers)
         time = response.elapsed.total_seconds() * 1000
         print(f"getFromListViewData的接口请求时间：{time}毫秒")
@@ -76,6 +97,7 @@ class TestTime:
 
     # 获取getFromListViewData的请求时间
     def test_getEnableFormVueMetaDataByAppId_time(self):
+        self.login(self.login_url, self.data)
         response = requests.post(self.url + self.url7, json=self.data, headers=self.headers)
         time = response.elapsed.total_seconds() * 1000
         print(f"getEnableFormVueMetaDataByAppId的接口请求时间：{time}毫秒")
@@ -84,6 +106,7 @@ class TestTime:
 
     # 获取getFromListViewData的请求时间
     def test_getDraftDataCount_time(self):
+        self.login(self.login_url,self.data)
         response = requests.post(self.url + self.url8, json=self.data, headers=self.headers)
         time = response.elapsed.total_seconds() * 1000
         print(f"getDraftDataCount的接口请求时间：{time}毫秒")
