@@ -33,6 +33,7 @@ class TestTime:
 
         # 断言请求是否成功
         assert response.status_code == 200
+        return time
 
     # 获取getCompanySolutionConfig的请求时间
     def test_getCompanySolutionConfig_time(self):
@@ -51,7 +52,7 @@ class TestTime:
         assert response.status_code == 200
 
     # 获取getAppPageDesignByCondition的请求时间
-    def test_getAppPageDesignByCondition_time(self):
+    def test_getAppPageDesignByCondition_time1(self):
         response = requests.post(self.url + self.url4, json=self.data, headers=self.headers)
         time = response.elapsed.total_seconds() * 1000
         print(f"getAppPageDesignByCondition的接口请求时间：{time}毫秒")
@@ -93,9 +94,7 @@ class TestTime:
     # 将数据放入Excel表格
     def test_saveExcel_time(self):
         data = {
-            "接口名称": ["getAppPageDesignByCondition", "getCompanySolutionConfig", "getAppPackageList",
-                         "getAppPageDesignByCondition", "getAppListByPackage", "getFromListViewData",
-                         "getEnableFormVueMetaDataByAppId", "getDraftDataCount"],
+            "接口名称": [self.url1,self.url2,self.url4,self.url5,self.url6,self.url7,self.url7,self.url8],
             "接口运行时长（毫秒）": []
         }
         print(data)
@@ -115,8 +114,31 @@ class TestTime:
         year = today.year
         month = today.month
         day = today.day
-
+        df_style = df.style.set_properties(**{'text-align': 'center',
+                                              'border-color': 'black',
+                                              'border-width': '2px',
+                                              'border-style': 'groove'})
         file_path = os.path.join(desktop_path, f"{year}年接{month}月{day}接口运行时长统计.xlsx")
         df.to_excel(file_path, index=False)
 
         print(f"{year}年{month}月{day}日的接口运行时长已保存到{file_path}")
+
+    # 填写公司表单样例代码
+    def test_receiveData(self):
+        # 认证接口
+        url1="http://api-sit.zdsztech.com/employee-web-application/systemCert/getTokenInfo"
+        # 根据公司三方不同获取不同
+        data= {"accessId":"V13qGN8a48","accessSecretKey":"ffac448f4ba6049f0c6830c5c897552c"}  # 登录的用户
+        response = requests.post(url1, json=data)
+        print(response.json()["data"]["accessToken"])
+        #/
+        headers={
+            "Authorization":response.json()["data"]["accessToken"]
+        }
+        data={
+            "test": self.test_getAppPageDesignByCondition_time()
+        }
+        url="http://api-sit.zdsztech.com/employee-web-application/external/receiveData/5Jp0835545"
+        response = requests.post(url, json=data,
+                                     headers=headers)
+        print(response.json())
