@@ -58,6 +58,8 @@ class TestTime:
         assert response.status_code == 200
         assert response.json()['message'] == "操作成功!"
 
+        return time
+
     # 获取getCompanySolutionConfig的请求时间
     def test_getCompanySolutionConfig_time(self):
         r = self.login(self.login_url, self.login_data)
@@ -78,6 +80,8 @@ class TestTime:
         # 断言请求是否成功
         assert response.status_code == 200
         assert response.json()['message'] == "操作成功!"
+
+        return time
 
     # 获取getAppPackageList的请求时间
     def test_getAppPackageList_time(self):
@@ -101,6 +105,8 @@ class TestTime:
         assert response.status_code == 200
         assert response.json()['message'] == "操作成功!"
 
+        return time
+
     # 获取getAppPageDesignByCondition的请求时间
     def test_getAppPageDesignByCondition_time(self):
         r = self.login(self.login_url, self.login_data)
@@ -122,6 +128,8 @@ class TestTime:
         # 断言请求是否成功
         assert response.status_code == 200
         assert response.json()['message'] == "操作成功!"
+
+        return time
 
     # 获取getAppListByPackage的请求时间
     def test_getAppListByPackage_time(self):
@@ -146,6 +154,8 @@ class TestTime:
         # 断言请求是否成功
         assert response.status_code == 200
         assert response.json()['message'] == "操作成功!"
+
+        return time
 
     # 获取getFromListViewData的请求时间
     def test_getFromListViewData_time(self):
@@ -179,6 +189,8 @@ class TestTime:
         assert response.status_code == 200
         assert response.json()['message'] == "操作成功!"
 
+        return time
+
     # 获取getFromListViewData的请求时间
     def test_getEnableFormVueMetaDataByAppId_time(self):
         r = self.login(self.login_url, self.login_data)
@@ -198,6 +210,8 @@ class TestTime:
         # 断言请求是否成功
         assert response.status_code == 200
         assert response.json()['message'] == "操作成功!"
+
+        return time
 
     # 获取getFromListViewData的请求时间
     def test_getDraftDataCount_time(self):
@@ -219,6 +233,8 @@ class TestTime:
         assert response.status_code == 200
         assert response.json()['message'] == "操作成功!"
 
+        return time
+
     # 将数据放入Excel表格
     def test_saveExcel_time(self):
         dataExcel = {
@@ -229,11 +245,15 @@ class TestTime:
         }
         print(dataExcel)
 
-        # 获取每个接口的请求时间
-        for url in [self.url1, self.url2, self.url3, self.url4, self.url5, self.url6, self.url7, self.url8]:
-            response = requests.post(self.url + url, json=self.login_data, headers=self.headers)
-            time_ms = response.elapsed.total_seconds() * 1000
-            dataExcel["接口运行时长（毫秒）"].append(time_ms)
+            # 获取每个接口的请求时间
+        for test_func in [self.test_getAppPageDesignByCondition_time, self.test_getCompanySolutionConfig_time,
+                          self.test_getAppPackageList_time,
+                          self.test_getAppPageDesignByCondition_time, self.test_getAppListByPackage_time,
+                          self.test_getFromListViewData_time,
+                          self.test_getEnableFormVueMetaDataByAppId_time, self.test_getDraftDataCount_time]:
+            time = test_func()  # 调用函数获取时间
+            # 处理时间，例如将其添加到 dataExcel 中
+            dataExcel["接口运行时长（毫秒）"].append(time)
 
         print(dataExcel)
         # 将数据存储到Excel表格
