@@ -474,10 +474,9 @@ class TestRelId:
         projectId = {
             "projectId": r1.json()["data"]
         }
-        # companyId = requests.post(url=url+"/newProject/getProjectById", headers=getHeaders, json=projectId)
-        # print("companyId:",companyId.json())
+        r4 = requests.post(url=url+"/newProject/getProjectById", headers=getHeaders, json=projectId)
         data = {
-              "companyId": "1071440842016989184",
+              "companyId": r4.json()["data"]["companyId"],
               "siteName": "Test1",
               "siteType": "",
               "addressCode": "",
@@ -493,12 +492,13 @@ class TestRelId:
               "modifier": "",
               "projectId": r1.json()["data"]
         }
-        r3=project.addProjectSite(url, br, getHeaders, data)
+        r2=project.addProjectSite(url, br, getHeaders, data)
+        print(r2.json())
         print("站点已创建成功")
+        assert str(r2.json()["code"]) == str(project_data['exp']['code'])
+        assert str(r2.json()['message']) == str(project_data['exp']['message'])
+        r3=project.deleteProject(url,br,getHeaders,projectId)
         assert str(r3.json()["code"]) == str(project_data['exp']['code'])
         assert str(r3.json()['message']) == str(project_data['exp']['message'])
-        r4=project.deleteProject(url,br,getHeaders,projectId)
-        assert str(r4.json()["code"]) == str(project_data['exp']['code'])
-        assert str(r4.json()['message']) == str(project_data['exp']['message'])
         print("项目已删除")
 
