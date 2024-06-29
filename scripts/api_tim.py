@@ -15,7 +15,7 @@ class TestTime:
 
     headers = {"Content-Type": "application/json;charset=utf8"}
     data = {"account": "mazhenhua16@zdsztech.com", "password": "dog7jCEMgBCy02XUcrsv4w==", "language": "CN"}  # 配置用户登录的账号
-    data1 = {"appId":"1255935706610675763","companyId":"1069317931558674432","entityId":"1255935718811906055","withRealTimeData":"true","designTemplateId":"1255935933581242412","isProcessPermission":"false"}
+    data1 = {"appId":"1229453372860575744","companyId":"1069317931558674432","entityId":"1245075577011118080","nodeId":"null","processInstanceId":"dc3d721d-1cd9-11ef-b4b2-021025c4e72d","projectProjectId":"null","projectTaskId":"null","withRealTimeData":"true","designTemplateId":"1229453373116428289","isProcessPermission":"false"}
 
 
     # 获取getAppPageDesignByCondition的请求时间
@@ -60,10 +60,11 @@ class TestTime:
 if __name__== "__main__":
     # schedule.every(2).seconds.do()
     instance = TestTime()
-    schedule.every().hours.do(instance.receiveData)
+    instance.receiveData()
+    # schedule.every().hours.do(instance.receiveData)
     # 无限循环以保持主线程运行
-    while True:
-        schedule.run_pending()
-        time.sleep(100)
+    # while True:
+    #     schedule.run_pending()
+    #     time.sleep(100)
 
 
