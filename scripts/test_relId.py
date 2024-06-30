@@ -174,6 +174,7 @@ class TestRelId:
         r2 = project.listCompanyUserPage(url, br, getHeaders, user)
         projectId = {
             "projectId": r1.json()["data"],
+            "projectIds": [r1.json()["data"]]
         }
         data1 = {
             "projectId": r1.json()["data"],
@@ -402,7 +403,8 @@ class TestRelId:
         time.sleep(5)
         r=project.addProject(url, br, getHeaders, project_data['addProject'])
         projectId = {
-            "projectId": r.json()["data"]
+            "projectId": r.json()["data"],
+            "projectIds": [r.json()["data"]]
         }
         data = {
             "taskName": "1",
@@ -421,6 +423,7 @@ class TestRelId:
         assert str(r.json()['message']) == str(project_data['exp']['message'])
         time.sleep(5)
         # 删除项目
+        print(projectId)
         r = project.deleteProject(url, br, getHeaders, projectId)
         assert str(r.json()["code"]) == str(project_data['exp']['code'])
         assert str(r.json()['message']) == str(project_data['exp']['message'])
@@ -430,7 +433,8 @@ class TestRelId:
         time.sleep(5)
         r1 = project.addProject(url, br, getHeaders, project_data['addProject'])
         projectId = {
-                "projectId": r1.json()["data"]
+                "projectId": r1.json()["data"],
+                "projectIds": [r1.json()["data"]]
             }
         data1 = {
             "taskName": "1",

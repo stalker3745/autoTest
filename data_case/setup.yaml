@@ -1,2 +1,2 @@
-# 接口前置和后置需要的数据
+# 说明，全局使用conf的登录token的账号
 setup: {"account":"mazhenhua9@zdsztech.com","password":"dog7jCEMgBCy02XUcrsv4w=="}   # 注册登录使用
