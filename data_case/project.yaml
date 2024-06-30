@@ -1,20 +1,19 @@
 # 登录的数据
 # 1、正常场景：用户名、密码正确，登录成功
-- exp: {"code": "200", "message": "操作成功!" ,"datatotal": 0 ,"getActivityLog": 30}   # 登录的预期结果
-  getActivityLogByCreateId: {"projectId":1251505172283424768,"page":1,"pageSize":20,"isProjectOverviewLog":false,"isCompanyLog":false,"isProjectLog":true}
+- logindata: {"account": "mazhenhua7@zdsztech.com", "password": "dog7jCEMgBCy02XUcrsv4w==", "language": "CN"}  # 配置用户登录的账号
+  exp: {"code": "200", "message": "操作成功!" ,"datatotal": 19 ,"getActivityLog": 39}   # 登录的预期结果
+  getActivityLogByCreateId: {"projectId":"1251505172283424768","page":1,"pageSize":20,"isProjectOverviewLog":false,"isCompanyLog":false,"isProjectLog":true}
   addProject: {"projectResource": [], "projectName": "pythontest", "scope": 1, "projectManager": "955422446754861056", "projectRecommend": "你好", "backType": 1, "countryRegionId": "860892363952885760"}
   changeCompanyLogin: {"companyId":"1071440842016989184"}
   updateProjectDataType: { "dataType": 2,"projectId": "1246106881320329216" }
   changeProjectResourc: { "projectId": "1112505211102191616","isAll": false,"isExternal": false,"userIdList": [ "955759707962871808","875843804312244224" ],"groupDeptIdList": [ ],"deptIdList": [ ],"roleIdList": [ ] }
+  getUserIdsByProjectId: {projectId: "1242522569891209216"}
+  copeProjectByProjectId: {"projectId": "1242522569891209216", "companyId": "1071440842016989184","projectName": "自动化测试新建项目+复制","countryRegionId": "860892363952885760","countryName": "中国"}
+  copyProjectTemplate: {projectId: "1242522569891209216", copyType: 2, projectName: "test1"}
+  addTask: { "taskName": "python_task","taskPriority": 2,"taskPhaseId": "1246111220185210880","taskType": 1,"projectId": "1242522569891209216","parentTaskId": -1,"toBeClaimedUser": null }
+  attachmentName: {"attachmentName1":"项目文件","attachmentName2":"共享文档"}
+  listAllProjectByCondition: {"page":1,"pageSize":16,"projectName":null,"dropDownType":null,"dropDownId":null,"dataType":1}
 
-  # 1 我的项目的数量
-#  listAllProjectByCondition: {"page":1,"pageSize":16,"projectName":null,"dropDownType":null,"dropDownId":null,"dataType":1}
-  #获取用户列表
-  #  查看公司下的成员
-#  listProjectByCondition:   {"page":1,"pageSize":9,"projectName":null,"dataType": 1 ,"dropDownId": "1242878101646774272" }
-#  updateProjectAPPByProjectId: {"projectAppStatus": 0, "projectId": "1245765721859072000", "projectAppId": "1245765723448713216", "projectAppName": "项目概览"}
-  #  添加项目
-#  changeProjectPahse: {phaseId: "-1", projectId: "1246134768836583424"}
 
 
 #- logindata: {"account":"mazhenhua8@zdsztech.com","password":"dog7jCEMgBCy02XUcrsv4w==","language":"CN"}  # 登录的用户

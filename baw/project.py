@@ -6,10 +6,10 @@ from urllib import response
 import pytest
 import requests
 import jsonpath
-def listAllProjectByCondition(url,headers, br,cs):  # 获取用户列表
-    url = url + "/newProject/listProjectByCondition"
-    r = br.post_hearder(url,headers,json=cs)
-    return r
+# def listAllProjectByCondition(url,headers, br,cs):  # 获取用户列表
+#     url = url + "/newProject/listProjectByCondition"
+#     r = br.post_hearder(url,headers,json=cs)
+#     return r
 
 def getActivityLogByCreateId(url,headers, br,cs):  # 获取用户列表
     url = url + "/newProject/getActivityLogByCreateId"
