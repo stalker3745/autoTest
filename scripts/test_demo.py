@@ -52,11 +52,18 @@ class Testdemo:
     def test_addproject(self, url, br, getHeaders, project_data):
         # 下发创建项目的请求
         time.sleep(5)
-        r = project.add_project(url, br, getHeaders, project_data['addprojectdata'], )
+        r = project.addProject(url, br, getHeaders, project_data['addprojectdata'], )
         print(f"项目r：{r}")
         # 校验添加项目的结果
         assert str(r.json()['message']) == str(project_data['exp']['message'])
         assert str(r.json()['code']) == str(project_data['exp']['code'])
+        projectIds = {
+            "projectIds": [r.json()["data"]]
+        }
+        r = project.deleteProject(url, br, getHeaders, projectIds)
+        assert str(r.json()['message']) == str(project_data['exp']['message'])
+        assert str(r.json()['code']) == str(project_data['exp']['code'])
+
 
     def test_addprojectuser(self, url, br, getHeaders, project_data):
         # 下发新增员工的请求

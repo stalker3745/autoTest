@@ -8,10 +8,13 @@ def getActivityLogByCreateId(url,headers, br,cs):
     r = br.post_hearder(url,headers,json=cs)
     return r
 
-def add_project(url,br,headers,cs):
-    url = url + "/newProject/addProject"
-    r = br.post_hearder(url, headers,json=cs)
+
+# 新增项目
+def addProject(url,br,headers,cs):
+    url=url+"/newProject/addProject"
+    r=br.post_hearder(url,headers,json=cs)
     return r
+
 # 获取用户列表
 def listProjectByCondition(url,br,headers,cs):
     url = url + "/newProject/listProjectByCondition"
@@ -60,11 +63,6 @@ def updateProjectAPPByProjectId(url,br,headers,cs):
     r=br.post_hearder(url,headers,json=cs)
     return r
 
-# 新增项目
-def addProject(url,br,headers,cs):
-    url=url+"/newProject/addProject"
-    r=br.post_hearder(url,headers,json=cs)
-    return r
 
 # 查看所有项目
 def getProjectList(url,br,headers,cs):

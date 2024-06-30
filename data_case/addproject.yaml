@@ -1,6 +1,6 @@
 # 新增项目的的数据
 - addprojectdata: {"projectResource":[],"projectName":"接口测试","scope":1,"projectManager":"1010646715029692416","addressCode":"","projectRecommend":"","backType":1,"countryRegionId":"860892363952885760"}  # 登录的用户
   exp: {"code": "200", "message": "操作成功!"}   # 登录的预期结果
-  adduser: {"projectId":"1242522569891209216","isAll":false,"userIdList": ["1062046925408477184", "1244660692691464193", "1244660692691464192"],"groupDeptIdList":[],"deptIdList":[],"roleIdList":[]}
-  getUserRelId : {"isManager":false,"projectId":"1242522569891209216","withRole":true}
+  adduser: {"projectId":"1251504918007939072","isAll":false,"userIdList": ["1062046925408477184", "1244660692691464193", "1244660692691464192"],"groupDeptIdList":[],"deptIdList":[],"roleIdList":[]}
+  getUserRelId : {"isManager":false,"projectId":"1251504918007939072","withRole":true}
 
