@@ -29,7 +29,7 @@ def task_data(request):
 def test_addproject(getHeaders,url,br,task_data):
     print(f"新增任务成功的功能，测试数据为：{task_data}")
     sleep(1)
-    r = project.add_task(url, br ,getHeaders,task_data['taskdata'])
+    r = project.addTask(url, br ,getHeaders,task_data['taskdata'])
     print(f"创建任务：{r}")
     # 校验添加用户的结果
     assert str(r.json()['message']) == str(task_data['exp']['message'])

@@ -1,17 +1,9 @@
 '''
 项目相关接口
 '''
-from urllib import response
 
-import pytest
-import requests
-import jsonpath
-# def listAllProjectByCondition(url,headers, br,cs):  # 获取用户列表
-#     url = url + "/newProject/listProjectByCondition"
-#     r = br.post_hearder(url,headers,json=cs)
-#     return r
-
-def getActivityLogByCreateId(url,headers, br,cs):  # 获取用户列表
+# 查看项目日志
+def getActivityLogByCreateId(url,headers, br,cs):
     url = url + "/newProject/getActivityLogByCreateId"
     r = br.post_hearder(url,headers,json=cs)
     return r
@@ -20,12 +12,7 @@ def add_project(url,br,headers,cs):
     url = url + "/newProject/addProject"
     r = br.post_hearder(url, headers,json=cs)
     return r
-
-def add_task(url,br,headers,cs):
-    url = url + "/newTask/addNewTask"
-    r = br.post_hearder(url, headers,json=cs)
-    return r
-
+# 获取用户列表
 def listProjectByCondition(url,br,headers,cs):
     url = url + "/newProject/listProjectByCondition"
     r = br.post_hearder(url,headers,json=cs)
@@ -47,20 +34,6 @@ def updateProjectDataType(url,br,headers,cs):
 def updateProjectDataType(url,br,headers,cs):
     url= url+"/newProject/updateProjectDataType"
     r=br.post_hearder(url,headers,json=cs)
-    return r
-
-# 添加项目成员
-def changeProjectResourc(url,br,headers,cs):
-    url=url+"/projectResource/changeProjectResource"
-    r=br.post_hearder(url,headers,json=cs)
-    return r
-
-# 移除项目成员
-def deleteProjectResource(url,br,headers,cs):
-    url=url+"/projectResource/deleteProjectResource"
-    r=br.post_hearder(url,headers,json=cs)
-    # r1=response.json()
-    # relId=r1.get("result")[0].get("relId")
     return r
 
 # 使用项目模板新建项目
@@ -93,16 +66,10 @@ def addProject(url,br,headers,cs):
     r=br.post_hearder(url,headers,json=cs)
     return r
 
-# 添加任务和任务底下的子任务
-def addTask(url,br,headers,cs):
-    url=url+"/newTask/addNewTask"
-    r=br.post_hearder(url,headers,json=cs)
-    return r
-
-# 添加项目管理阶段中的管理状态
-def changeProjectPahse(url,br,headers,cs):
-    url=url+"/projectPhase/changeProjectPahse"
-    r=br.post_hearder(url,headers,json=cs)
+# 查看所有项目
+def getProjectList(url,br,headers,cs):
+    url = url + "/newProject/getProjectList"
+    r = br.post_hearder(url, headers, json=cs)
     return r
 
 # 获取实时relId(与下列移除项目成员同时使用)
@@ -111,27 +78,23 @@ def getUserRelId(url,br,headers,cs):
     r = br.post_hearder(url, headers, json=cs)
     return r
 
-# 查看所有项目
-def getProjectList(url,br,headers,cs):
-    url = url + "/newProject/getProjectList"
-    r = br.post_hearder(url, headers, json=cs)
+# 添加项目成员
+def changeProjectResourc(url,br,headers,cs):
+    url=url+"/projectResource/changeProjectResource"
+    r=br.post_hearder(url,headers,json=cs)
     return r
 
-# 查看公司下的成员
-def listCompanyUserPage(url,br,headers,cs):
-    url=url+"/user/company/listCompanyUserPage"
+# 移除项目成员
+def deleteProjectResource(url,br,headers,cs):
+    url=url+"/projectResource/deleteProjectResource"
     r=br.post_hearder(url,headers,json=cs)
+    # r1=response.json()
+    # relId=r1.get("result")[0].get("relId")
     return r
 
 # 查看该项目下所有的成员
 def getUserIdsByProjectId(url,br,headers,cs):
     url=url+"/projectResource/getUserIdsByProjectId"
-    r=br.post_hearder(url, headers, json=cs)
-    return r
-
-# 查看项目下的部门
-def listDept(url,br,headers,cs):
-    url=url+"/deptManager/listDept"
     r=br.post_hearder(url, headers, json=cs)
     return r
 
@@ -146,6 +109,12 @@ def getProjectPahseScheduleList(url,br,headers,cs):
     url=url+"/projectPhase/getProjectPahseScheduleList"
     r=br.post_hearder(url, headers, json=cs)
     return r
+# 添加项目管理阶段中的管理状态
+
+def changeProjectPahse(url,br,headers,cs):
+    url=url+"/projectPhase/changeProjectPahse"
+    r=br.post_hearder(url,headers,json=cs)
+    return r
 
 # 查看所有的任务和子任务
 def listTreeTask(url,br,headers,cs):
@@ -153,3 +122,20 @@ def listTreeTask(url,br,headers,cs):
     r=br.post_hearder(url, headers, json=cs)
     return r
 
+# 添加任务和任务底下的子任务
+def addTask(url,br,headers,cs):
+    url=url+"/newTask/addNewTask"
+    r=br.post_hearder(url,headers,json=cs)
+    return r
+
+# 查看项目下的部门
+def listDept(url,br,headers,cs):
+    url=url+"/deptManager/listDept"
+    r=br.post_hearder(url, headers, json=cs)
+    return r
+
+# 查看公司下的成员
+def listCompanyUserPage(url,br,headers,cs):
+    url=url+"/user/company/listCompanyUserPage"
+    r=br.post_hearder(url,headers,json=cs)
+    return r

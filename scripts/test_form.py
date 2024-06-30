@@ -3,7 +3,7 @@ import time
 
 # µÇÂ¼µÄÊý¾Ý
 from caw import db
-from baw import from1
+from baw import form
 from baw import member
 from caw import fileRead
 
@@ -13,13 +13,13 @@ def form_data(request):
 
 
 def test_from_1(form_data, url, br,getHeaders):
-    rx= from1.getAppListByPackage(url,getHeaders, br, form_data['getAppListByPackage'])
+    rx= form.getAppListByPackage(url,getHeaders, br, form_data['getAppListByPackage'])
     assert str(rx.json()['message']) == str(form_data['exp']['message'])
     assert str(rx.json()['code']) == str(form_data['exp']['code'])
-    rx = from1.getAppById(url, getHeaders,br, form_data['getAppById'])
+    rx = form.getAppById(url, getHeaders,br, form_data['getAppById'])
     assert str(rx.json()['message']) == str(form_data['exp']['message'])
     assert str(rx.json()['code']) == str(form_data['exp']['code'])
-    form1=from1.getFormViewConfigList(url,getHeaders, br, form_data['getFormViewConfigList'])
+    form1=form.getFormViewConfigList(url,getHeaders, br, form_data['getFormViewConfigList'])
     assert str(form1.json()['message']) == str(form_data['exp']['message'])
     assert str(form1.json()['code']) == str(form_data['exp']['code'])
     viewId=form1.json()["data"][0]["viewId"]
@@ -31,7 +31,7 @@ def test_from_1(form_data, url, br,getHeaders):
                     "fieldId": "fd_1676955337149member",
                     "appId": form_data['getAppById']["appId"]
                             }
-    r1=from1.getFromFieldEnumList(url,getHeaders, br,getFromFieldEnumList)
+    r1=form.getFromFieldEnumList(url,getHeaders, br,getFromFieldEnumList)
     assert str(r1.json()['message']) == str(form_data['exp']['message'])
     assert str(r1.json()['code']) == str(form_data['exp']['code'])
     assert len(r1.json()["data"]) == form_data['exp']['int1']
@@ -103,7 +103,7 @@ def test_SubmitFormData(form_data,getHeaders, url, br, db_info):
                             "mode": 2,
                             "isLook": "false",
                             "isAdminEdit": "true"}
-    r1=from1.getFromListViewData(url, getHeaders, br,SubmitFormData_data1)
+    r1=form.getFromListViewData(url, getHeaders, br,SubmitFormData_data1)
     print(r1.json()['data']["total"])
     assert str(r1.json()['code']) == str(form_data['exp']['code'])
     assert str(r1.json()['message']) == str(form_data['exp']['message'])
