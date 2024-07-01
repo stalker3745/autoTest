@@ -42,34 +42,6 @@ class TestProjectClass:
         assert str(r.json()["code"]) == str(project_data['exp']['code'])
         assert str(r.json()['message']) == str(project_data['exp']['message'])
 
-    # 归档项目
-    # def test_updateProjectDataType_project(self, url,br,project_data ):
-    #     r = project.updateProjectDataType(url,br,self.getHeaders,
-    #                                           project_data['updateProjectDataType'])
-    #     assert str(r.json()["code"]) == str(project_data['exp']['code'])
-    #     assert str(r.json()['message']) == str(project_data['exp']['message'])
-
-    # 从回收站恢复项目
-    # def test_recover_project(self, url,br,project_data):
-    #     r = project.updateProjectDataType(url,br, self.getHeaders, project_data['updateProjectDataType'])
-    #     assert str(r.json()["code"]) == str(project_data['exp']['code'])
-    #     assert str(r.json()['message']) == str(project_data['exp']['message'])
-    #
-    # @pytest.fixture(params=fileRead.read_yaml("/data_case/project.yaml"))
-    # def test_getUserRelId_project(self, request):
-    #     return request.param
-    #
-    # # 获取relId
-    # def test_getUserRelId_project(self,url, br, project_data):
-    #     time.sleep(5)
-    #     r = project.getUserIdsByProjectId(url, br, self.getHeaders, project_data['getUserIdsByProjectId'])
-    #     assert str(r.json()['code']) == str(project_data['exp']['code'])
-    #     assert str(r.json()['message']) == str(project_data['exp']['message'])
-    #     relId = jsonpath.jsonpath(r.json(), "$..relId")
-    #     print("relId=",relId)
-    #     # print(f"获取relId为：{relId}"
-    #     return relId
-
      # 获取relId
     def test_getUserRelId_project(self, project_data, url, br, getHeaders):
         time.sleep(5)
@@ -105,38 +77,6 @@ class TestProjectClass:
     #     assert str(r.json()["code"]) == str(project_data['exp']['code'])
     #     assert str(r.json()['message']) == str(project_data['exp']['message'])
 
-
-    # 复制项目模板
-    # def test_copyProjectTemplate_project(self,project_data, url, br,):
-    #     # r = member.login(url, br, project_data['logindata'])
-    #     # headers = {'Lang': "CN",
-    #     #            'Authorization': r.json()["data"]["jwtToken"],
-    #     #            'User-Company': r.json()["data"]["companyId"]}
-    #     r1 = project.copyProjectTemplate(url, br, self.getHeaders, project_data['copyProjectTemplate'])
-    #     assert str(r1.json()["code"]) == str(project_data['exp']['code'])
-    #     assert str(r1.json()['message']) == str(project_data['exp']['message'])
-
-
-    # 添加任务
-    def test_addTask_project(self,project_data, url, br):
-        # r = member.login(url, br, project_data['logindata'])
-        # headers = {'Lang': "CN",
-        #            'Authorization': r.json()["data"]["jwtToken"],
-        #            'User-Company': r.json()["data"]["companyId"]}
-        r1 = project.addTask(url, br, self.getHeaders, project_data['addTask'])
-        assert str(r1.json()["code"]) == str(project_data['exp']['code'])
-        assert str(r1.json()['message']) == str(project_data['exp']['message'])
-
-    # 激活已归档的项目
-    # def test_updateDataType1_project(self,project_data, url, br):
-    #     # r = member.login(url, br, project_data['logindata'])
-    #     # headers = {'Lang': "CN",
-    #     #            'Authorization': r.json()["data"]["jwtToken"],
-    #     #            'User-Company': r.json()["data"]["companyId"]}
-    #     r1 = project.updateProjectDataType(url, br, self.getHeaders, project_data['updateProjectDataType'])
-    #     assert str(r1.json()["code"]) == str(project_data['exp']['code'])
-    #     assert str(r1.json()['message']) == str(project_data['exp']['message'])
-
     # 激活已归档的项目
     def test_recoverproject_project(self, project_data, url, br, getHeaders):
         time.sleep(5)
@@ -171,25 +111,6 @@ class TestProjectClass:
     #     print(r1.json())
     #     assert str(r1.json()["code"]) == str(project_data['exp']['code'])
     #     assert str(r1.json()['message']) == str(project_data['exp']['message'])
-
-    # 查看当前项目下所有的成员
-    def test_getUserIdsByProjectId_project(self,project_data, url, br):
-        # r = member.login(url, br, project_data['logindata'])
-        # headers = {'Lang': "CN",
-        #            'Authorization': r.json()["data"]["jwtToken"],
-        #            'User-Company': r.json()["data"]["companyId"]}
-        # print(project_data['copeProjectByProjectId']["companyId"])
-        # r1=account.changeCompanyLogin(url,br, self.getHeaders,  project_data['copeProjectByProjectId'])
-        # assert str(r1.json()["code"]) == str(project_data['exp']['code'])
-        # assert str(r1.json()['message']) == str(project_data['exp']['message'])
-        # r = member.login(url, br, project_data['logindata'])
-        # headers = {'Lang': "CN",
-        #            'Authorization': r.json()["data"]["jwtToken"],
-        #            'User-Company': r.json()["data"]["companyId"]}
-        r1 = project.getUserIdsByProjectId(url, br, self.getHeaders, project_data['getUserIdsByProjectId'])
-        assert str(r1.json()["code"]) == str(project_data['exp']['code'])
-        assert str(r1.json()['message']) == str(project_data['exp']['message'])
-
 
     # 查询登项目数
     def test_allProject_project(self,project_data, url, br, getHeaders):
@@ -242,16 +163,8 @@ class TestProjectClass:
         assert str(r.json()['code']) == str(project_data['exp']['code'])
         print("删除项目成功")
 
-    # 查看当前项目下所有的成员
-    def test_getUserIdsByProjectId(self, project_data, url, br, getHeaders):
-        getUserIdsByProjectId = {"projectId": "1251505172283424768"}
-        r = project.getUserIdsByProjectId(url, br, getHeaders, project_data['getActivityLogByCreateId'])
-        assert str(r.json()["code"]) == str(project_data['exp']['code'])
-        assert str(r.json()['message']) == str(project_data['exp']['message'])
-        assert len(r.json()["data"]) == 8
-
     # 添加项目任务
-    def test_addTask_project(self, project_data, url, br, getHeaders):
+    def test_addTask_project1(self, project_data, url, br, getHeaders):
         time.sleep(5)
         add = project.addProject(url, br, getHeaders, project_data['addProject'])
         data = {
