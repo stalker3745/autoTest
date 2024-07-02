@@ -39,7 +39,7 @@ def updateProjectDataType(url,br,headers,cs):
     r=br.post_hearder(url,headers,json=cs)
     return r
 
-# 使用项目模板新建项目
+# 创建项目模板和使用项目模板新建项目
 def copeProjectByProjectId(url,br,headers,cs):
     url=url+"/newProject/copeProjectByProjectId"
     r=br.post_hearder(url,headers,json=cs)
@@ -62,7 +62,6 @@ def updateProjectAPPByProjectId(url,br,headers,cs):
     url=url+"/newProject/updateProjectAPPByProjectId"
     r=br.post_hearder(url,headers,json=cs)
     return r
-
 
 # 查看所有项目
 def getProjectList(url,br,headers,cs):
@@ -107,8 +106,8 @@ def getProjectPahseScheduleList(url,br,headers,cs):
     url=url+"/projectPhase/getProjectPahseScheduleList"
     r=br.post_hearder(url, headers, json=cs)
     return r
-# 添加项目管理阶段中的管理状态
 
+# 添加项目管理阶段中的管理状态
 def changeProjectPahse(url,br,headers,cs):
     url=url+"/projectPhase/changeProjectPahse"
     r=br.post_hearder(url,headers,json=cs)
@@ -117,6 +116,12 @@ def changeProjectPahse(url,br,headers,cs):
 # 查看所有的任务和子任务
 def listTreeTask(url,br,headers,cs):
     url=url+"/newTask/listTreeTask"
+    r=br.post_hearder(url, headers, json=cs)
+    return r
+
+# 添加任务站点
+def addProjectSite(url,br,headers,cs):
+    url=url+"/projectSite/addProjectSite"
     r=br.post_hearder(url, headers, json=cs)
     return r
 
