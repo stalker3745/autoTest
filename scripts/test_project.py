@@ -144,7 +144,9 @@ class TestProjectClass:
         r = project.addProject(url, br, getHeaders, project_data['addProject'])
         # 归档项目
         projectId = {
-            "projectId": r.json()["data"]
+            "projectId": r.json()["data"],
+            "projectIds": [r.json()["data"]]
+
         }
         data1 = {
             "projectId": r.json()["data"],
@@ -614,7 +616,8 @@ class TestProjectClass:
         r1 = project.addProject(url, br, getHeaders, project_data['addProject'])
         # 获取公司Id
         projectId = {
-            "projectId": r1.json()["data"]
+            "projectId": r1.json()["data"],
+            "projectIds": [r1.json()["data"]]
         }
         r4 = requests.post(url=url + "/newProject/getProjectById", headers=getHeaders, json=projectId)
         data = {
