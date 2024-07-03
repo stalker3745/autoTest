@@ -30,17 +30,19 @@ class TestProjectClass:
         time.sleep(5)
         r = project.addProject(url, br, getHeaders, project_data['addProject'])
         projectId = jsonpath.jsonpath(r.json(), "$..data")
-        projectIds = {
-            "projectIds": [r.json()["data"]]
-        }
         print("项目创建成功，新创的项目Id为：" + str(projectId))
         time.sleep(5)
-        r = project.deleteProject(url, br, getHeaders, projectIds)
-        print(r.json())
+        data = {
+            "dataType": 3,
+            "projectId": r.json()["data"]
+        }
+        # 删除项目
+        r = project.updateProjectDataType(url, br, getHeaders, data)
         assert str(r.json()["code"]) == str(project_data['exp']['code'])
         assert str(r.json()['message']) == str(project_data['exp']['message'])
+        print("项目删除成功")
 
-    # 删除项目
+    # 删除项目模板
     def test_deleteProject_project(self, project_data, url, br, getHeaders):
         time.sleep(5)
         r = project.addProject(url, br, getHeaders, project_data['addProject'])
@@ -52,6 +54,7 @@ class TestProjectClass:
         assert str(r.json()['message']) == str(project_data['exp']['message'])
         assert str(r.json()['code']) == str(project_data['exp']['code'])
         print("删除项目成功")
+
 
     # 激活已归档的项目
     def test_recoverproject_project(self, project_data, url, br, getHeaders):
@@ -70,10 +73,11 @@ class TestProjectClass:
         assert str(r.json()["code"]) == str(project_data['exp']['code'])
         assert str(r.json()['message']) == str(project_data['exp']['message'])
         print("归档项目已恢复")
-        projectIds = {
-            "projectIds": [r1.json()["data"]]
+        data1 = {
+            "dataType": 1,
+            "projectId": r1.json()["data"]
         }
-        r = project.deleteProject(url, br, getHeaders, projectIds)
+        r = project.deleteProject(url, br, getHeaders, data)
         assert str(r.json()["code"]) == str(project_data['exp']['code'])
         assert str(r.json()['message']) == str(project_data['exp']['message'])
 
@@ -432,17 +436,18 @@ class TestProjectClass:
         assert str(r2.json()['message']) == str(project_data['exp']['message'])
         data3 = {
                 "dataType": 3,
-                "projectId": temProjectId
+                "projectId": r2.json()["data"]
             }
         data4 = {
                 "dataType": 3,
                 "projectId": r.json()["data"]
         }
-        print("删除原本的任务")
+
         r3 = project.updateProjectDataType(url, br, self.getHeaders,data4)
         assert str(r3.json()["code"]) == str(project_data['exp']['code'])
         assert str(r3.json()['message']) == str(project_data['exp']['message'])
-        print("删除项目模板创建的项目")
+        print("删除项目模板创建的项目" , data3)
+        print("删除原本的任务" , data4)
         r4 = project.updateProjectDataType(url, br, self.getHeaders, data3)
         assert str(r4.json()["code"]) == str(project_data['exp']['code'])
         assert str(r4.json()['message']) == str(project_data['exp']['message'])
