@@ -32,17 +32,16 @@ class TestProjectClass:
         projectId = jsonpath.jsonpath(r.json(), "$..data")
         print("项目创建成功，新创的项目Id为：" + str(projectId))
         time.sleep(5)
-        data = {
-            "dataType": 3,
-            "projectId": r.json()["data"]
+        projectIds = {
+            "projectIds": [r.json()["data"]]
         }
         # 删除项目
-        r = project.updateProjectDataType(url, br, getHeaders, data)
+        r = project.deleteProject(url, br, getHeaders, projectIds)
         assert str(r.json()["code"]) == str(project_data['exp']['code'])
         assert str(r.json()['message']) == str(project_data['exp']['message'])
         print("项目删除成功")
 
-    # 删除项目模板
+    # 删除项目
     def test_deleteProject_project(self, project_data, url, br, getHeaders):
         time.sleep(5)
         r = project.addProject(url, br, getHeaders, project_data['addProject'])
@@ -150,7 +149,6 @@ class TestProjectClass:
         projectId = {
             "projectId": r.json()["data"],
             "projectIds": [r.json()["data"]]
-
         }
         data1 = {
             "projectId": r.json()["data"],
@@ -258,16 +256,17 @@ class TestProjectClass:
         r = project.addProject(url, br, getHeaders, project_data['addProject'])
         projectId = {
             "projectId": r.json()["data"],
+        }
+        projectIds = {
             "projectIds": [r.json()["data"]]
         }
-
         r = project.getUserIdsByProjectId(url, br, getHeaders, projectId)
         assert str(r.json()['message']) == str(project_data['exp']['message'])
         assert str(r.json()['code']) == str(project_data['exp']['code'])
         relId = jsonpath.jsonpath(r.json(), "$..relId")
         assert len(relId) != 0
         print("新增用户的relId为：" + str(relId))
-        r = project.deleteProject(url, br, getHeaders, projectId)
+        r = project.deleteProject(url, br, getHeaders, projectIds)
         assert str(r.json()["code"]) == str(project_data['exp']['code'])
         assert str(r.json()['message']) == str(project_data['exp']['message'])
 
@@ -278,8 +277,7 @@ class TestProjectClass:
         # 添加项目成员
         user = {"page": 1, "pageSize": 0, "queryIden": 0, "accountStatus": 1, "userDuty": 1}
         r2 = project.listCompanyUserPage(url, br, getHeaders, user)
-        projectId = {
-            "projectId": r1.json()["data"],
+        projectIds = {
             "projectIds": [r1.json()["data"]]
         }
         data1 = {
@@ -304,7 +302,7 @@ class TestProjectClass:
         r4 = project.deleteProjectResource(url, br, getHeaders, data3)
         assert str(r4.json()["code"]) == str(project_data['exp']['code'])
         assert str(r4.json()['message']) == str(project_data['exp']['message'])
-        project.deleteProject(url, br, getHeaders, projectId)
+        project.deleteProject(url, br, getHeaders, projectIds)
         assert str(r4.json()["code"]) == str(project_data['exp']['code'])
         assert str(r4.json()['message']) == str(project_data['exp']['message'])
 
@@ -481,6 +479,13 @@ class TestProjectClass:
         r = project.updateProjectDataType(url, br, getHeaders, data)
         assert str(r.json()["code"]) == str(project_data['exp']['code'])
         assert str(r.json()['message']) == str(project_data['exp']['message'])
+        projectIds = {
+            "projectIds": [r1.json()["data"]]
+        }
+        r4 = project.deleteProject(url, br, getHeaders, projectIds)
+        assert str(r4.json()["code"]) == str(project_data['exp']['code'])
+        assert str(r4.json()['message']) == str(project_data['exp']['message'])
+        print("删除成功")
 
     # 查看公司下的成员未激活员工
     def test_listCompanyUserPage_project(self, project_data, url, br, getHeaders):
@@ -559,10 +564,9 @@ class TestProjectClass:
     # 查看所有的任务和子任务
     def test_listTreeTask_project(self, project_data, url, br, getHeaders):
         time.sleep(5)
-        r = project.addProject(url, br, getHeaders, project_data['addProject'])
+        r1 = project.addProject(url, br, getHeaders, project_data['addProject'])
         projectId = {
-            "projectId": r.json()["data"],
-            "projectIds": [r.json()["data"]]
+            "projectId": r1.json()["data"],
         }
         data = {
             "taskName": "1",
@@ -571,7 +575,7 @@ class TestProjectClass:
             "taskPriority": 2,
             "taskPhaseId": "1242522938167877632",
             "taskType": 1,
-            "projectId": r.json()["data"],
+            "projectId": r1.json()["data"],
             "parentTaskId": -1
         }
         # 添加任务
@@ -579,12 +583,14 @@ class TestProjectClass:
         r = project.listTreeTask(url, br, getHeaders, projectId)
         assert str(r.json()["code"]) == str(project_data['exp']['code'])
         assert str(r.json()['message']) == str(project_data['exp']['message'])
-        time.sleep(5)
         # 删除项目
-        print(projectId)
-        r = project.deleteProject(url, br, getHeaders, projectId)
-        assert str(r.json()["code"]) == str(project_data['exp']['code'])
-        assert str(r.json()['message']) == str(project_data['exp']['message'])
+        projectIds = {
+            "projectIds": [r1.json()["data"]]
+        }
+        print("排错测试")
+        r4 = project.deleteProject(url, br, getHeaders, projectIds)
+        assert str(r4.json()["code"]) == str(project_data['exp']['code'])
+        assert str(r4.json()['message']) == str(project_data['exp']['message'])
 
     # 添加子任务
     def test_addTaskZi_project(self, project_data, url, br, getHeaders):
@@ -592,6 +598,8 @@ class TestProjectClass:
         r1 = project.addProject(url, br, getHeaders, project_data['addProject'])
         projectId = {
             "projectId": r1.json()["data"],
+        }
+        projectIds = {
             "projectIds": [r1.json()["data"]]
         }
         data1 = {
@@ -624,7 +632,7 @@ class TestProjectClass:
         assert str(r3.json()["code"]) == str(project_data['exp']['code'])
         assert str(r3.json()['message']) == str(project_data['exp']['message'])
         # 删除项目
-        r = project.deleteProject(url, br, getHeaders, projectId)
+        r = project.deleteProject(url, br, getHeaders, projectIds)
         assert str(r.json()["code"]) == str(project_data['exp']['code'])
         assert str(r.json()['message']) == str(project_data['exp']['message'])
 
@@ -635,6 +643,8 @@ class TestProjectClass:
         # 获取公司Id
         projectId = {
             "projectId": r1.json()["data"],
+        }
+        projectIds = {
             "projectIds": [r1.json()["data"]]
         }
         r4 = requests.post(url=url + "/newProject/getProjectById", headers=getHeaders, json=projectId)
@@ -660,7 +670,7 @@ class TestProjectClass:
         print("站点已创建成功")
         assert str(r2.json()["code"]) == str(project_data['exp']['code'])
         assert str(r2.json()['message']) == str(project_data['exp']['message'])
-        r3 = project.deleteProject(url, br, getHeaders, projectId)
+        r3 = project.deleteProject(url, br, getHeaders, projectIds)
         assert str(r3.json()["code"]) == str(project_data['exp']['code'])
         assert str(r3.json()['message']) == str(project_data['exp']['message'])
         print("项目已删除")
