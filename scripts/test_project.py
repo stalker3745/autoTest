@@ -166,72 +166,6 @@ class TestProjectClass:
         assert str(r2.json()['message']) == str(project_data['exp']['message'])
         print("删除项目成功")
 
-
-    # 使用项目模板新建项目
-    # 修改中
-    # def test_copeByProjectId_project(self, project_data, url, br, getHeaders):
-    #     # 新建项目模板
-    #     time.sleep(5)
-    #     r = project.addProject(url, br, getHeaders, project_data['addProject'])
-    #     projectId = {
-    #         "projectId": r.json()["data"]
-    #     }
-    #     r = project.copeProjectByProjectId(url, br, getHeaders, projectId)
-    #     assert str(r.json()['code']) == str(project_data['exp']['code'])
-    #     assert str(r.json()['message']) == str(project_data['exp']['message'])
-    #     print("项目模板已创建成功")
-    #     # 要通过getProjectById取新的projectId值
-    #     r1 = project.getProjectList(url,br, getHeaders , projectId)
-    #     newProjectId = {
-    #         "projectId": r1.json()["data"],
-    #     }
-    #     print("data的长度是："+str(len(r1.json()["data"])))
-    #     # 用项目模板创建项目
-    #     # 这个地方出错了
-    #     data = {
-    #             "projectId": "1242877929793556480",
-    #             "companyId": r1.json()["data"][0]["companyId"],
-    #             "companyName": "自动化测试企业（web+API）",
-    #             "projectName": "1111",
-    #             "projectNum": "PN9FXVGEM1W9A8",
-    #             "projectCode": "PN9FXVGEM1W9A8",
-    #             "countryRegionId": "860892363952885760",
-    #             "countryName": "中国",
-    #             "addressCode": "",
-    #             "projectStatus": 2,
-    #             "isDeleted": "false",
-    #             "creator": "王君宜",
-    #             "creatorId": "1242059550803365888",
-    #             "gmtCreated": "2024-05-22 16:33:10",
-    #             "modifier": "王君宜",
-    #             "modifierId": "1242059550803365888",
-    #             "gmtModified": "2024-05-22 16:33:10",
-    #             "editIsShow": "false",
-    #             "isHasProjectPlan": "false",
-    #             "isTree": "true",
-    #             "isDrag": "false",
-    #             "scope": 1,
-    #             "userNameList": [],
-    #             "isProjectTemplate": "true",
-    #             "autoParentTask": "true",
-    #             "currentPhaseId": "1242877929927774208",
-    #             "currentPhaseName": "启动阶段",
-    #             "isAutoPhase": "false",
-    #             "isMilestonePhase": "false",
-    #             "autoSchedule": "true",
-    #             "check": "false",
-    #             "projectManager": "1071440804087898112",
-    #             "projectResource": [],
-    #             "projectTemplate": "1242877929793556480",
-    #             "backType": 1
-    #         }
-    #     r2 = project.copeProjectByProjectId(url,br,getHeaders,data)
-    #     assert str(r2.json()["code"]) == str(project_data['exp']['code'])
-    #     assert str(r2.json()['message']) == str(project_data['exp']['message'])
-    #     r3=project.deleteProject(url, br, self.getHeaders,newProjectId)
-    #     assert str(r3.json()["code"]) == str(project_data['exp']['code'])
-    #     assert str(r3.json()['message']) == str(project_data['exp']['message'])
-
     # 查询登项目数
     def test_allProject_project(self,project_data, url, br, getHeaders):
         account.changeCompanyLogin(url, br, getHeaders, project_data['changeCompanyLogin'])
@@ -434,6 +368,85 @@ class TestProjectClass:
         assert str(r.json()['message']) == str(project_data['exp']['message'])
         print("删除成功")
 
+    # 使用项目模板新建项目
+    def test_copeByProjectId_project(self, project_data, url, br, getHeaders):
+        time.sleep(5)
+        r = project.addProject(url, br, getHeaders, project_data['addProject'])
+        data1 = {
+            "projectId": r.json()["data"],
+            "copyType": 1,
+            "projectName": "新建模板测试"
+        }
+        print("原项目Id=",r.json()["data"])
+        # 新建项目模板
+        r1 = project.copyProjectTemplate(url, br, getHeaders, data1)
+        assert str(r.json()['code']) == str(project_data['exp']['code'])
+        assert str(r.json()['message']) == str(project_data['exp']['message'])
+        print("项目模板已创建成功")
+        # 获取模板id
+        temProjectId = {
+            "projectId": r1.json()["data"],
+        }
+        print("模板生成项目的id是=", temProjectId)
+        # 用项目模板创建项目
+        data2 = {
+                "projectId": temProjectId,
+                "companyId": "1071440842016989184",
+                "companyName": "自动化测试企业（web+API）",
+                "projectName": "1111",
+                "projectNum": "PN9FXVGEM1W9A8",
+                "projectCode": "PN9FXVGEM1W9A8",
+                "countryRegionId": "860892363952885760",
+                "countryName": "中国",
+                "addressCode": "",
+                "projectStatus": 2,
+                "isDeleted": "false",
+                "creator": "王君宜",
+                "creatorId": "1242059550803365888",
+                "gmtCreated": "2024-05-22 16:33:10",
+                "modifier": "王君宜",
+                "modifierId": "1242059550803365888",
+                "gmtModified": "2024-05-22 16:33:10",
+                "editIsShow": "false",
+                "isHasProjectPlan": "false",
+                "isTree": "true",
+                "isDrag": "false",
+                "scope": 1,
+                "userNameList": [],
+                "isProjectTemplate": "true",
+                "autoParentTask": "true",
+                "currentPhaseId": "1242877929927774208",
+                "currentPhaseName": "启动阶段",
+                "isAutoPhase": "false",
+                "isMilestonePhase": "false",
+                "autoSchedule": "true",
+                "check": "false",
+                "projectManager": "1071440804087898112",
+                "projectResource": [],
+                "projectTemplate": "1242877929793556480",
+                "backType": 1
+            }
+        r2 = project.copeProjectByProjectId(url,br,getHeaders,data2)
+        print("用模板创建项目成功")
+        assert str(r2.json()["code"]) == str(project_data['exp']['code'])
+        assert str(r2.json()['message']) == str(project_data['exp']['message'])
+        data3 = {
+                "dataType": 3,
+                "projectId": temProjectId
+            }
+        data4 = {
+                "dataType": 3,
+                "projectId": r.json()["data"]
+        }
+        print("删除原本的任务")
+        r3 = project.updateProjectDataType(url, br, self.getHeaders,data4)
+        assert str(r3.json()["code"]) == str(project_data['exp']['code'])
+        assert str(r3.json()['message']) == str(project_data['exp']['message'])
+        print("删除项目模板创建的项目")
+        r4 = project.updateProjectDataType(url, br, self.getHeaders, data3)
+        assert str(r4.json()["code"]) == str(project_data['exp']['code'])
+        assert str(r4.json()['message']) == str(project_data['exp']['message'])
+
     # 查看当前项目下所有成员
     def test_getUserIdsByProjectId_project(self, project_data, url, br, getHeaders):
         time.sleep(5)
@@ -460,7 +473,7 @@ class TestProjectClass:
         assert str(r.json()["code"]) == str(project_data['exp']['code'])
         assert str(r.json()["code"]) == str(project_data['exp']['code'])
         assert len(r.json()["data"]) != 0
-        r = project.deleteProject(url, br, getHeaders, data)
+        r = project.updateProjectDataType(url, br, getHeaders, data)
         assert str(r.json()["code"]) == str(project_data['exp']['code'])
         assert str(r.json()['message']) == str(project_data['exp']['message'])
 

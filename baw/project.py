@@ -25,15 +25,9 @@ def listProjectByCondition(url,br,headers,cs):
 def deleteProject(url,br,headers,cs):
     url = url + "/newProject/deleteProject"
     r = br.post_hearder(url,headers,json=cs)
-    return  r
-
-# 项目归档
-def updateProjectDataType(url,br,headers,cs):
-    url = url + "/newProject/updateProjectDataType"
-    r = br.post_hearder(url,headers,json=cs)
     return r
 
-# 更新项目，回复项目
+# 更新项目，回复项目,删除项目，项目归档
 def updateProjectDataType(url,br,headers,cs):
     url= url+"/newProject/updateProjectDataType"
     r=br.post_hearder(url,headers,json=cs)
@@ -141,4 +135,10 @@ def listDept(url,br,headers,cs):
 def listCompanyUserPage(url,br,headers,cs):
     url=url+"/user/company/listCompanyUserPage"
     r=br.post_hearder(url,headers,json=cs)
+    return r
+
+# 获取项目id
+def getProjectById(url,br,headers,cs):
+    url=url+"/newProject/getProjectById"
+    r=br.post_hearder(url, headers, json=cs)
     return r
