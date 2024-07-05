@@ -71,12 +71,15 @@ class TestProjectClass:
         r = project.updateProjectDataType(url, br, getHeaders, data1)
         assert str(r.json()["code"]) == str(project_data['exp']['code'])
         assert str(r.json()['message']) == str(project_data['exp']['message'])
-        print("归档项目已恢复")
-        data1 = {
-            "dataType": 1,
-            "projectId": r1.json()["data"]
+        projectIds1 = {
+            "projectIds": [r1.json()["data"]]
         }
-        r = project.deleteProject(url, br, getHeaders, data)
+        projectIds2 = {
+            "projectIds": [ r.json()["data"]]
+        }
+        print("归档项目已恢复")
+        project.deleteProject(url, br, getHeaders, projectIds1)
+        project.deleteProject(url, br, getHeaders, projectIds2)
         assert str(r.json()["code"]) == str(project_data['exp']['code'])
         assert str(r.json()['message']) == str(project_data['exp']['message'])
 
@@ -526,7 +529,7 @@ class TestProjectClass:
         assert str(r.json()['message']) == str(project_data['exp']['message'])
 
     # 开启阶段更新自动化
-    def tets_turnonProjectPahseParams_project(self, project_data, url, br, getHeaders):
+    def test_turnonProjectPahseParams_project(self, project_data, url, br, getHeaders):
         time.sleep(5)
         r1 = project.addProject(url, br, getHeaders, project_data['addProject'])
         data = {
@@ -538,7 +541,26 @@ class TestProjectClass:
         assert str(r.json()['message']) == str(project_data['exp']['message'])
         print(" 已开启阶段更新自动化")
         projectIds = {
-            "projectIds": [r1.json()["data"], r.json()["data"]]
+            "projectIds": [r1.json()["data"]]
+        }
+        r = project.deleteProject(url, br, getHeaders, projectIds)
+        assert str(r.json()["code"]) == str(project_data['exp']['code'])
+        assert str(r.json()['message']) == str(project_data['exp']['message'])
+
+    # 关闭阶段更新自动化
+    def test_turnoffProjectPahseParams_project(self, project_data, url, br, getHeaders):
+        time.sleep(5)
+        r1 = project.addProject(url, br, getHeaders, project_data['addProject'])
+        data = {
+            "isAutoPhase": False,
+            "projectId": r1.json()["data"]
+        }
+        r = project.updateProjectPahseParams(url, br, getHeaders, data)
+        assert str(r.json()['code']) == str(project_data['exp']['code'])
+        assert str(r.json()['message']) == str(project_data['exp']['message'])
+        print(" 已关闭阶段更新自动化")
+        projectIds = {
+            "projectIds": [r1.json()["data"]]
         }
         r = project.deleteProject(url, br, getHeaders, projectIds)
         assert str(r.json()["code"]) == str(project_data['exp']['code'])
