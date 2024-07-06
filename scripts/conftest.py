@@ -3,8 +3,11 @@
 使用时候不用import。
 pytest是根据conftest文件名字来找的。
 '''
-import requests
 
+import requests
+#增加路径，为lixun操作自动化连跑是找不到路径
+import sys
+sys.path.append("..")
 from caw import fileRead, baseRequests
 import pytest
 
