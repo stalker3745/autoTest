@@ -61,10 +61,10 @@ if __name__== "__main__":
     # schedule.every(2).seconds.do()
     instance = TestTime()
     instance.receiveData()
-    # schedule.every().hours.do(instance.receiveData)
+    schedule.every().hours.do(instance.receiveData)
     # 无限循环以保持主线程运行
-    # while True:
-    #     schedule.run_pending()
-    #     time.sleep(100)
+    while True:
+        schedule.run_pending()
+        time.sleep(100)
 
 
