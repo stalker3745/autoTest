@@ -6,8 +6,8 @@
   addProject: {"projectResource": [], "projectName": "pythontest", "scope": 1, "projectManager": "955422446754861056", "projectRecommend": "你好", "backType": 1, "countryRegionId": "860892363952885760"}
   changeCompanyLogin: {"companyId":"1071440842016989184"}
 #  changeProjectResourc: { "projectId": "1112505211102191616","isAll": false,"isExternal": false,"userIdList": [ "955759707962871808","875843804312244224" ],"groupDeptIdList": [ ],"deptIdList": [ ],"roleIdList": [ ] }
-#  copyProjectTemplate: {projectId: "1251504918007939072", copyType: 2, projectName: "test1"}
-#  addTask: { "taskName": "python_task","taskPriority": 2,"taskPhaseId": "1246111220185210880","taskType": 1,"projectId": "1251504918007939072","parentTaskId": -1,"toBeClaimedUser": null }
+#  copyProjectTemplate: {projectId: "1252913035434262528", copyType: 2, projectName: "test1"}
+#  addTask: { "taskName": "python_task","taskPriority": 2,"taskPhaseId": "1246111220185210880","taskType": 1,"projectId": "1252913035434262528","parentTaskId": -1,"toBeClaimedUser": null }
   attachmentName: {"attachmentName1":"项目文件","attachmentName2":"共享文档"}
   listAllProjectByCondition: {"page":1,"pageSize":16,"projectName":null,"dropDownType":null,"dropDownId":null,"dataType":1}
 

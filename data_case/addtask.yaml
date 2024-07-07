@@ -1,15 +1,15 @@
 # 登录的数据
 # 1、正常场景：用户名、密码正确，登录成功 添加任务
-- taskdata: {"taskName":"测试1","isToBeClaimed":"0","responsiblePerson":"","assistantUserIds":[],"taskPriority":2,"taskRemark":"","startTime":"","endTime":"","taskPhaseId":"1245740109115199488","taskType":1,"projectId":"1251504918007939072","parentTaskId":-1,"toBeClaimedUser":null}
+- taskdata: {"taskName":"测试1","isToBeClaimed":"0","responsiblePerson":"","assistantUserIds":[],"taskPriority":2,"taskRemark":"","startTime":"","endTime":"","taskPhaseId":"1245740109115199488","taskType":1,"projectId":"1252913035434262528","parentTaskId":-1,"toBeClaimedUser":null}
   exp: {"code": "200", "message": "操作成功!"}   # 预期结果
 
 # 2、添加任务
-- taskdata: {"taskName":"测试2","isToBeClaimed":"0","responsiblePerson":"","assistantUserIds":[],"taskPriority":2,"taskRemark":"","startTime":"","endTime":"","taskPhaseId":"1245740109115199488","taskType":1,"projectId":"1251504918007939072","parentTaskId":-1,"toBeClaimedUser":null}
+- taskdata: {"taskName":"测试2","isToBeClaimed":"0","responsiblePerson":"","assistantUserIds":[],"taskPriority":2,"taskRemark":"","startTime":"","endTime":"","taskPhaseId":"1245740109115199488","taskType":1,"projectId":"1252913035434262528","parentTaskId":-1,"toBeClaimedUser":null}
   exp: {"code": "200", "message": "操作成功!"}   # 预期结果
 
 # 3、添加任务
-- taskdata: {"taskName":"测试3","isToBeClaimed":"0","responsiblePerson":"","assistantUserIds":[],"taskPriority":2,"taskRemark":"","startTime":"","endTime":"","taskPhaseId":"1245740109115199488","taskType":1,"projectId":"1251504918007939072","parentTaskId":-1,"toBeClaimedUser":null}
+- taskdata: {"taskName":"测试3","isToBeClaimed":"0","responsiblePerson":"","assistantUserIds":[],"taskPriority":2,"taskRemark":"","startTime":"","endTime":"","taskPhaseId":"1245740109115199488","taskType":1,"projectId":"1252913035434262528","parentTaskId":-1,"toBeClaimedUser":null}
   exp: {"code": "200", "message": "操作成功!"}   # 预期结果# 3、添加任务
 
-- taskdata: {"taskName":"测试4","isToBeClaimed":"0","responsiblePerson":"","assistantUserIds":[],"taskPriority":2,"taskRemark":"","startTime":"","endTime":"","taskPhaseId":"1245740109115199488","taskType":1,"projectId":"1251504918007939072","parentTaskId":-1,"toBeClaimedUser":null}
+- taskdata: {"taskName":"测试4","isToBeClaimed":"0","responsiblePerson":"","assistantUserIds":[],"taskPriority":2,"taskRemark":"","startTime":"","endTime":"","taskPhaseId":"1245740109115199488","taskType":1,"projectId":"1252913035434262528","parentTaskId":-1,"toBeClaimedUser":null}
   exp: {"code": "200", "message": "操作成功!"}   # 预期结果

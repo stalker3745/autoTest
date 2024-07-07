@@ -1,10 +1,10 @@
 - logindata: {"account": "mazhenhua7@zdsztech.com", "password": "dog7jCEMgBCy02XUcrsv4w==", "language": "CN"}  # 配置用户登录的账号
   exp: {"code": "200", "message": "操作成功!" ,"datatotal": 18 ,"getActivityLog": 39}
   addProject: { "projectResource": [ ], "projectName": "pythontest", "scope": 1, "projectManager": "955422446754861056", "projectRecommend": "你好", "backType": 1, "countryRegionId": "860892363952885760" }
-  getUserIdsByProjectId: {projectId: "1251504918007939072"}
-  copeProjectByProjectId: {"projectId": "1251504918007939072", "companyId": "1071440842016989184","companyName": "自动化测试企业（web）","projectName": "自动化测试新建项目+复制","countryRegionId": "860892363952885760","countryName": "中国"}
-  copyProjectTemplate: {projectId: "1251504918007939072", copyType: 2, projectName: "test1"}
-  addTask: { "taskName": "python_task","taskPriority": 2,"taskPhaseId": "1246111220185210880","taskType": 1,"projectId": "1251504918007939072","parentTaskId": -1,"toBeClaimedUser": null }
+  getUserIdsByProjectId: {projectId: "1252913035434262528"}
+  copeProjectByProjectId: {"projectId": "1252913035434262528", "companyId": "1071440842016989184","companyName": "自动化测试企业（web）","projectName": "自动化测试新建项目+复制","countryRegionId": "860892363952885760","countryName": "中国"}
+  copyProjectTemplate: {projectId: "1252913035434262528", copyType: 2, projectName: "test1"}
+  addTask: { "taskName": "python_task","taskPriority": 2,"taskPhaseId": "1246111220185210880","taskType": 1,"projectId": "1252913035434262528","parentTaskId": -1,"toBeClaimedUser": null }
   updateProjectDataType: {"dataType":2,"projectId":"1246106881320329216"}
   getActivityLogByCreateId: { "page": 1,"pageSize": 20,"isProjectOverviewLog": false,"isCompanyLog": false,"isProjectLog": true }
   listAllProjectByCondition: {"page":1,"pageSize":16,"projectName":null,"dropDownType":null,"dropDownId":null,"dataType":1}
