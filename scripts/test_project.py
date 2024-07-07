@@ -452,6 +452,12 @@ class TestProjectClass:
         r4 = project.updateProjectDataType(url, br, self.getHeaders, data3)
         assert str(r4.json()["code"]) == str(project_data['exp']['code'])
         assert str(r4.json()['message']) == str(project_data['exp']['message'])
+        projectIds = {
+            "projectIds": [r.json()["data"], r1.json()["data"], r2.json()["data"]]
+        }
+        r = project.deleteProject(url, br, getHeaders, projectIds)
+        assert str(r.json()["code"]) == str(project_data['exp']['code'])
+        assert str(r.json()['message']) == str(project_data['exp']['message'])
 
     # 查看当前项目下所有成员
     def test_getUserIdsByProjectId_project(self, project_data, url, br, getHeaders):
