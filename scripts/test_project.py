@@ -735,55 +735,58 @@ class TestProjectClass:
         print("项目已删除")
 
     # 在项目文件下添加子文件夹
-    # 正在修改
-    # def test_addCustomFolder_project(self,project_data, url, br, getHeaders):
-    #     time.sleep(5)
-    #     r1=project.addProject(url, br, getHeaders, project_data['addProject'])
-    #     projectId = {
-    #         "projectId": r1.json()["data"]
-    #     }
-    #     projectIds = {
-    #         "projectIds": [r1.json()["data"]]
-    #     }
-    #     r2 = project.getProjectById(url,br,getHeaders,projectId)
-    #     print("r2=",r2.json())
-    #     # 添加项目文件夹
-    #     data1 = {
-    #         "attachmentName": "Test",
-    #         "companyId": r2.json()["data"]["companyId"],
-    #         "projectId": r1.json()["data"],
-    #         "manageUser": ["1242059550803365888"],
-    #         "parentRelId": "-1",
-    #         "buildType": "2",
-    #         "isPrivate": "0",
-    #         "isDownload": True
-    #     }
-    #     # 用查看项目文件夹的接口调用parentId
-    #     data3 =
-    #     r5 = project.listCustomDocument(url,br,getHeaders,data3)
-    #     r3=project.addCustomFolder(url, br, getHeaders, data1)
-    #     print("r3=",r3.json())
-    #     assert str(r3.json()["code"]) == str(project_data['exp']['code'])
-    #     assert str(r3.json()['message']) == str(project_data['exp']['message'])
-    #     print("项目文件夹已创建")
-    #     # 添加项目子文件夹
-    #     data2 = {
-    #         "attachmentName": "Test",
-    #         "companyId": r2.json()["data"]["companyId"],
-    #         "projectId": r1.json()["data"],
-    #         "parentRelId": "1259816246090977280",
-    #         "buildType": "2",
-    #         "isPrivate": "0",
-    #         "isDownload": True
-    #     }
-    #     r5 = project.addCustomFolder(url, br, getHeaders, data2)
-    #     assert str(r5.json()["code"]) == str(project_data['exp']['code'])
-    #     assert str(r5.json()['message']) == str(project_data['exp']['message'])
-    #     print("项目文件夹下的子文件夹已创建")
-        # r4 = project.deleteProject(url, br, getHeaders, projectIds)
-        # assert str(r4.json()["code"]) == str(project_data['exp']['code'])
-        # assert str(r4.json()['message']) == str(project_data['exp']['message'])
-        # print("项目已删除")
+    def test_addCustomFolderZi_project(self,project_data, url, br, getHeaders):
+        time.sleep(5)
+        r1=project.addProject(url, br, getHeaders, project_data['addProject'])
+        projectId = {
+            "projectId": r1.json()["data"]
+        }
+        projectIds = {
+            "projectIds": [r1.json()["data"]]
+        }
+        r2 = project.getProjectById(url,br,getHeaders,projectId)
+        # 添加项目文件夹
+        data1 = {
+            "attachmentName": "Test",
+            "companyId": r2.json()["data"]["companyId"],
+            "projectId": r1.json()["data"],
+            "manageUser": ["1242059550803365888"],
+            "parentRelId": "-1",
+            "buildType": "2",
+            "isPrivate": "0",
+            "isDownload": True
+        }
+        time.sleep(5)
+        r3 = project.addCustomFolder(url, br, getHeaders, data1)
+        print("新建项目文件夹成功")
+        # 查看所有文件夹列表获取relId
+        data2 = {
+            "page": 1,
+            "pageSize": 10,
+            "companyId": r2.json()["data"]["companyId"],
+            "buildType": "2",
+            "parentRelId": "-1",
+            "projectId": r1.json()["data"]
+        }
+        time.sleep(5)
+        r4 = project.listCustomDocument(url, br, getHeaders, data2)
+        print("展示项目文件夹列表")
+        assert str(r4.json()["code"]) == str(project_data['exp']['code'])
+        assert str(r4.json()['message']) == str(project_data['exp']['message'])
+        data3 = {
+            "attachmentName": "1",
+            "companyId": r2.json()["data"]["companyId"],
+            "projectId": r1.json()["data"],
+            "parentRelId": r4.json()['data']['list'][0]['relId'],
+            "buildType": "2",
+            "isPrivate": "0",
+            "isDownload": True
+        }
+        time.sleep(5)
+        r5 = project.addCustomFolder(url, br, getHeaders, data3)
+        print("添加项目文件夹子文件夹添加成功")
+        assert str(r5.json()["code"]) == str(project_data['exp']['code'])
+        assert str(r5.json()['message']) == str(project_data['exp']['message'])
 
     # 查看项目文件列表
     def test_listCustomDocument_project(self,project_data, url, br, getHeaders):
