@@ -160,3 +160,9 @@ def listCustomDocument(url,br,headers,cs):
     url=url+"/documentManager/listCustomDocument"
     r=br.post_hearder(url, headers, json=cs)
     return r
+
+# 删除项目文件夹
+def operationDocument(url,br,headers,cs):
+    url=url+"/documentManager/operationDocument"
+    r=br.post_hearder(url,headers,json=cs)
+    return r
