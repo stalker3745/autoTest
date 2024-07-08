@@ -142,3 +142,15 @@ def getProjectById(url,br,headers,cs):
     url=url+"/newProject/getProjectById"
     r=br.post_hearder(url, headers, json=cs)
     return r
+
+# 添加项目文件夹
+def addCustomFolder(url,br,headers,cs):
+    url=url+"/documentManager/addCustomFolder"
+    r=br.post_hearder(url, headers, json=cs)
+    return r
+
+# 通过项目Id获取相应参数
+def getProjectById(url,br,headers,cs):
+    url=url+"/newProject/getProjectById"
+    r=br.post_hearder(url, headers, json=cs)
+    return  r

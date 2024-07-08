@@ -668,14 +668,13 @@ class TestProjectClass:
     def test_addProjectSite_project(self, project_data, url, br, getHeaders):
         time.sleep(5)
         r1 = project.addProject(url, br, getHeaders, project_data['addProject'])
-        # 获取公司Id
         projectId = {
             "projectId": r1.json()["data"],
         }
         projectIds = {
             "projectIds": [r1.json()["data"]]
         }
-        r4 = requests.post(url=url + "/newProject/getProjectById", headers=getHeaders, json=projectId)
+        r4 = project.getProjectById(url,br,getHeaders,projectId)
         data = {
             "companyId": r4.json()["data"]["companyId"],
             "siteName": "Test1",
@@ -703,6 +702,39 @@ class TestProjectClass:
         assert str(r3.json()['message']) == str(project_data['exp']['message'])
         print("项目已删除")
 
+# 添加项目文件夹
+    def test_addCustomFolder(self,project_data, url, br, getHeaders):
+        time.sleep(5)
+        r1=project.addProject(url, br, getHeaders, project_data['addProject'])
+        projectId = {
+            "projectId": r1.json()["data"]
+        }
+        projectIds = {
+            "projectIds": [r1.json()["data"]]
+        }
+        r2 = project.getProjectById(url,br,getHeaders,projectId)
+        print("r2=",r2.json())
+        # 添加项目文件夹
+        data = {
+            "attachmentName": "Test",
+            "companyId": r2.json()["data"]["companyId"],
+            "projectId": r1.json()["data"],
+            "privateUser": [],
+            "manageUser": ["1242059550803365888"],
+            "editUser": [],
+            "parentRelId": "-1",
+            "buildType": "2",
+            "isPrivate": "0",
+            "isDownload": True
+        }
+        r3=project.addCustomFolder(url, br, getHeaders, data)
+        assert str(r3.json()["code"]) == str(project_data['exp']['code'])
+        assert str(r3.json()['message']) == str(project_data['exp']['message'])
+        # 项目文件已创建
+        r4 = project.deleteProject(url, br, getHeaders, projectIds)
+        assert str(r4.json()["code"]) == str(project_data['exp']['code'])
+        assert str(r4.json()['message']) == str(project_data['exp']['message'])
+        print("项目已删除")
 
 if __name__ == '__main__':
     TestProjectClass()
