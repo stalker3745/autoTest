@@ -702,8 +702,8 @@ class TestProjectClass:
         assert str(r3.json()['message']) == str(project_data['exp']['message'])
         print("项目已删除")
 
-# 添加项目文件夹
-    def test_addCustomFolder(self,project_data, url, br, getHeaders):
+    # 添加项目文件夹
+    def test_addCustomFolder_project(self,project_data, url, br, getHeaders):
         time.sleep(5)
         r1=project.addProject(url, br, getHeaders, project_data['addProject'])
         projectId = {
@@ -719,9 +719,7 @@ class TestProjectClass:
             "attachmentName": "Test",
             "companyId": r2.json()["data"]["companyId"],
             "projectId": r1.json()["data"],
-            "privateUser": [],
             "manageUser": ["1242059550803365888"],
-            "editUser": [],
             "parentRelId": "-1",
             "buildType": "2",
             "isPrivate": "0",
@@ -730,10 +728,110 @@ class TestProjectClass:
         r3=project.addCustomFolder(url, br, getHeaders, data)
         assert str(r3.json()["code"]) == str(project_data['exp']['code'])
         assert str(r3.json()['message']) == str(project_data['exp']['message'])
-        # 项目文件已创建
+        print("项目文件夹已创建")
         r4 = project.deleteProject(url, br, getHeaders, projectIds)
         assert str(r4.json()["code"]) == str(project_data['exp']['code'])
         assert str(r4.json()['message']) == str(project_data['exp']['message'])
+        print("项目已删除")
+
+    # 在项目文件下添加子文件夹
+    # 正在修改
+    # def test_addCustomFolder_project(self,project_data, url, br, getHeaders):
+    #     time.sleep(5)
+    #     r1=project.addProject(url, br, getHeaders, project_data['addProject'])
+    #     projectId = {
+    #         "projectId": r1.json()["data"]
+    #     }
+    #     projectIds = {
+    #         "projectIds": [r1.json()["data"]]
+    #     }
+    #     r2 = project.getProjectById(url,br,getHeaders,projectId)
+    #     print("r2=",r2.json())
+    #     # 添加项目文件夹
+    #     data1 = {
+    #         "attachmentName": "Test",
+    #         "companyId": r2.json()["data"]["companyId"],
+    #         "projectId": r1.json()["data"],
+    #         "manageUser": ["1242059550803365888"],
+    #         "parentRelId": "-1",
+    #         "buildType": "2",
+    #         "isPrivate": "0",
+    #         "isDownload": True
+    #     }
+    #     # 用查看项目文件夹的接口调用parentId
+    #     data3 =
+    #     r5 = project.listCustomDocument(url,br,getHeaders,data3)
+    #     r3=project.addCustomFolder(url, br, getHeaders, data1)
+    #     print("r3=",r3.json())
+    #     assert str(r3.json()["code"]) == str(project_data['exp']['code'])
+    #     assert str(r3.json()['message']) == str(project_data['exp']['message'])
+    #     print("项目文件夹已创建")
+    #     # 添加项目子文件夹
+    #     data2 = {
+    #         "attachmentName": "Test",
+    #         "companyId": r2.json()["data"]["companyId"],
+    #         "projectId": r1.json()["data"],
+    #         "parentRelId": "1259816246090977280",
+    #         "buildType": "2",
+    #         "isPrivate": "0",
+    #         "isDownload": True
+    #     }
+    #     r5 = project.addCustomFolder(url, br, getHeaders, data2)
+    #     assert str(r5.json()["code"]) == str(project_data['exp']['code'])
+    #     assert str(r5.json()['message']) == str(project_data['exp']['message'])
+    #     print("项目文件夹下的子文件夹已创建")
+        # r4 = project.deleteProject(url, br, getHeaders, projectIds)
+        # assert str(r4.json()["code"]) == str(project_data['exp']['code'])
+        # assert str(r4.json()['message']) == str(project_data['exp']['message'])
+        # print("项目已删除")
+
+    # 查看项目文件列表
+    def test_listCustomDocument_project(self,project_data, url, br, getHeaders):
+        time.sleep(5)
+        r1 = project.addProject(url, br, getHeaders, project_data['addProject'])
+        projectId = {
+            "projectId": r1.json()["data"]
+        }
+        projectIds = {
+            "projectIds": [r1.json()["data"]]
+        }
+        r2 = project.getProjectById(url, br, getHeaders, projectId)
+        print("r2=", r2.json())
+        # 添加项目文件夹
+        data1 = {
+            "attachmentName": "Test",
+            "companyId": r2.json()["data"]["companyId"],
+            "projectId": r1.json()["data"],
+            "manageUser": ["1242059550803365888"],
+            "parentRelId": "-1",
+            "buildType": "2",
+            "isPrivate": "0",
+            "isDownload": True
+        }
+        r3 = project.addCustomFolder(url, br, getHeaders, data1)
+        print("r3=",r3.json())
+        time.sleep(10)
+        r4 = project.addCustomFolder(url, br, getHeaders, data1)
+        print("r4=",r4.json())
+        assert str(r3.json()["code"]) == str(project_data['exp']['code'])
+        assert str(r3.json()['message']) == str(project_data['exp']['message'])
+        assert str(r4.json()["code"]) == str(project_data['exp']['code'])
+        assert str(r4.json()['message']) == str(project_data['exp']['message'])
+        print("两个项目文件夹创建成功")
+        data2 = {
+            "page": 1,
+            "pageSize": 10,
+            "companyId": r2.json()["data"]["companyId"],
+            "buildType": "2",
+            "parentRelId": "-1",
+            "projectId": r1.json()["data"]
+        }
+        r5 = project.listCustomDocument(url, br, getHeaders, data2)
+        assert str(r5.json()["code"]) == str(project_data['exp']['code'])
+        assert str(r5.json()['message']) == str(project_data['exp']['message'])
+        r6 = project.deleteProject(url, br, getHeaders, projectIds)
+        assert str(r6.json()["code"]) == str(project_data['exp']['code'])
+        assert str(r6.json()['message']) == str(project_data['exp']['message'])
         print("项目已删除")
 
 if __name__ == '__main__':

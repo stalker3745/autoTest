@@ -153,4 +153,10 @@ def addCustomFolder(url,br,headers,cs):
 def getProjectById(url,br,headers,cs):
     url=url+"/newProject/getProjectById"
     r=br.post_hearder(url, headers, json=cs)
-    return  r
+    return r
+
+# 查看项目文件夹列表
+def listCustomDocument(url,br,headers,cs):
+    url=url+"/documentManager/listCustomDocument"
+    r=br.post_hearder(url, headers, json=cs)
+    return r
